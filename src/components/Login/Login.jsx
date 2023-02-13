@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { LoginComponent, BoxContent, Input, Button, BoxLogo, Logo, H, M, Label, Form } from "./LoginStyled";
+import { LoginComponent, BoxContent, Input, Button, BoxLogo, Logo, H, M, Label, Form, IconConteiner, Icon, P } from "./LoginStyled";
+import { FaUserCircle } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
+
 
 export const Login = (props) => {
 
@@ -36,14 +39,21 @@ export const Login = (props) => {
                     <div>
                         <H>Hotel</H>
                         <M>Miranda</M>
+                        <P>Hotel Admin Dashboard</P>
                     </div>
                 </BoxLogo>
 
                 <Form onSubmit={handleSubmit}>
                     <Label>User</Label>
-                    <Input type="text" name="username" />
+                    <IconConteiner>
+                    <Icon><FaUserCircle /></Icon>
+                    <Input type="text" name="username" defaultValue={user.username}/>
+                    </IconConteiner>
                     <Label>Password</Label>
-                    <Input type="password" name="password" />
+                    <IconConteiner>
+                    <Icon><RiLockPasswordFill /></Icon>
+                    <Input type="password" name="password" defaultValue={user.password}/>
+                    </IconConteiner>
                     <Button type="submit">Login</Button>
                 </Form>
             </BoxContent>

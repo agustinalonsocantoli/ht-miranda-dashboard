@@ -67,10 +67,11 @@ export const Input = styled.input`
     border: none;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    padding-top: 3px;
     width: 100%;
     min-height: 30px;
     color: #262626;
+    outline: none;
+    padding: 5px 0 5px 27px;
 `;
 
 export const Label = styled.label`
@@ -90,4 +91,32 @@ export const Button = styled.button`
     margin-left: auto;
     margin-top: 10px;
     color: #262626;
+    cursor: pointer;
+    
+    border: 2px solid #EBF1EF;
+    transition: all 1s ease;
+    box-shadow: 6px 6px 12px #CCCCCC,
+                -6px -6px 12px #FFFFFF;
+    
+    &:active {
+        box-shadow: inset 4px 4px 12px #FFFFFF,
+                    inset -4px -4px 12px #CCCCCC;
+    }
+`;
+
+export const IconConteiner = styled.div`
+    position: relative;
+`;
+
+export const Icon = styled.div`
+    position: absolute;
+    top: 6px;
+    left: 7px;
+`;
+
+export const P = styled.p`
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    color: #5D5449;
+    font-size: 12px;
 `;
