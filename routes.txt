@@ -1,0 +1,15 @@
+'/login' --> El usuario debe ingresar
+
+'/' --> Dashboard, inicio app
+
+'/bookings' --> Todas las reservas
+'/bookings/new-book' --> Nueva reserva
+'/book/:id' --> Muestra una reserva en especifico (Podemos modificar o cancelar la misma)
+
+'/rooms' --> Todas las habitaciones
+'/rooms/add-room' --> Nueva habitacion
+'/room/:number' --> Muestra una habitacion en especifico
+
+'/users' --> Todos los usuarios
+'/users/new-user' --> Creamos nuevo usuario
+'/user/:id' --> Muestra un usuario en especifico (Podemos modificar o eliminar el usuario)
