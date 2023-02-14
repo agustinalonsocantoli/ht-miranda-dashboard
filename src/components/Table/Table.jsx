@@ -1,4 +1,4 @@
-export const Board = ({ dataBody, dataHead }) => {
+export const Table = ({ dataBody, dataHead }) => {
     return(
         <div>
             <table>

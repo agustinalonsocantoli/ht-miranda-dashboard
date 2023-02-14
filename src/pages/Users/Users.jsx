@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Board } from '../../components/Board/Board'
+import { Table } from '../../components/Table/Table'
 import { dataUsers } from './DataUsers'
 
 
@@ -16,7 +16,7 @@ export const Users = ({ setTitle }) => {
     return(
         <div>
             <h1>Users</h1>
-            <Board dataBody={dataUsers} dataHead={dataHead}/>
+            <Table dataBody={dataUsers} dataHead={dataHead}/>
         </div>
     );
 }

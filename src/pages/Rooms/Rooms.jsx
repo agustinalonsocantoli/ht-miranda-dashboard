@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Board } from '../../components/Board/Board'
+import { Table } from '../../components/Table/Table'
 import { dataRooms } from './DataRooms'
 
 export const Rooms = ({ setTitle }) => {
@@ -15,7 +15,7 @@ export const Rooms = ({ setTitle }) => {
     return(
         <div>
             <h1>Rooms</h1>
-            <Board dataBody={dataRooms} dataHead={dataHead}/>
+            <Table dataBody={dataRooms} dataHead={dataHead}/>
         </div>
     );
 }
