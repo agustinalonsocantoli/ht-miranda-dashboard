@@ -9,7 +9,7 @@ export const Login = (props) => {
     const navigate = useNavigate();
 
     const user = {
-        username: 'agustin@hotelmiranda.com',
+        username: 'agustin@hm.com',
         password: '000000',
     }
 

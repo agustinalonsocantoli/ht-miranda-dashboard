@@ -2,10 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { SlLogout } from "react-icons/sl";
 import { MdOutlineMail } from "react-icons/md";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { HiMenuAlt2 } from "react-icons/hi";
+import { AiOutlineMenuFold } from "react-icons/ai";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { NavBox, H1, Icon } from './TMenuStyled'
 
-export const TopMenu = ({ setAuthenticated, title, setVisibilityNav }) => {
+export const TopMenu = ({ setAuthenticated, title, setVisibilityNav, visibilityNav }) => {
 
     const navigate = useNavigate();
 
@@ -18,7 +19,13 @@ export const TopMenu = ({ setAuthenticated, title, setVisibilityNav }) => {
     return(
         <NavBox>
             <div>
-                <Icon><HiMenuAlt2 onClick={() => {setVisibilityNav(prev => !prev)}}/></Icon>
+                <Icon>
+                    {visibilityNav ? 
+                    <AiOutlineMenuFold onClick={() => {setVisibilityNav(prev => !prev)}}/>
+                    :
+                    <AiOutlineMenuUnfold onClick={() => {setVisibilityNav(prev => !prev)}}/>
+                    }
+                </Icon>
                 <H1>{title}</H1>
             </div>
             

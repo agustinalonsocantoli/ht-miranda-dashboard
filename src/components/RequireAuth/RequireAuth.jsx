@@ -14,9 +14,17 @@ export const RequireAuth = ({ authenticated, setAuthenticated, title }) => {
     if(visibilityNav){
         return(
             <BoxDashboard>
-                <TopNav><TopMenu setAuthenticated={setAuthenticated} title={title} setVisibilityNav={setVisibilityNav}/></TopNav>
-                <LateralNav><LateralMenu /></LateralNav>
-                <Components><Outlet /></Components>
+                <TopNav>
+                    <TopMenu setAuthenticated={setAuthenticated} title={title} setVisibilityNav={setVisibilityNav} visibilityNav={visibilityNav}/>
+                </TopNav>
+
+                <LateralNav>
+                    <LateralMenu title={title} />
+                </LateralNav>
+
+                <Components>
+                    <Outlet />
+                </Components>
             </BoxDashboard>
         );
     }

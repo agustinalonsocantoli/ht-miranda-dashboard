@@ -4,7 +4,7 @@ export const BoxDashboard = styled.div`
     height: 100vh;
     display: grid;
     grid-template-columns: 20% 80%;
-    grid-template-rows: 20% 80%;
+    grid-template-rows: 15% 85%;
 `;
 
 export const BoxOutNav = styled.div`
