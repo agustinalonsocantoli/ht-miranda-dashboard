@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { LoginComponent, BoxContent, Input, Button, BoxLogo, Logo, H, M, Label, Form, IconConteiner, Icon, P } from "./LoginStyled";
 import { FaUserCircle } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-
+import { SlLogin } from "react-icons/sl";
 
 export const Login = (props) => {
 
@@ -54,7 +54,7 @@ export const Login = (props) => {
                     <Icon><RiLockPasswordFill /></Icon>
                     <Input type="password" name="password" defaultValue={user.password}/>
                     </IconConteiner>
-                    <Button type="submit">Login</Button>
+                    <Button type="submit"><SlLogin />Login</Button>
                 </Form>
             </BoxContent>
         </LoginComponent>

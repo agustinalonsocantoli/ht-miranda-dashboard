@@ -1,4 +1,13 @@
-export const Rooms = () => {
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+export const Rooms = ({ setTitle }) => {
+    const location = useLocation();
+
+    useEffect(() => {
+        setTitle(location.pathname);
+    })
+    
     return(
         <div>
             <h1>Rooms</h1>
