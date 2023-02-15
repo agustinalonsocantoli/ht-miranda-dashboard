@@ -26,4 +26,5 @@ export const LateralNav = styled.div`
 export const Components = styled.div`
     grid-column: 2 / 3;
     grid-row: 2 / 3;
+    background: #F5F5F5;
 `;

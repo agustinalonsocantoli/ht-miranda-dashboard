@@ -1,14 +1,29 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import imgSlider from '../../assets/img/imgSlider.png'
-import imgName from '../../assets/img/imgName.png'
+import imgSlider from '../../assets/img/room.png'
+import imgName from '../../assets/img/user.png'
 import { BsTelephoneFill } from "react-icons/bs";
 import { BsChatTextFill } from "react-icons/bs";
 import { IoBedOutline } from "react-icons/io5";
 import { BiCheckShield } from "react-icons/bi";
 import { IoWifi } from "react-icons/io5";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { BoxBookings, ImgSlider, ImgUser, DataUser, DataCheck } from './BookingsStyled';
+import { BoxBookings, 
+        ImgSlider, 
+        ImgUser,
+        ImgText, 
+        DataUser, 
+        DataCheck, 
+        User, 
+        BtnPhone, 
+        BtnMsg, 
+        Icon, 
+        DataRooms, 
+        Rooms, 
+        Text,
+        Facilities
+    } 
+from './BookingsStyled';
 
 
 export const Bookings = ({ setTitle }) => {
@@ -27,20 +42,23 @@ export const Bookings = ({ setTitle }) => {
                             <img src={imgName} alt="img/user" />
                         </ImgUser>
 
-                        <div>
-                            <h3>Roberto Mansini</h3>
+                        <User>
+                            <h3>Agustin Alonso</h3>
                             <h4>ID 1234124512551</h4>
-                            <button><BsTelephoneFill/></button>
-                            <button><BsChatTextFill />Send Message</button>
-                        </div>
 
-                        <BsThreeDotsVertical />
+                            <div>
+                                <BtnPhone><BsTelephoneFill/></BtnPhone>
+                                <BtnMsg><BsChatTextFill /> Send Message</BtnMsg>
+                            </div>
+                        </User>
+
+                        <Icon><BsThreeDotsVertical /></Icon>
                     </DataUser>
 
                     <DataCheck>
                         <div>
                             <h5>Check In</h5>
-                            <p>October 30th, 2020</p>
+                            <p>October 30th, 2020 | 8:23 AM</p>
                         </div>
 
                         <div>
@@ -50,18 +68,18 @@ export const Bookings = ({ setTitle }) => {
                     </DataCheck>
                 </div>
 
-                <div>
-                    <div>
+                <DataRooms>
+                    <Rooms>
                         <h5>Room Info</h5>
                         <p>Deluxe Z - 002424</p>
-                    </div>
-                    <div>
+                    </Rooms>
+                    <Rooms>
                         <h5>Room Info</h5>
                         <p>$145<span>/night</span></p>
-                    </div>
-                </div>
+                    </Rooms>
+                </DataRooms>
 
-                <p>
+                <Text>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
                     do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
@@ -69,17 +87,23 @@ export const Bookings = ({ setTitle }) => {
                     reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
                     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
                     qui officia deserunt mollit anim id est laborum
-                </p>
+                </Text>
 
-                <div>
+                <Facilities>
                     <h5>Facilities</h5>
-                    <span><IoBedOutline/>3 Bed Space</span>
-                    <span><BiCheckShield/>24 Hours Guard</span>
-                    <span><IoWifi/>Free Wifi</span>
-                    <span>2 Bathroom</span>
-                    <span>Air Conditioner</span>
-                    <span>Television</span>
-                </div>
+
+                    <div>
+                        <span><IoBedOutline/>3 Bed Space</span>
+                        <span><BiCheckShield/>24 Hours Guard</span>
+                        <span><IoWifi/>Free Wifi</span>
+                    </div>
+
+                    <div>
+                        <span>2 Bathroom</span>
+                        <span>Air Conditioner</span>
+                        <span>Television</span>
+                    </div>
+                </Facilities>
 
             </div>
 
@@ -87,6 +111,15 @@ export const Bookings = ({ setTitle }) => {
                 <img 
                 src={imgSlider} 
                 alt="img/slider" />
+
+                <ImgText>
+                    <h4>Bed Room</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+                        enim ad minim veniam, quis nostrud exerci
+                    </p>
+                </ImgText>
             </ImgSlider>
         </BoxBookings>
     );

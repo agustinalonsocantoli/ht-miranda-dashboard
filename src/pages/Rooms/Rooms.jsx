@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Table } from '../../components/Table/Table'
-import { dataRooms } from './DataRooms'
+import { dataRooms } from '../../data/DataRooms'
 
 export const Rooms = ({ setTitle }) => {
     const location = useLocation();

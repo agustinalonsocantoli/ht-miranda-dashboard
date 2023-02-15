@@ -4,7 +4,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { AiOutlineMenuFold } from "react-icons/ai";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
-import { NavBox, H1, Icon } from './TMenuStyled'
+import { NavBox, H1, Icon, IconMenu } from './TMenuStyled'
 
 export const TopMenu = ({ setAuthenticated, title, setVisibilityNav, visibilityNav }) => {
 
@@ -19,19 +19,19 @@ export const TopMenu = ({ setAuthenticated, title, setVisibilityNav, visibilityN
     return(
         <NavBox>
             <div>
-                <Icon>
+                <IconMenu>
                     {visibilityNav ? 
                     <AiOutlineMenuFold onClick={() => {setVisibilityNav(prev => !prev)}}/>
                     :
                     <AiOutlineMenuUnfold onClick={() => {setVisibilityNav(prev => !prev)}}/>
                     }
-                </Icon>
+                </IconMenu>
                 <H1>{title}</H1>
             </div>
             
             <div>
-                <Icon><MdOutlineMail /></Icon>
-                <Icon><IoNotificationsOutline /></Icon>
+                <Icon><span>5</span><MdOutlineMail /></Icon>
+                <Icon><span>8</span><IoNotificationsOutline /></Icon>
                 <Icon><SlLogout onClick={handleClick} /></Icon>
             </div>
         </NavBox>

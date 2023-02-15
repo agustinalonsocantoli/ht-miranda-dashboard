@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Table } from '../../components/Table/Table'
-import { dataUsers } from './DataUsers'
+import { dataUsers } from '../../data/DataUsers'
 
 
 export const Users = ({ setTitle }) => {
