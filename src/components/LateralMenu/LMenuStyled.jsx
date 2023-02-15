@@ -12,35 +12,14 @@ export const Key = styled.div`
 export const List = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 30px;
-`;
-
-export const Active = styled.div`
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    display: flex;
-
-    & > a {
-        display: flex;
-        align-items: center;
-        gap: 25px;
-        padding: 0 13%;
-    }
-
-    & > div {
-        width: 5px;
-        height: 30px;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
+    gap: 25px;
 `;
 
 export const BoxLogo = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 30px 15% 50px 15%;
+    padding: 30px 15% 40px 15%;
 `;
 
 export const Logo = styled.div`
@@ -78,7 +57,6 @@ export const P = styled.p`
 
 export const LateralNav = styled.div`
     background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: 13px 3px 40px #00000005;
     height: 100vh;
 `;
 
@@ -87,7 +65,7 @@ export const UserBox = styled.div`
     box-shadow: 0px 20px 30px #00000014;
     border-radius: 18px;
     position: relative;
-    margin: 100px 15% 40px 15%;
+    margin: 80px 15% 40px 15%;
     padding: 50px 20px 20px 20px;
 `;
 export const ImgBox = styled.div`
@@ -155,4 +133,37 @@ export const CopyRights = styled.p`
     font-size: 13px;
     color: #799283;
     text-align: center;
+`;
+
+export const Active = styled.div`
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    display: flex;
+
+    & > a {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        padding: 0 13%;
+        color: #799283;
+        ${props => props.active === 'Dashboard' && `color: #E23428;`}
+        ${props => props.active === 'Bookings' && `color: #E23428;`}
+        ${props => props.active === 'Rooms' && `color: #E23428;`}
+        ${props => props.active === 'Users' && `color: #E23428;`}
+        ${props => props.active === 'Contact' && `color: #E23428;`}
+    }
+
+    & > div {
+        width: 5px;
+        height: 30px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        background: transparent;
+        ${props => props.active === 'Dashboard' && `background: #E23428;`}
+        ${props => props.active === 'Bookings' && `background: #E23428;`}
+        ${props => props.active === 'Rooms' && `background: #E23428;`}
+        ${props => props.active === 'Users' && `background: #E23428;`}
+        ${props => props.active === 'Contact' && `background: #E23428;`}
+    }
 `;

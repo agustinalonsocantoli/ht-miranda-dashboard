@@ -7,7 +7,7 @@ export const Contact = ({ setTitle }) => {
     useEffect(() => {
         setTitle(location.pathname);
     })
-    
+
     return(
         <div>
             <h1>Contact</h1>

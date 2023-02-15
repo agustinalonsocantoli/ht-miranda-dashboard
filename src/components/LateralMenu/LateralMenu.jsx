@@ -3,19 +3,11 @@ import { TbLayoutDashboard } from "react-icons/tb";
 import { BiKey } from "react-icons/bi";
 import { BsCalendar2Check } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
+import { TiContacts } from "react-icons/ti";
 import userImg from '../../assets/img/user.png'
 import { Key, List, BoxLogo, Logo, H, M, P, LateralNav, UserBox, Img, ImgBox, H4, H5, Button, H3, CopyRights, Active } from "./LMenuStyled";
 
 export const LateralMenu = ({ title }) => {
-    const active = {
-        Link: {color: '#E23428'},
-        Bg: {background: '#E23428'}
-    }
-    
-    const disactive = {
-        Link: {color: '#799283'},
-        Bg: {background: 'transparent'}
-    }
 
     return(
         <LateralNav>
@@ -32,35 +24,43 @@ export const LateralMenu = ({ title }) => {
             </BoxLogo>
 
             <List>
-                <Active>
-                    <div style={title === 'Dashboard' ? active.Bg : disactive.Bg}></div>
-                    <NavLink to={'/'} style={title === 'Dashboard' ? active.Link : disactive.Link}>
+                <Active active={title === 'Dashboard' && title}>
+                    <div></div>
+                    <NavLink to={'/'}>
                         <TbLayoutDashboard />
                         Dashboard
                     </NavLink>
                 </Active>
 
-                <Active>
-                    <div style={title === 'Bookings' ? active.Bg : disactive.Bg}></div>
-                    <NavLink to={'/bookings'} style={title === 'Bookings' ? active.Link : disactive.Link}>
+                <Active active={title === 'Bookings' && title}>
+                    <div></div>
+                    <NavLink to={'/bookings'}>
                         <BsCalendar2Check/>
                         Bookings
                         </NavLink>
                 </Active>
                 
-                <Active>
-                    <div style={title === 'Rooms' ? active.Bg : disactive.Bg}></div>
-                    <NavLink to={'/rooms'} style={title === 'Rooms' ? active.Link : disactive.Link}>
+                <Active active={title === 'Rooms' && title}>
+                    <div ></div>
+                    <NavLink to={'/rooms'}>
                         <Key><BiKey /></Key>
                         Rooms
                         </NavLink>
                 </Active>
                 
-                <Active>
-                    <div style={title === 'Users' ? active.Bg : disactive.Bg}></div>
-                    <NavLink to={'/users'} style={title === 'Users' ? active.Link : disactive.Link}>
+                <Active active={title === 'Users' && title}>
+                    <div></div>
+                    <NavLink to={'/users'}>
                         <FiUser/>
                         Users
+                        </NavLink>
+                </Active>
+
+                <Active active={title === 'Contact' && title}>
+                    <div></div>
+                    <NavLink to={'/contact'}>
+                        <TiContacts/>
+                        Contact
                         </NavLink>
                 </Active>
                 

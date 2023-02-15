@@ -4,6 +4,7 @@ import { MdOutlineMail } from "react-icons/md";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { AiOutlineMenuFold } from "react-icons/ai";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import { NavBox, H1, Icon, IconMenu } from './TMenuStyled'
 
 export const TopMenu = ({ setAuthenticated, title, setVisibilityNav, visibilityNav }) => {
@@ -30,7 +31,7 @@ export const TopMenu = ({ setAuthenticated, title, setVisibilityNav, visibilityN
             </div>
             
             <div>
-                <Icon><span>5</span><MdOutlineMail /></Icon>
+                <Icon as={Link} to={'/contact'}><span>5</span><MdOutlineMail /></Icon>
                 <Icon><span>8</span><IoNotificationsOutline /></Icon>
                 <Icon><SlLogout onClick={handleClick} /></Icon>
             </div>

@@ -11,12 +11,19 @@ export const Users = ({ setTitle }) => {
         setTitle(location.pathname);
     })
 
-    const dataHead = ['User', 'Order Date', 'Check In', 'Check Out', 'Special Request', 'Room Type', 'Status'];
-    
+    const cols = [
+        { property: ['src' ,'id', 'name'], label: 'User', display: (src, id, name) => (<div><img src={src} alt={`img/${id}`} /><div><p>{id}</p><p>{name}</p></div></div>) },
+        { property: 'date', label: 'Order Date' },
+        { property: 'in', label: 'Check In' },
+        { property: 'out', label: 'Check Out' },
+        { property: 'note', label: 'Special Request' },
+        { property: 'type', laber: 'Room Type'},
+        { property: 'status', label: 'Status' },
+    ];
+
     return(
         <div>
-            <h1>Users</h1>
-            <Table dataBody={dataUsers} dataHead={dataHead}/>
+            <Table data={dataUsers} cols={cols}/>
         </div>
     );
 }

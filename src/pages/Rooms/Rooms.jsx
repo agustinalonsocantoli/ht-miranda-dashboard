@@ -10,12 +10,18 @@ export const Rooms = ({ setTitle }) => {
         setTitle(location.pathname);
     })
 
-    const dataHead = ['Room Name', 'Bed Type', 'Room Floor', 'Facilities', 'Rate', 'Status'];
+    const cols = [
+        { property: ['src' ,'name', 'id'], label: 'Room Name', display: (src, id, name) => (<div><img src={src} alt={`img/${id}`} /><div><p>{name}</p><p>{id}</p></div></div>) },
+        { property: 'bed', label: 'Bed Type' },
+        { property: 'floor', label: 'Room Floor' },
+        { property: 'facilities', label: 'Facilities' },
+        { property: 'rate', label: 'Rate' },
+        { property: 'status', label: 'Status' },
+    ];
     
     return(
         <div>
-            <h1>Rooms</h1>
-            <Table dataBody={dataRooms} dataHead={dataHead}/>
+            <Table data={dataRooms} cols={cols}/>
         </div>
     );
 }
