@@ -9,6 +9,7 @@ import { RequireAuth } from './components/RequireAuth/RequireAuth';
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import { getTitle } from './export/functions'
 import { BookDetails } from './pages/Bookings/BookDetails';
+import { EditUser } from './pages/Users/EditUser';
 
 const App = () => {
 
@@ -26,6 +27,7 @@ const App = () => {
           <Route path='/bookings/:id' element={<BookDetails />} />
           <Route path='/rooms' element={<Rooms setTitle={setPath} />} />
           <Route path='/users' element={<Users setTitle={setPath} />} />
+          <Route path='/users/:id' element={<EditUser />} />
           <Route path='/contact' element={<Contact setTitle={setPath} />} />
           <Route path='*' element={ <Navigate to={'/'} />} />
         </Route>

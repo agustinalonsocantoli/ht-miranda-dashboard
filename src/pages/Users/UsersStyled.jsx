@@ -39,9 +39,16 @@ export const Text = styled.p`
     font-size: 13px;
 `;
 
-export const TextSc = styled.p`
-    color: #212121;
-    font-family: 'Poppins', sans-serif;;
+export const TextDate = styled.p`
+    color: #393939;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+`;
+
+export const TextEmail = styled.p`
+    color: #799283;
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 13px;
 `;

@@ -4,7 +4,7 @@ import { Table } from '../../components/Table/Table'
 import { dataBookings } from '../../data/DataBookings'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
-import { NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Pending, Canceled } from "./BookingsStyled";
+import { NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Progress } from "./BookingsStyled";
 
 export const Bookings = ({ setTitle }) => {
     const location = useLocation();
@@ -50,8 +50,7 @@ export const Bookings = ({ setTitle }) => {
         { property: ['status'], label: 'Status', display: (status) => (
             status === 'Booked' ? <Booked>{status}</Booked> : 
             status === 'Refund' ? <Refund>{status}</Refund> :
-            status === 'Pending' ? <Pending>{status}</Pending> :
-            <Canceled>{status}</Canceled>)
+            <Progress>{status}</Progress>)
         },
     ];
 

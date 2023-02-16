@@ -8,6 +8,19 @@ export const BoxBookings = styled.div`
     box-shadow: 0px 4px 4px #00000005;
 `;
 
+export const ImgUser = styled.div`
+    width: 130px;
+    height: 130px;
+    border-radius: 10px;
+
+    & > img {
+        objet-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }   
+`;
+
 export const ImgSlider = styled.div`
     min-width: 555px;
     height: 565px;
@@ -21,17 +34,21 @@ export const ImgSlider = styled.div`
     }   
 `;
 
-export const ImgUser = styled.div`
-    width: 130px;
-    height: 130px;
-    border-radius: 10px;
+export const Status = styled.div`
+    position: absolute;
+    top: 8%;
+    left: 70%;
+    background: ${props => props.status === 'Booked' ? '#5AD07A' : props.status === 'Refund' ? '#E23428' : '#E7D327'};
+    opacity: .8;
+    rotate: 45deg;
+    padding: 15px 50px;
 
-    & > img {
-        objet-fit: cover;
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
-    }   
+    p {
+        color: #FFFFFF;
+        font-family: 'Poppins', sans-serif;;
+        font-weight: 600;
+        font-size: 20px;
+    }
 `;
 
 export const ImgText = styled.div`

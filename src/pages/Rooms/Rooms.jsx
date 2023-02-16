@@ -4,7 +4,7 @@ import { Table } from '../../components/Table/Table'
 import { dataRooms } from '../../data/DataRooms'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
-import { NameBox, Text, TextFac, TextRate, Available, Booked } from './RoomsStyled';
+import { NameBox, Text, TextFac, TextRate, Available, Booked, TextOffer } from './RoomsStyled';
 
 export const Rooms = ({ setTitle }) => {
     const location = useLocation();
@@ -22,7 +22,7 @@ export const Rooms = ({ setTitle }) => {
     }
 
     const cols = [
-        { property: ['src' ,'name', 'id'], label: 'Room Name', display: (src, id, name) => (
+        { property: ['src' ,'name', 'id'], label: 'Room', display: (src, id, name) => (
             <NameBox>
                 <img src={src} alt={`img/${id}`} />
                 
@@ -32,10 +32,10 @@ export const Rooms = ({ setTitle }) => {
                 </div>
             </NameBox>) 
         },
-        { property: ['bed'], label: 'Bed Type', display: (bed) => (<Text>{bed}</Text>) },
-        { property: ['floor'], label: 'Room Floor', display: (floor) => (<Text>{floor}</Text>) },
-        { property: ['facilities'], label: 'Facilities', display: (facilities) => (<TextFac>{facilities}</TextFac>) },
-        { property: ['rate'], label: 'Rate', display: (rate) => (<TextRate>{rate}<span>/night</span></TextRate>) },
+        { property: ['type'], label: 'Type', display: (type) => (<Text>{type}</Text>) },
+        { property: ['amenities'], label: 'Amenities', display: (amenities) => (<TextFac>{amenities}</TextFac>) },
+        { property: ['price'], label: 'Price', display: (price) => (<TextRate>{price}<span>/night</span></TextRate>) },
+        { property: ['offer'], label: 'Offer Price', display: (offer) => (<TextOffer>{offer}<span>/night</span></TextOffer>) },
         { property: ['status'], label: 'Status', display: (status) => (
             status === 'Available' ? <Available>{status}</Available> : <Booked>{status}</Booked>) 
         },

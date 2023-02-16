@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Table } from '../../components/Table/Table'
 import { dataUsers } from '../../data/DataUsers'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
 import { MdOutlinePhone } from "react-icons/md";
-import { NameBox, Text, TextSc, TextCont, Active, Inactive } from './UsersStyled';
+import { NameBox, Text, TextDate, TextEmail, TextCont, Active, Inactive } from './UsersStyled';
 
 
 export const Users = ({ setTitle }) => {
@@ -24,19 +24,19 @@ export const Users = ({ setTitle }) => {
     }
 
     const cols = [
-        { property: ['src' ,'id', 'name', 'joined'], label: 'Name', display: (src, id, name, joined) => (
-            <NameBox>
+        { property: ['src' ,'id', 'name'], label: 'Name', display: (src, id, name) => (
+            <NameBox as={Link} to={`/users/${id}`}>
                 <img src={src} alt={`img/${id}`} />
 
                 <div>
                     <p>{name}</p>
                     <p>{id}</p>
-                    <p>{joined}</p>
                 </div>
             </NameBox>) 
         },
-        { property: ['job'], label: 'Job Desk', display: (bed) => (<Text>{bed}</Text>) },
-        { property: ['schedule'], label: 'Schedule', display: (schedule) => (<TextSc>{schedule}</TextSc>) },
+        { property: ['email'], label: 'Email', display: (email) => (<TextEmail>{email}</TextEmail>) },
+        { property: ['start'], label: 'Start Date', display: (start) => (<TextDate>{start}</TextDate>) },
+        { property: ['job'], label: 'Description', display: (job) => (<Text>{job}</Text>) },
         { property: ['contact'], label: 'Contact', display: (contact) => (<TextCont><MdOutlinePhone />{contact}</TextCont>) },
         { property: ['status'], label: 'Status', display: (status) => (
             status === 'ACTIVE' ? <Active>{status}</Active> : <Inactive>{status}</Inactive>) 

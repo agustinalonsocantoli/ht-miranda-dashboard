@@ -91,22 +91,12 @@ export const Refund = styled.span`
     padding: 10px 15px;
 `;
 
-export const Pending = styled.span`
-    color: #6D6D6D;
+export const Progress = styled.span`
+    color: #E7D327;
     font-family: 'Poppins', sans-serif;;
     font-weight: 500;
     font-size: 14px;
-    background: #E2E2E2;
-    border-radius: 12px;
-    padding: 10px 15px;
-`;
-
-export const Canceled = styled.span`
-    color: #BEBEBE;
-    font-family: 'Poppins', sans-serif;;
-    font-weight: 500;
-    font-size: 14px;
-    background: #575757;
+    background: #FCF3AF;
     border-radius: 12px;
     padding: 10px 15px;
 `;

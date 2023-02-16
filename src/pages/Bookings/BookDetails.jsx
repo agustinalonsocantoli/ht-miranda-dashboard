@@ -20,7 +20,8 @@ import { BoxBookings,
         DataRooms, 
         Rooms, 
         Text,
-        Facilities
+        Facilities,
+        Status
     } 
 from './BDetailsStyled';
 
@@ -29,7 +30,6 @@ export const BookDetails = () => {
 
     const { id } = useParams()
     const bookSelect = dataBookings.find(book => book.id === id);
-    console.log(bookSelect);
 
     return(
         <BoxBookings>
@@ -109,6 +109,10 @@ export const BookDetails = () => {
                 <img 
                 src={imgSlider} 
                 alt="img/slider" />
+
+                <Status status={bookSelect.status}>
+                    <p>{bookSelect.status}</p>
+                </Status>
 
                 <ImgText>
                     <h4>Bed Room</h4>

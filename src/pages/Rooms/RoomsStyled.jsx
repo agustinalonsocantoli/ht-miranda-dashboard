@@ -59,6 +59,19 @@ export const TextRate = styled.p`
     }
 `;
 
+export const TextOffer = styled.p`
+    color: #E23428;
+    font-family: 'Poppins', sans-serif;;
+    font-weight: 600;
+    font-size: 15px;
+
+    span {
+        color: #799283;
+        font-weight: 400;
+        font-size: 12px;
+    }
+`;
+
 export const Available = styled.span`
     color: #FFFFFF;
     font-family: 'Poppins', sans-serif;;

@@ -60,7 +60,7 @@ export const dataBookings = [
         checkoutTime: '6.12 PM',
         note: 'View Notes',
         type: 'Deluxe A - 03',
-        status: 'Pending'
+        status: 'Progress'
     },
     {
         src: user5,
@@ -73,7 +73,7 @@ export const dataBookings = [
         checkoutTime: '6.12 PM',
         note: 'View Notes',
         type: 'Deluxe A - 03',
-        status: 'Canceled'
+        status: 'Progress'
     },
     {
         src: user6,
@@ -99,7 +99,7 @@ export const dataBookings = [
         checkoutTime: '6.12 PM',
         note: 'View Notes',
         type: 'Deluxe A - 03',
-        status: 'Canceled'
+        status: 'Progress'
     },
     {
         src: user8,
@@ -112,7 +112,7 @@ export const dataBookings = [
         checkoutTime: '6.12 PM',
         note: 'View Notes',
         type: 'Deluxe A - 03',
-        status: 'Pending'
+        status: 'Progress'
     },
     {
         src: user9,
