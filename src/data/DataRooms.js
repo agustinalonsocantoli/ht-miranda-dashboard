@@ -1,4 +1,4 @@
-import roomImg from '../assets/img/room.png'
+import roomImg from '../assets/img/room1.png'
 
 export const dataRooms = [
     {   
@@ -9,7 +9,7 @@ export const dataRooms = [
         bed: 'Double Bed',
         floor: 'Floor A-1',
         facilities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-        rate: '$145/night',
+        rate: '$145',
         status: 'Available',
     },
     {
@@ -20,7 +20,7 @@ export const dataRooms = [
         bed: 'Double Bed',
         floor: 'Floor A-1',
         facilities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-        rate: '$145/night',
+        rate: '$145',
         status: 'Available',
     },
     {
@@ -31,8 +31,8 @@ export const dataRooms = [
         bed: 'Double Bed',
         floor: 'Floor A-1',
         facilities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-        rate: '$145/night',
-        status: 'Available',
+        rate: '$145',
+        status: 'Booked',
     },
     {
         index: 3,
@@ -42,7 +42,7 @@ export const dataRooms = [
         bed: 'Double Bed',
         floor: 'Floor A-1',
         facilities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-        rate: '$145/night',
+        rate: '$145',
         status: 'Available',
     },
     {
@@ -53,8 +53,8 @@ export const dataRooms = [
         bed: 'Double Bed',
         floor: 'Floor A-1',
         facilities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-        rate: '$145/night',
-        status: 'Available',
+        rate: '$145',
+        status: 'Booked',
     },
     {
         index: 5,
@@ -64,8 +64,8 @@ export const dataRooms = [
         bed: 'Double Bed',
         floor: 'Floor A-1',
         facilities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-        rate: '$145/night',
-        status: 'Available',
+        rate: '$145',
+        status: 'Booked',
     },
     {
         index: 6,
@@ -75,7 +75,7 @@ export const dataRooms = [
         bed: 'Double Bed',
         floor: 'Floor A-1',
         facilities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-        rate: '$145/night',
+        rate: '$145',
         status: 'Available',
     },
     {
@@ -86,8 +86,8 @@ export const dataRooms = [
         bed: 'Double Bed',
         floor: 'Floor A-1',
         facilities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-        rate: '$145/night',
-        status: 'Available',
+        rate: '$145',
+        status: 'Booked',
     },
     {
         index: 8,
@@ -97,7 +97,7 @@ export const dataRooms = [
         bed: 'Double Bed',
         floor: 'Floor A-1',
         facilities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-        rate: '$145/night',
+        rate: '$145',
         status: 'Available',
     },
     {
@@ -108,7 +108,7 @@ export const dataRooms = [
         bed: 'Double Bed',
         floor: 'Floor A-1',
         facilities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
-        rate: '$145/night',
-        status: 'Available',
+        rate: '$145',
+        status: 'Booked',
     },
 ]
