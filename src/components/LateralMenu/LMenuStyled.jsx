@@ -12,7 +12,8 @@ export const Key = styled.div`
 export const List = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 30px;
+    margin-top: 20px;
 `;
 
 export const BoxLogo = styled.div`
@@ -57,7 +58,6 @@ export const P = styled.p`
 
 export const LateralNav = styled.div`
     background: #FFFFFF 0% 0% no-repeat padding-box;
-    height: 100vh;
 `;
 
 export const UserBox = styled.div`
@@ -65,7 +65,7 @@ export const UserBox = styled.div`
     box-shadow: 0px 20px 30px #00000014;
     border-radius: 18px;
     position: relative;
-    margin: 80px 15% 40px 15%;
+    margin: 100px 15% 50px 15%;
     padding: 50px 20px 20px 20px;
 `;
 export const ImgBox = styled.div`
@@ -133,6 +133,15 @@ export const CopyRights = styled.p`
     font-size: 13px;
     color: #799283;
     text-align: center;
+`;
+
+export const Foot = styled.p`
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    color: #799283;
+    text-align: center;
+    margin-top: 40px;
 `;
 
 export const Active = styled.div`

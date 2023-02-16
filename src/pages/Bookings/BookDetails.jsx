@@ -1,11 +1,12 @@
 import imgSlider from '../../assets/img/room.png'
-import imgName from '../../assets/img/user1.png'
 import { BsTelephoneFill } from "react-icons/bs";
 import { BsChatTextFill } from "react-icons/bs";
 import { IoBedOutline } from "react-icons/io5";
 import { BiCheckShield } from "react-icons/bi";
 import { IoWifi } from "react-icons/io5";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useParams } from 'react-router-dom';
+import { dataBookings } from '../../data/DataBookings';
 import { BoxBookings, 
         ImgSlider, 
         ImgUser,
@@ -21,22 +22,27 @@ import { BoxBookings,
         Text,
         Facilities
     } 
-from './BookStyled';
+from './BDetailsStyled';
 
 
 export const BookDetails = () => {
+
+    const { id } = useParams()
+    const bookSelect = dataBookings.find(book => book.id === id);
+    console.log(bookSelect);
+
     return(
         <BoxBookings>
             <div>
                 <div>
                     <DataUser>
                         <ImgUser>
-                            <img src={imgName} alt="img/user" />
+                            <img src={bookSelect.src} alt={`img/${bookSelect.name}`} />
                         </ImgUser>
 
                         <User>
-                            <h3>Juan Martin Gomez</h3>
-                            <h4>ID 1234124512551</h4>
+                            <h3>{bookSelect.name}</h3>
+                            <h4>{`ID ${bookSelect.id}`}</h4>
 
                             <div>
                                 <BtnPhone><BsTelephoneFill/></BtnPhone>
@@ -50,12 +56,12 @@ export const BookDetails = () => {
                     <DataCheck>
                         <div>
                             <h5>Check In</h5>
-                            <p>October 30th, 2020 | 8:23 AM</p>
+                            <p>{`${bookSelect.checkinDate} | ${bookSelect.checkinTime}`}</p>
                         </div>
 
                         <div>
                             <h5>Check Out</h5>
-                            <p>November 2th, 2020</p>
+                            <p>{bookSelect.checkoutDate}</p>
                         </div>
                     </DataCheck>
                 </div>
@@ -63,7 +69,7 @@ export const BookDetails = () => {
                 <DataRooms>
                     <Rooms>
                         <h5>Room Info</h5>
-                        <p>Deluxe Z - 002424</p>
+                        <p>{bookSelect.type}</p>
                     </Rooms>
                     <Rooms>
                         <h5>Room Info</h5>

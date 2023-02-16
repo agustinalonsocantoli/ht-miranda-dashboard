@@ -40,14 +40,14 @@ export const Text = styled.p`
 `;
 
 export const TextFac = styled.p`
-    color: ##212121;
+    color: #212121;
     font-family: 'Poppins', sans-serif;;
     font-weight: 300;
     font-size: 13px;
 `;
 
 export const TextRate = styled.p`
-    color: ##212121;
+    color: #212121;
     font-family: 'Poppins', sans-serif;;
     font-weight: 600;
     font-size: 15px;

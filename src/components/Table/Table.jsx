@@ -6,7 +6,7 @@ export const Table = ({ data, cols, actions }) => {
     const [ viewActions, setViewActions ] = useState(false);
 
     const getRow = (row) => (
-        <tr key={row.index}>
+        <tr key={row.id}>
             {cols.map((item, index)=> (
                 <td key={index}>
                     {item.display ? item.display(row[item.property[0]], row[item.property[1]], row[item.property[2]], row[item.property[3]]) : row[item.property]}
@@ -15,10 +15,10 @@ export const Table = ({ data, cols, actions }) => {
 
             <td>
                 <BtnOptions>
-                <Icon><BsThreeDotsVertical onClick={() => setViewActions(prev => prev === row.index ? null : row.index)}/></Icon>
+                <Icon><BsThreeDotsVertical onClick={() => setViewActions(prev => prev === row.id ? null : row.id)}/></Icon>
                 
-                <OptionsMenu visible={viewActions === row.index}>
-                    {actions.map(item => <li key={item.name} onClick={() => item.action(row.index)}>{item.icon}{item.name}</li>)}
+                <OptionsMenu visible={viewActions === row.id}>
+                    {actions.map(item => <li key={item.name} onClick={() => item.action(row.id)}>{item.icon}{item.name}</li>)}
                 </OptionsMenu>
                 </BtnOptions>
             </td>

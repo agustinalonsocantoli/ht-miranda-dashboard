@@ -4,6 +4,8 @@ import { Table } from '../../components/Table/Table'
 import { dataUsers } from '../../data/DataUsers'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
+import { MdOutlinePhone } from "react-icons/md";
+import { NameBox, Text, TextSc, TextCont, Active, Inactive } from './UsersStyled';
 
 
 export const Users = ({ setTitle }) => {
@@ -23,7 +25,7 @@ export const Users = ({ setTitle }) => {
 
     const cols = [
         { property: ['src' ,'id', 'name', 'joined'], label: 'Name', display: (src, id, name, joined) => (
-            <div>
+            <NameBox>
                 <img src={src} alt={`img/${id}`} />
 
                 <div>
@@ -31,12 +33,14 @@ export const Users = ({ setTitle }) => {
                     <p>{id}</p>
                     <p>{joined}</p>
                 </div>
-            </div>) 
+            </NameBox>) 
         },
-        { property: 'job', label: 'Job Desk' },
-        { property: 'schedule', label: 'Schedule' },
-        { property: 'contact', label: 'Contact' },
-        { property: 'status', label: 'Status' },
+        { property: ['job'], label: 'Job Desk', display: (bed) => (<Text>{bed}</Text>) },
+        { property: ['schedule'], label: 'Schedule', display: (schedule) => (<TextSc>{schedule}</TextSc>) },
+        { property: ['contact'], label: 'Contact', display: (contact) => (<TextCont><MdOutlinePhone />{contact}</TextCont>) },
+        { property: ['status'], label: 'Status', display: (status) => (
+            status === 'ACTIVE' ? <Active>{status}</Active> : <Inactive>{status}</Inactive>) 
+        },
     ];
 
     const actions = [

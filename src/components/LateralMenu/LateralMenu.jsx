@@ -5,7 +5,7 @@ import { BsCalendar2Check } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import { TiContacts } from "react-icons/ti";
 import userImg from '../../assets/img/user.png'
-import { Key, List, BoxLogo, Logo, H, M, P, LateralNav, UserBox, Img, ImgBox, H4, H5, Button, H3, CopyRights, Active } from "./LMenuStyled";
+import { Key, List, BoxLogo, Logo, H, M, P, LateralNav, UserBox, Img, ImgBox, H4, H5, Button, H3, CopyRights, Foot, Active } from "./LMenuStyled";
 
 export const LateralMenu = ({ title }) => {
 
@@ -81,6 +81,8 @@ export const LateralMenu = ({ title }) => {
             <div>
                 <H3>Hotel Miranda Admin Dashboard</H3>
                 <CopyRights>&copy;2023 All Rights Reserved</CopyRights>
+
+                <Foot>Made with ♥ by ACC</Foot>
             </div>
         </LateralNav>
     );

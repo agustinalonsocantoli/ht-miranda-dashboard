@@ -11,7 +11,7 @@ export const StyledTable = styled.table`
         color: #393939;
         font-family: 'Poppins', sans-serif;;
         font-weight: 600;
-        font-size: 15px;
+        font-size: 14px;
         text-align: left;
         padding: 10px 15px;
         width: 50px;

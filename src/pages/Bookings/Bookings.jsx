@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { BookDetails } from "./BookDetails";
+import { useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
 import { Table } from '../../components/Table/Table'
 import { dataBookings } from '../../data/DataBookings'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
+import { NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Pending, Canceled } from "./BookingsStyled";
 
 export const Bookings = ({ setTitle }) => {
-    const [ detail, setDetail ] = useState(false);
-
     const location = useLocation();
 
     useEffect(() => {
@@ -25,21 +23,36 @@ export const Bookings = ({ setTitle }) => {
 
     const cols = [
         { property: ['src' ,'id', 'name'], label: 'User', display: (src, id, name) => (
-            <div>
+            <NameBox as={Link} to={`/bookings/${id}`}>
                 <img src={src} alt={`img/${id}`} />
 
                 <div>
                     <p>{id}</p>
                     <p>{name}</p>
                 </div>
-            </div>) 
+            </NameBox>) 
         },
-        { property: 'date', label: 'Order Date' },
-        { property: 'in', label: 'Check In' },
-        { property: 'out', label: 'Check Out' },
-        { property: 'note', label: 'Special Request' },
-        { property: 'type', laber: 'Room Type'},
-        { property: 'status', label: 'Status' },
+        { property: ['date'], label: 'Order Date', display: (date) => (<Date>{date}</Date>) },
+        { property: ['checkinDate', 'checkinTime'], label: 'Check In', display: (checkinDate, checkinTime) => (
+            <Check>
+                <p>{checkinDate}</p>
+                <p>{checkinTime}</p>
+            </Check>) 
+        },
+        { property: ['checkoutDate', 'checkoutTime'], label: 'Check Out', display: (checkoutDate, checkoutTime) => (
+            <Check>
+                <p>{checkoutDate}</p>
+                <p>{checkoutTime}</p>
+            </Check>) 
+        },
+        { property: ['note'], label: 'Special Request', display: (note) => (<Notes>{note}</Notes>) },
+        { property: ['type'], label: 'Room Type', display: (type) => (<TextRoom>{type}</TextRoom>) },
+        { property: ['status'], label: 'Status', display: (status) => (
+            status === 'Booked' ? <Booked>{status}</Booked> : 
+            status === 'Refund' ? <Refund>{status}</Refund> :
+            status === 'Pending' ? <Pending>{status}</Pending> :
+            <Canceled>{status}</Canceled>)
+        },
     ];
 
     const actions = [
@@ -49,13 +62,6 @@ export const Bookings = ({ setTitle }) => {
     
     return(
         <div>
-            <div style={{display: 'flex', gap: '20px'}}>
-                <h1>Bookings</h1>
-                <button onClick={() => setDetail(prev => !prev)}>COMPONENT DETAILS</button>
-            </div>
-
-            {detail && <BookDetails />}
-
             <Table data={dataBookings} cols={cols} actions={actions}/>
         </div>
     );

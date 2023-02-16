@@ -6,8 +6,9 @@ import { Contact } from './pages/Contact/Contact';
 import { Dashboard } from './pages/Dashboard/Dashboard';
 import { Login } from './components/Login/Login';
 import { RequireAuth } from './components/RequireAuth/RequireAuth';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import { getTitle } from './export/functions'
+import { BookDetails } from './pages/Bookings/BookDetails';
 
 const App = () => {
 
@@ -22,9 +23,11 @@ const App = () => {
         <Route element={ <RequireAuth authenticated={authenticated} setAuthenticated={setAuthenticated} title={getTitle(path)}/>} >
           <Route path='/' element={<Dashboard setTitle={setPath} />} />
           <Route path='/bookings' element={<Bookings setTitle={setPath} />} />
+          <Route path='/bookings/:id' element={<BookDetails />} />
           <Route path='/rooms' element={<Rooms setTitle={setPath} />} />
           <Route path='/users' element={<Users setTitle={setPath} />} />
           <Route path='/contact' element={<Contact setTitle={setPath} />} />
+          <Route path='*' element={ <Navigate to={'/'} />} />
         </Route>
         
       </Routes>

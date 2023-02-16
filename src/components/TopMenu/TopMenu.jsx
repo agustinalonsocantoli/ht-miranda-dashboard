@@ -32,7 +32,7 @@ export const TopMenu = ({ setAuthenticated, title, setVisibilityNav, visibilityN
             
             <div>
                 <Icon as={Link} to={'/contact'}><span>5</span><MdOutlineMail /></Icon>
-                <Icon><span>8</span><IoNotificationsOutline /></Icon>
+                <Icon as={Link} to={'/bookings'}><span>8</span><IoNotificationsOutline /></Icon>
                 <Icon><SlLogout onClick={handleClick} /></Icon>
             </div>
         </NavBox>
