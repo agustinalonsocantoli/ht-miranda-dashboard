@@ -81,7 +81,7 @@ export const Label = styled.label`
 `;
 
 export const Button = styled.button`
-    background: #EBF1EF;
+    background: #EBEBEB;
     border-radius: 8px;
     border: none;
     padding: 10px;
@@ -92,8 +92,12 @@ export const Button = styled.button`
     margin-top: 10px;
     color: #262626;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
     
-    border: 2px solid #EBF1EF;
+    border: 2px solid #EBEBEB;
     transition: all 1s ease;
     box-shadow: 6px 6px 12px #CCCCCC,
                 -6px -6px 12px #FFFFFF;

@@ -1,4 +1,13 @@
-export const Dashboard = () => {
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+export const Dashboard = ({ setTitle }) => {
+    const location = useLocation();
+
+    useEffect(() => {
+        setTitle(location.pathname);
+    })
+
     return(
         <div>
             <h1>Dashboard</h1>
