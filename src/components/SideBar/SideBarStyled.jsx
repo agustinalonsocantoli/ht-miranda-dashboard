@@ -58,6 +58,7 @@ export const P = styled.p`
 
 export const LateralNav = styled.div`
     background: #FFFFFF 0% 0% no-repeat padding-box;
+    min-width: 275px;
 `;
 
 export const UserBox = styled.div`

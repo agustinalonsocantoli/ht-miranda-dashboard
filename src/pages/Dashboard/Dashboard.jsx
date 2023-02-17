@@ -1,12 +1,4 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-
-export const Dashboard = ({ setTitle }) => {
-    const location = useLocation();
-
-    useEffect(() => {
-        setTitle(location.pathname);
-    })
+export const Dashboard = () => {
 
     return(
         <div>

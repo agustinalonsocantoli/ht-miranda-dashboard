@@ -1,23 +1,17 @@
-import { useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Table } from '../../components/Table/Table'
 import { dataBookings } from '../../data/DataBookings'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
 import { NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Progress } from "./BookingsStyled";
 
-export const Bookings = ({ setTitle }) => {
-    const location = useLocation();
+export const Bookings = () => {
 
-    useEffect(() => {
-        setTitle(location.pathname);
-    })
-
-    const deleteUser = (id) => {
+    const deleteBook = (id) => {
         console.log(`Delete book ${id}`);
     }
 
-    const editUser = (id) => {
+    const editBook = (id) => {
         console.log(`Edit book ${id}`);
     }
 
@@ -55,8 +49,8 @@ export const Bookings = ({ setTitle }) => {
     ];
 
     const actions = [
-        { icon: <MdOutlineDeleteForever />, name: 'Delete', action: deleteUser },
-        { icon: <TiEdit />, name: 'Edit', action: editUser },
+        { icon: <MdOutlineDeleteForever />, name: 'Delete', action: deleteBook },
+        { icon: <TiEdit />, name: 'Edit', action: editBook },
     ];
     
     return(

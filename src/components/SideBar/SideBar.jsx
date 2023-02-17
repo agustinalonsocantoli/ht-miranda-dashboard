@@ -1,13 +1,24 @@
-import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import { TbLayoutDashboard } from "react-icons/tb";
 import { BiKey } from "react-icons/bi";
 import { BsCalendar2Check } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import { TiContacts } from "react-icons/ti";
 import userImg from '../../assets/img/user.png'
-import { Key, List, BoxLogo, Logo, H, M, P, LateralNav, UserBox, Img, ImgBox, H4, H5, Button, H3, CopyRights, Foot, Active } from "./LMenuStyled";
+import { getTitle } from '../../export/functions';
+import { Key, List, BoxLogo, Logo, H, M, P, LateralNav, UserBox, Img, ImgBox, H4, H5, Button, H3, CopyRights, Foot, Active } from "./SideBarStyled";
 
-export const LateralMenu = ({ title }) => {
+export const SideBar = () => {
+    const location = useLocation();
+    const [ title, setTitle ] = useState('');
+
+
+    useEffect(() => {
+
+        setTitle(getTitle(location.pathname));
+
+    }, [location.pathname])
 
     return(
         <LateralNav>

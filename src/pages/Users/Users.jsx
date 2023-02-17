@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Table } from '../../components/Table/Table'
 import { dataUsers } from '../../data/DataUsers'
 import { MdOutlineDeleteForever } from "react-icons/md";
@@ -8,13 +7,7 @@ import { MdOutlinePhone } from "react-icons/md";
 import { NameBox, Text, TextDate, TextEmail, TextCont, Active, Inactive } from './UsersStyled';
 
 
-export const Users = ({ setTitle }) => {
-    const location = useLocation();
-
-    useEffect(() => {
-        setTitle(location.pathname);
-    })
-
+export const Users = () => {
     const deleteUser = (id) => {
         console.log(`Delete user ${id}`);
     }

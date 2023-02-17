@@ -23,6 +23,12 @@ export const StyledTable = styled.table`
         text-align: left;
         padding: 10px 15px;
     }
+
+    tbody > tr:hover {
+        background: #F8F8F8;
+        transform: scale(1.03);
+        transition: all 300ms ease;
+    }
 `;
 
 export const BtnOptions = styled.div`

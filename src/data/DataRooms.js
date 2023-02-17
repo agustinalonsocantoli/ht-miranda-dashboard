@@ -34,6 +34,7 @@ export const dataRooms = [
     {
         src: roomImg,
         name: 'Deluxe A-91234',
+        id: 'R004', 
         type: 'Double Bed',
         amenities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
         price: '$145',

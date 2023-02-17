@@ -21,7 +21,7 @@ export const Login = (props) => {
         if(username === user.username && password === user.password) {
             props.setAuthenticated(true);
             navigate('/')
-            localStorage.setItem('login', JSON.stringify(user));
+            localStorage.setItem('login', JSON.stringify(user.username));
         } else {
             alert('Usuario Incorrecto')
             e.target.reset()
