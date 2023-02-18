@@ -16,35 +16,35 @@ export const Bookings = () => {
     }
 
     const cols = [
-        { property: ['src' ,'id', 'name'], label: 'User', display: (src, id, name) => (
-            <NameBox as={Link} to={`/bookings/${id}`}>
-                <img src={src} alt={`img/${id}`} />
+        { property: ['src' ,'id', 'name'], label: 'User', display: (row) => (
+            <NameBox as={Link} to={`/bookings/${row.id}`}>
+                <img src={row.src} alt={`img/${row.id}`} />
 
                 <div>
-                    <p>{id}</p>
-                    <p>{name}</p>
+                    <p>{row.id}</p>
+                    <p>{row.name}</p>
                 </div>
             </NameBox>) 
         },
-        { property: ['date'], label: 'Order Date', display: (date) => (<Date>{date}</Date>) },
-        { property: ['checkinDate', 'checkinTime'], label: 'Check In', display: (checkinDate, checkinTime) => (
+        { property: 'date', label: 'Order Date', display: (row) => (<Date>{row.date}</Date>) },
+        { property: ['checkinDate', 'checkinTime'], label: 'Check In', display: (row) => (
             <Check>
-                <p>{checkinDate}</p>
-                <p>{checkinTime}</p>
+                <p>{row.checkinDate}</p>
+                <p>{row.checkinTime}</p>
             </Check>) 
         },
-        { property: ['checkoutDate', 'checkoutTime'], label: 'Check Out', display: (checkoutDate, checkoutTime) => (
+        { property: ['checkoutDate', 'checkoutTime'], label: 'Check Out', display: (row) => (
             <Check>
-                <p>{checkoutDate}</p>
-                <p>{checkoutTime}</p>
+                <p>{row.checkoutDate}</p>
+                <p>{row.checkoutTime}</p>
             </Check>) 
         },
-        { property: ['note'], label: 'Special Request', display: (note) => (<Notes>{note}</Notes>) },
-        { property: ['type'], label: 'Room Type', display: (type) => (<TextRoom>{type}</TextRoom>) },
-        { property: ['status'], label: 'Status', display: (status) => (
-            status === 'Booked' ? <Booked>{status}</Booked> : 
-            status === 'Refund' ? <Refund>{status}</Refund> :
-            <Progress>{status}</Progress>)
+        { property: 'note', label: 'Special Request', display: (row) => (<Notes>{row.note}</Notes>) },
+        { property: 'type', label: 'Room Type', display: (row) => (<TextRoom>{row.type}</TextRoom>) },
+        { property: 'status', label: 'Status', display: (row) => (
+            row.status === 'Booked' ? <Booked>{row.status}</Booked> : 
+            row.status === 'Refund' ? <Refund>{row.status}</Refund> :
+            <Progress>{row.status}</Progress>)
         },
     ];
 

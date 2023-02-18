@@ -17,22 +17,22 @@ export const Users = () => {
     }
 
     const cols = [
-        { property: ['src' ,'id', 'name'], label: 'Name', display: (src, id, name) => (
-            <NameBox as={Link} to={`/users/${id}`}>
-                <img src={src} alt={`img/${id}`} />
+        { property: ['src' ,'id', 'name'], label: 'Name', display: (row) => (
+            <NameBox as={Link} to={`/users/${row.id}`}>
+                <img src={row.src} alt={`img/${row.id}`} />
 
                 <div>
-                    <p>{name}</p>
-                    <p>{id}</p>
+                    <p>{row.name}</p>
+                    <p>{row.id}</p>
                 </div>
             </NameBox>) 
         },
-        { property: ['email'], label: 'Email', display: (email) => (<TextEmail>{email}</TextEmail>) },
-        { property: ['start'], label: 'Start Date', display: (start) => (<TextDate>{start}</TextDate>) },
-        { property: ['job'], label: 'Description', display: (job) => (<Text>{job}</Text>) },
-        { property: ['contact'], label: 'Contact', display: (contact) => (<TextCont><MdOutlinePhone />{contact}</TextCont>) },
-        { property: ['status'], label: 'Status', display: (status) => (
-            status === 'ACTIVE' ? <Active>{status}</Active> : <Inactive>{status}</Inactive>) 
+        { property: 'email', label: 'Email', display: (row) => (<TextEmail>{row.email}</TextEmail>) },
+        { property: 'start', label: 'Start Date', display: (row) => (<TextDate>{row.start}</TextDate>) },
+        { property: 'job', label: 'Description', display: (row) => (<Text>{row.job}</Text>) },
+        { property: 'contact', label: 'Contact', display: (row) => (<TextCont><MdOutlinePhone />{row.contact}</TextCont>) },
+        { property: 'status', label: 'Status', display: (row) => (
+            row.status === 'ACTIVE' ? <Active>{row.status}</Active> : <Inactive>{row.status}</Inactive>) 
         },
     ];
 

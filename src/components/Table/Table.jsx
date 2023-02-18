@@ -9,7 +9,7 @@ export const Table = ({ data, cols, actions }) => {
         <tr key={row.id}>
             {cols.map((item, index)=> (
                 <td key={index}>
-                    {item.display ? item.display(row[item.property[0]], row[item.property[1]], row[item.property[2]], row[item.property[3]]) : row[item.property]}
+                    {item.display ? item.display(row) : row[item.property]}
                 </td>
             ))}
 
@@ -49,3 +49,5 @@ export const Table = ({ data, cols, actions }) => {
         </StyledTable>
     );
 }
+
+//  [item.property[0]], row[item.property[1]], row[item.property[2]], row[item.property[3]]

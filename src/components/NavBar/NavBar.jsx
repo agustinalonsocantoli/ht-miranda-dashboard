@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { SlLogout } from "react-icons/sl";
 import { MdOutlineMail } from "react-icons/md";
@@ -9,16 +9,15 @@ import { Link } from "react-router-dom";
 import { getTitle } from '../../export/functions';
 import { NavBox, H1, Icon, IconMenu } from './NavBarStyled'
 
-export const NavBar = ({ setAuthenticated, viewBar ,setViewBar }) => {
+export const NavBar = ({ setAuthenticated, viewBar ,setViewBar, setTitle, title }) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [ title, setTitle ] = useState('');
     
     useEffect(() => {
 
         setTitle(getTitle(location.pathname));
 
-    }, [location.pathname])
+    }, [location.pathname, setTitle])
 
     const handleClick = () => {
         setAuthenticated(false);

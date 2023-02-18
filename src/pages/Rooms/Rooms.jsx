@@ -14,22 +14,22 @@ export const Rooms = () => {
     }
 
     const cols = [
-        { property: ['src' ,'name', 'id'], label: 'Room', display: (src, id, name) => (
+        { property: ['src' ,'name', 'id'], label: 'Room', display: (row) => (
             <NameBox>
-                <img src={src} alt={`img/${id}`} />
+                <img src={row.src} alt={`img/${row.id}`} />
                 
                 <div className="rooms">
-                    <Text>{name}</Text>
-                    <p>{id}</p>
+                    <Text>{row.name}</Text>
+                    <p>{row.id}</p>
                 </div>
             </NameBox>) 
         },
-        { property: ['type'], label: 'Type', display: (type) => (<Text>{type}</Text>) },
-        { property: ['amenities'], label: 'Amenities', display: (amenities) => (<TextFac>{amenities}</TextFac>) },
-        { property: ['price'], label: 'Price', display: (price) => (<TextRate>{price}<span>/night</span></TextRate>) },
-        { property: ['offer'], label: 'Offer Price', display: (offer) => (<TextOffer>{offer}<span>/night</span></TextOffer>) },
-        { property: ['status'], label: 'Status', display: (status) => (
-            status === 'Available' ? <Available>{status}</Available> : <Booked>{status}</Booked>) 
+        { property: 'type', label: 'Type', display: (row) => (<Text>{row.type}</Text>) },
+        { property: 'amenities', label: 'Amenities', display: (row) => (<TextFac>{row.amenities}</TextFac>) },
+        { property: 'price', label: 'Price', display: (row) => (<TextRate>{row.price}<span>/night</span></TextRate>) },
+        { property: 'offer', label: 'Offer Price', display: (row) => (<TextOffer>{row.offer}<span>/night</span></TextOffer>) },
+        { property: 'status', label: 'Status', display: (row) => (
+            row.status === 'Available' ? <Available>{row.status}</Available> : <Booked>{row.status}</Booked>) 
         },
     ];
 

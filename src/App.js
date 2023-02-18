@@ -11,37 +11,25 @@ import { RequireAuth } from './components/RequireAuth/RequireAuth';
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import { BookDetails } from './pages/Bookings/BookDetails';
 import { EditUser } from './pages/Users/EditUser';
-import styled from 'styled-components';
-
-export const AppBox = styled.div`
-  display:flex;
-`;
-export const ContentBox = styled.div`
-  width: 100%;
-`;
-
-
-
+import { AppBox, ContentBox } from './AppStyled';
 
 const App = () => {
-
-  const [ authenticated, setAuthenticated ] = useState(false);
+  const [ auth, setAuth ] = useState(localStorage.getItem('login') ? true : false);
   const [ viewBar, setViewBar ] = useState(true);
+  const [ title, setTitle ] = useState(true);
 
   return (
     <Router>
       <AppBox>
+        {auth && <SideBar title={title} viewBar={viewBar}/>}
 
-        {viewBar && <SideBar />}
-
-        
         <ContentBox>
-          <NavBar viewBar={viewBar} setViewBar={setViewBar}/>
+          {auth && <NavBar viewBar={viewBar} setViewBar={setViewBar} setAuthenticated={setAuth} setTitle={setTitle} title={title}/>}
           
           <Routes>
-            <Route path='/login' element={<Login setAuthenticated={setAuthenticated} />} />
+            <Route path='/login' element={<Login setAuthenticated={setAuth} />} />
             
-            <Route element={ <RequireAuth authenticated={authenticated} setAuthenticated={setAuthenticated}/>} >
+            <Route element={ <RequireAuth authenticated={auth} setAuthenticated={setAuth}/>} >
               <Route path='/' element={<Dashboard />} />
               <Route path='/bookings' element={<Bookings />} />
               <Route path='/bookings/:id' element={<BookDetails />} />

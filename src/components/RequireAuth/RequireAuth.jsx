@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
 
-export const RequireAuth = ({ authenticated }) => {
+export const RequireAuth = ({ auth }) => {
     
     return(
-        !authenticated && !JSON.parse(localStorage.getItem('login')) ?
+        !auth && !localStorage.getItem('login') ?
         <Navigate to={'/login'}/> : <Outlet />
     );  
 }

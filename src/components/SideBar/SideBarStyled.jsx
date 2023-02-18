@@ -1,5 +1,33 @@
 import styled from "styled-components";
 
+export const LateralNav = styled.div`
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    
+    ${props => props.visible ? `
+    animation-name: open;
+    animation-duration: 500ms; 
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    min-width: 275px;
+    ` : `
+    transition: 200ms ease;
+    transform: translateX(-275px);
+    width: 0;
+    `
+    }
+
+    @keyframes open {
+        from {
+            transform: translateX(-275px);
+            width: 0;
+        }
+        to {
+            transform: translateX(0);
+            min-width: 275px;
+        }
+    }
+`;
+
 export const Key = styled.div`
     display: inline;
 
@@ -54,11 +82,6 @@ export const P = styled.p`
     font-weight: 200;
     color: #5D5449;
     font-size: 8px;
-`;
-
-export const LateralNav = styled.div`
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    min-width: 275px;
 `;
 
 export const UserBox = styled.div`
