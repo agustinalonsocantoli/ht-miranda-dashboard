@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useContext, useReducer } from "react";
 import { NavBar } from './components/NavBar/NavBar';
 import { SideBar } from './components/SideBar/SideBar';
 import { Bookings } from './pages/Bookings/Bookings';
@@ -14,37 +14,66 @@ import { EditUser } from './pages/Users/EditUser';
 import { NewUser } from './pages/Users/NewUser'
 import { AppBox, ContentBox } from './AppStyled';
 
+const AuthContext = React.createContext();
+const initialState = {
+    auth: localStorage.getItem('login') ? true : false,
+    username: 'agustin@hm.com',
+    password: '000000', 
+}
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'LOG_IN': return {
+            ...state,
+            auth: action.payload,
+        }
+        case 'LOG_OUT': return {
+            ...state,
+            auth: action.payload,
+        }
+        default:
+            return state
+    }
+}
+
+export const useAuthContex = () => {
+  return useContext(AuthContext);
+}
+
 const App = () => {
-  const [ auth, setAuth ] = useState(localStorage.getItem('login') ? true : false);
+  const [ state, dispatch ] = useReducer(reducer, initialState);
+
   const [ viewBar, setViewBar ] = useState(true);
   const [ title, setTitle ] = useState(true);
 
   return (
     <Router>
-      <AppBox>
-        {auth && <SideBar title={title} viewBar={viewBar}/>}
+      <AuthContext.Provider value={{ auth: state.auth, username: state.username, password: state.password, dispatch }}>
+        <AppBox>
+          {state.auth && <SideBar title={title} viewBar={viewBar}/>}
 
-        <ContentBox>
-          {auth && <NavBar viewBar={viewBar} setViewBar={setViewBar} setAuthenticated={setAuth} setTitle={setTitle} title={title}/>}
-          
-          <Routes>
-            <Route path='/login' element={<Login setAuthenticated={setAuth} />} />
+          <ContentBox>
+            {state.auth && <NavBar viewBar={viewBar} setViewBar={setViewBar}  setTitle={setTitle} title={title}/>}
             
-            <Route element={ <RequireAuth authenticated={auth} setAuthenticated={setAuth}/>} >
-              <Route path='/' element={<Dashboard />} />
-              <Route path='/bookings' element={<Bookings />} />
-              <Route path='/bookings/:id' element={<BookDetails />} />
-              <Route path='/rooms' element={<Rooms />} />
-              <Route path='/users' element={<Users />} />
-              <Route path='/users/new-user' element={<NewUser />} />
-              <Route path='/users/:id' element={<EditUser />} />
-              <Route path='/contact' element={<Contact />} />
-              <Route path='*' element={ <Navigate to={'/'} />} />
-            </Route>
-            
-          </Routes>
-        </ContentBox>
-      </AppBox>
+            <Routes>
+              <Route path='/login' element={<Login />} />
+              
+              <Route element={ <RequireAuth />} >
+                <Route path='/' element={<Dashboard />} />
+                <Route path='/bookings' element={<Bookings />} />
+                <Route path='/bookings/:id' element={<BookDetails />} />
+                <Route path='/rooms' element={<Rooms />} />
+                <Route path='/users' element={<Users />} />
+                <Route path='/users/new-user' element={<NewUser />} />
+                <Route path='/users/:id' element={<EditUser />} />
+                <Route path='/contact' element={<Contact />} />
+                <Route path='*' element={ <Navigate to={'/'} />} />
+              </Route>
+              
+            </Routes>
+          </ContentBox>
+        </AppBox>
+        </AuthContext.Provider>
     </Router>
   );
 }
