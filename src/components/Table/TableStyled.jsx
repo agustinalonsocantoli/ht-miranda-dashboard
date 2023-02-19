@@ -4,6 +4,7 @@ export const StyledTable = styled.table`
     border-collapse: collapse;
     width: 95%;
     border-radius: 20px;
+    background: #FFFFFF;
 
     th {
         border-bottom: 1px solid #EBEBEB;
@@ -17,10 +18,17 @@ export const StyledTable = styled.table`
     }
     
     td {
-        border-bottom: 1px solid #EBEBEB;
         width: ${props => props.columnWidth }%;
         text-align: left;
         padding: 10px 15px;
+    }
+
+    tr {
+        border-bottom: 1px solid #EBEBEB;
+    }
+
+    tr:last-child {
+        border: none;
     }
 
     tbody > tr:hover {

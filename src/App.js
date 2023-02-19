@@ -11,6 +11,7 @@ import { RequireAuth } from './components/RequireAuth/RequireAuth';
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import { BookDetails } from './pages/Bookings/BookDetails';
 import { EditUser } from './pages/Users/EditUser';
+import { NewUser } from './pages/Users/NewUser'
 import { AppBox, ContentBox } from './AppStyled';
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
               <Route path='/bookings/:id' element={<BookDetails />} />
               <Route path='/rooms' element={<Rooms />} />
               <Route path='/users' element={<Users />} />
+              <Route path='/users/new-user' element={<NewUser />} />
               <Route path='/users/:id' element={<EditUser />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='*' element={ <Navigate to={'/'} />} />

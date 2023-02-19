@@ -13,6 +13,7 @@ export const Table = ({ data, cols, actions }) => {
                 </td>
             ))}
 
+            { actions &&
             <td>
                 <BtnOptions>
                 <Icon><BsThreeDotsVertical onClick={() => setViewActions(prev => prev === row.id ? null : row.id)}/></Icon>
@@ -21,7 +22,7 @@ export const Table = ({ data, cols, actions }) => {
                     {actions.map((item, index) => <li key={index} onClick={() => item.action(row.id)}>{item.icon}{item.name}</li>)}
                 </OptionsMenu>
                 </BtnOptions>
-            </td>
+            </td>}
         </tr>
 
     );

@@ -1,19 +1,9 @@
 import { Link } from "react-router-dom";
 import { Table } from '../../components/Table/Table'
 import { dataBookings } from '../../data/DataBookings'
-import { MdOutlineDeleteForever } from "react-icons/md";
-import { TiEdit } from "react-icons/ti";
-import { BookingsContent, NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Progress } from "./BookingsStyled";
+import { BookingsContent, NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Progress, Options, Filters } from "./BookingsStyled";
 
 export const Bookings = () => {
-
-    const deleteBook = (id) => {
-        console.log(`Delete book ${id}`);
-    }
-
-    const editBook = (id) => {
-        console.log(`Edit book ${id}`);
-    }
 
     const cols = [
         { property: ['src' ,'id', 'name'], label: 'User', display: (row) => (
@@ -47,15 +37,26 @@ export const Bookings = () => {
             <Progress>{row.status}</Progress>)
         },
     ];
-
-    const actions = [
-        { icon: <MdOutlineDeleteForever />, name: 'Delete', action: deleteBook },
-        { icon: <TiEdit />, name: 'Edit', action: editBook },
-    ];
     
     return(
         <BookingsContent>
-            <Table data={dataBookings} cols={cols} actions={actions}/>
+            <Options>
+                <Filters>
+                    <p>All Bookings.</p>
+                    <p>Checking In</p>
+                    <p>Checking Out</p>
+                    <p>In Progress</p>
+                </Filters>
+
+                <select defaultValue={'date'}>
+                    <option value="date">Order Date</option>
+                    <option value="guest">Guest</option>
+                    <option value="checkin">Check in</option>
+                    <option value="checkout">Check out</option>
+                </select>
+            </Options>
+
+            <Table data={dataBookings} cols={cols} />
         </BookingsContent>
     );
 }

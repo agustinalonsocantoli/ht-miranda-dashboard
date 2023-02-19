@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { dataUsers } from "../../data/DataUsers";
 import { TbLayoutDashboard } from "react-icons/tb";
 import { BiKey } from "react-icons/bi";
 import { BsCalendar2Check } from "react-icons/bs";
@@ -8,6 +9,7 @@ import userImg from '../../assets/img/user.png'
 import { Key, List, BoxLogo, Logo, H, M, P, LateralNav, UserBox, Img, ImgBox, H4, H5, Button, H3, CopyRights, Foot, Active } from "./SideBarStyled";
 
 export const SideBar = ({ title, viewBar }) => {
+    const navigate = useNavigate();
 
     return(
         <LateralNav visible={viewBar}>
@@ -73,9 +75,9 @@ export const SideBar = ({ title, viewBar }) => {
                     alt="user/img" />
                 </ImgBox>
 
-                <H4>Agustin Alonso</H4>
-                <H5>agustin@hm.com</H5>
-                <Button>Edit</Button>
+                <H4>{dataUsers[9].name}</H4>
+                <H5>{dataUsers[9].email}</H5>
+                <Button onClick={() => navigate('/users/U00010')}>Edit</Button>
             </UserBox>
 
             <div>

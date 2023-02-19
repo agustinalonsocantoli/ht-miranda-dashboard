@@ -1,4 +1,4 @@
-import user1 from '../assets/img/user1.png'
+import me from '../assets/img/user.png'
 import user2 from '../assets/img/user2.png'
 import user3 from '../assets/img/user3.png'
 import user4 from '../assets/img/user4.png'
@@ -98,16 +98,16 @@ export const dataUsers = [
         start: 'Aug 2th 2017',
         job: 'Directing phone calls, coordinating travel plans.',
         contact: '012 334 55512',
-        status: 'ACTIVE',
+        status: 'INACTIVE',
     },
     {   
-        src: user1,
-        name: 'JUAN GARCIA',
+        src: me,
+        name: 'AGUSTIN ALONSO',
         id: 'U00010',
-        email: 'jgarcia@hm.com',
+        email: 'agustin@hm.com',
         start: 'Aug 2th 2017',
-        job: 'Directing phone calls, coordinating travel plans.',
+        job: 'Manager',
         contact: '012 334 55512',
-        status: 'INACTIVE',
+        status: 'ACTIVE',
     },
 ]

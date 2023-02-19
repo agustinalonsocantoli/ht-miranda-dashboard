@@ -84,3 +84,88 @@ export const Inactive = styled.span`
     font-weight: 600;
     font-size: 14px;
 `;
+
+export const Options = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 70px 10px 10px;
+
+    button {
+        background: #135846;
+        border-radius: 10px;
+        color: #FFFFFF;
+        font-family: 'Poppins', sans-serif;;
+        font-weight: 500;
+        font-size: 14px;
+        border: none;
+        padding: 10px 25px;
+        cursor: pointer;
+
+        &:active {
+            transform: scale(0.98);
+            transition: all 100ms ease-in-out;
+        }
+    }
+
+    form {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        
+        button {
+            padding: 0;
+            background: #F8F8F8;
+            color: #135846;
+            
+            svg {
+                font-size: 20px;
+            }
+        }
+    }
+
+    select {
+        border: 1px solid #135846;
+        border-radius: 10px;
+        padding: 10px 25px;
+        color: #135846;
+        font-family: 'Poppins', sans-serif;;
+        font-weight: 500;
+        font-size: 14px;
+        background: #F8F8F8;
+        margin-left: 10px;
+    }
+
+    input {
+        outline: none;
+        border: none;
+        border-bottom: 2px solid #135846;
+        color: #135846;
+        font-family: 'Poppins', sans-serif;;
+        font-weight: 500;
+        font-size: 14px;
+        background: #F8F8F8; 
+        padding: 0 5px;
+    }
+
+`;
+
+export const Filters = styled.div`
+    display: flex;
+    align-items: center;
+
+    p {
+        font-family: 'Poppins', sans-serif;;
+        font-weight: 500;
+        font-size: 14px;
+        color: #6E6E6E;
+        padding: 8px 15px; 
+        border-bottom: 2px solid #6E6E6E;
+        cursor: pointer;
+
+        &:active {
+            color: #135846;
+            border-bottom: 2px solid #135846;
+        }
+    }
+`;

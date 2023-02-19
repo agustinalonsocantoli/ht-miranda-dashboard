@@ -1,13 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Table } from '../../components/Table/Table'
 import { dataUsers } from '../../data/DataUsers'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
 import { MdOutlinePhone } from "react-icons/md";
-import { UsersContent, NameBox, Text, TextDate, TextEmail, TextCont, Active, Inactive } from './UsersStyled';
+import { MdManageSearch } from "react-icons/md";
+import { UsersContent, NameBox, Text, TextDate, TextEmail, TextCont, Active, Inactive, Options, Filters } from './UsersStyled';
 
 
 export const Users = () => {
+    const navigate = useNavigate();
+
     const deleteUser = (id) => {
         console.log(`Delete user ${id}`);
     }
@@ -43,6 +46,28 @@ export const Users = () => {
 
     return(
         <UsersContent>
+            <Options>
+                <Filters>
+                    <p>All Employee</p>
+                    <p>Active Employee</p>
+                    <p>Inactive Employee</p>
+                </Filters>
+                
+                <form>
+                    <input type="text" placeholder="Search User"/>
+                    <button><MdManageSearch /></button>
+                </form>
+
+                <div>
+                    <button onClick={() => navigate('/users/new-user')}>+ New Employee</button>
+
+                    <select defaultValue={'date'}>
+                        <option value="date">Start Date</option>
+                        <option value="name">Name</option>
+                    </select>
+                </div>
+            </Options>
+
             <Table data={dataUsers} cols={cols} actions={actions}/>
         </UsersContent>
     );
