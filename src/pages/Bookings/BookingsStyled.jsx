@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const BookingsContent = styled.div`
+    margin: 30px;
+`;
+
 export const NameBox = styled.div`
     display: flex;
     align-items: center;

@@ -5,4 +5,5 @@ export const AppBox = styled.div`
 `;
 export const ContentBox = styled.div`
   width: 100%;
+  background: #F8F8F8;
 `;

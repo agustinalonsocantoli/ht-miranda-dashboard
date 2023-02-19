@@ -4,7 +4,7 @@ import { dataUsers } from '../../data/DataUsers'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
 import { MdOutlinePhone } from "react-icons/md";
-import { NameBox, Text, TextDate, TextEmail, TextCont, Active, Inactive } from './UsersStyled';
+import { UsersContent, NameBox, Text, TextDate, TextEmail, TextCont, Active, Inactive } from './UsersStyled';
 
 
 export const Users = () => {
@@ -42,8 +42,8 @@ export const Users = () => {
     ];
 
     return(
-        <div>
+        <UsersContent>
             <Table data={dataUsers} cols={cols} actions={actions}/>
-        </div>
+        </UsersContent>
     );
 }

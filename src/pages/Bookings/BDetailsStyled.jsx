@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const BoxBookings = styled.div`
     display: flex;
-    margin: 25px;
+    margin: 30px;
     border-radius: 10px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px #00000005;

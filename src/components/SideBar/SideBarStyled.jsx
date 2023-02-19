@@ -127,7 +127,7 @@ export const H5 = styled.h5`
 export const Button = styled.button`
     display: block;
     margin: auto;
-    background: #EBF1EF 0% 0% no-repeat padding-box;
+    background: #EBF1EF;
     border-radius: 8px;
     border: none;
     color: #135846;

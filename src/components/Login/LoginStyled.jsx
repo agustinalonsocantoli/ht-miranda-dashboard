@@ -121,6 +121,6 @@ export const Icon = styled.div`
 export const P = styled.p`
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
-    color: #5D5449;
+    color: #292929;
     font-size: 12px;
 `;

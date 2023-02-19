@@ -3,7 +3,7 @@ import { Table } from '../../components/Table/Table'
 import { dataBookings } from '../../data/DataBookings'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
-import { NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Progress } from "./BookingsStyled";
+import { BookingsContent, NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Progress } from "./BookingsStyled";
 
 export const Bookings = () => {
 
@@ -54,8 +54,8 @@ export const Bookings = () => {
     ];
     
     return(
-        <div>
+        <BookingsContent>
             <Table data={dataBookings} cols={cols} actions={actions}/>
-        </div>
+        </BookingsContent>
     );
 }

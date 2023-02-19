@@ -2,7 +2,7 @@ import { Table } from '../../components/Table/Table'
 import { dataRooms } from '../../data/DataRooms'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
-import { NameBox, Text, TextFac, TextRate, Available, Booked, TextOffer } from './RoomsStyled';
+import { RoomsContent, NameBox, Text, TextFac, TextRate, Available, Booked, TextOffer } from './RoomsStyled';
 
 export const Rooms = () => {
     const deleteRoom = (id) => {
@@ -39,8 +39,8 @@ export const Rooms = () => {
     ];
     
     return(
-        <div>
+        <RoomsContent>
             <Table data={dataRooms} cols={cols} actions={actions}/>
-        </div>
+        </RoomsContent>
     );
 }
