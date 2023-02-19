@@ -7,11 +7,13 @@ import { AiOutlineMenuFold } from "react-icons/ai";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { getTitle } from '../../export/functions';
+import { useAuthContex } from "../../App";
 import { NavBox, H1, Icon, IconMenu } from './NavBarStyled'
 
-export const NavBar = ({ setAuthenticated, viewBar ,setViewBar, setTitle, title }) => {
+export const NavBar = ({ viewBar ,setViewBar, setTitle, title }) => {
     const navigate = useNavigate();
     const location = useLocation();
+    const { dispatch } = useAuthContex();
     
     useEffect(() => {
 
@@ -20,7 +22,10 @@ export const NavBar = ({ setAuthenticated, viewBar ,setViewBar, setTitle, title 
     }, [location.pathname, setTitle])
 
     const handleClick = () => {
-        setAuthenticated(false);
+        dispatch({
+            type: 'LOG_OUT',
+            payload: false,
+        })
         localStorage.removeItem('login')
         navigate('/login');
     }
