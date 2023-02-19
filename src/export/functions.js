@@ -2,6 +2,9 @@ export const getTitle = (path) => {
     let title = 'Dashboard'
 
     switch(path) {
+      case '/':
+        title = 'Dashboard'
+      break;
       case '/bookings':
         title = 'Bookings'
       break;
@@ -15,7 +18,7 @@ export const getTitle = (path) => {
         title = 'Contact'
       break;
       default:
-        return title = 'Dashboard'
+        return title = ''
     }
 
     return title

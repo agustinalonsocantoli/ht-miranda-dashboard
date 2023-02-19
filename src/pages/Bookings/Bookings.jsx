@@ -1,67 +1,62 @@
-import { useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Table } from '../../components/Table/Table'
 import { dataBookings } from '../../data/DataBookings'
-import { MdOutlineDeleteForever } from "react-icons/md";
-import { TiEdit } from "react-icons/ti";
-import { NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Progress } from "./BookingsStyled";
+import { BookingsContent, NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Progress, Options, Filters } from "./BookingsStyled";
 
-export const Bookings = ({ setTitle }) => {
-    const location = useLocation();
-
-    useEffect(() => {
-        setTitle(location.pathname);
-    })
-
-    const deleteUser = (id) => {
-        console.log(`Delete book ${id}`);
-    }
-
-    const editUser = (id) => {
-        console.log(`Edit book ${id}`);
-    }
+export const Bookings = () => {
 
     const cols = [
-        { property: ['src' ,'id', 'name'], label: 'User', display: (src, id, name) => (
-            <NameBox as={Link} to={`/bookings/${id}`}>
-                <img src={src} alt={`img/${id}`} />
+        { property: ['src' ,'id', 'name'], label: 'User', display: (row) => (
+            <NameBox as={Link} to={`/bookings/${row.id}`}>
+                <img src={row.src} alt={`img/${row.id}`} />
 
                 <div>
-                    <p>{id}</p>
-                    <p>{name}</p>
+                    <p>{row.id}</p>
+                    <p>{row.name}</p>
                 </div>
             </NameBox>) 
         },
-        { property: ['date'], label: 'Order Date', display: (date) => (<Date>{date}</Date>) },
-        { property: ['checkinDate', 'checkinTime'], label: 'Check In', display: (checkinDate, checkinTime) => (
+        { property: 'date', label: 'Order Date', display: (row) => (<Date>{row.date}</Date>) },
+        { property: ['checkinDate', 'checkinTime'], label: 'Check In', display: (row) => (
             <Check>
-                <p>{checkinDate}</p>
-                <p>{checkinTime}</p>
+                <p>{row.checkinDate}</p>
+                <p>{row.checkinTime}</p>
             </Check>) 
         },
-        { property: ['checkoutDate', 'checkoutTime'], label: 'Check Out', display: (checkoutDate, checkoutTime) => (
+        { property: ['checkoutDate', 'checkoutTime'], label: 'Check Out', display: (row) => (
             <Check>
-                <p>{checkoutDate}</p>
-                <p>{checkoutTime}</p>
+                <p>{row.checkoutDate}</p>
+                <p>{row.checkoutTime}</p>
             </Check>) 
         },
-        { property: ['note'], label: 'Special Request', display: (note) => (<Notes>{note}</Notes>) },
-        { property: ['type'], label: 'Room Type', display: (type) => (<TextRoom>{type}</TextRoom>) },
-        { property: ['status'], label: 'Status', display: (status) => (
-            status === 'Booked' ? <Booked>{status}</Booked> : 
-            status === 'Refund' ? <Refund>{status}</Refund> :
-            <Progress>{status}</Progress>)
+        { property: 'note', label: 'Special Request', display: (row) => (<Notes>{row.note}</Notes>) },
+        { property: 'type', label: 'Room Type', display: (row) => (<TextRoom>{row.type}</TextRoom>) },
+        { property: 'status', label: 'Status', display: (row) => (
+            row.status === 'Booked' ? <Booked>{row.status}</Booked> : 
+            row.status === 'Refund' ? <Refund>{row.status}</Refund> :
+            <Progress>{row.status}</Progress>)
         },
-    ];
-
-    const actions = [
-        { icon: <MdOutlineDeleteForever />, name: 'Delete', action: deleteUser },
-        { icon: <TiEdit />, name: 'Edit', action: editUser },
     ];
     
     return(
-        <div>
-            <Table data={dataBookings} cols={cols} actions={actions}/>
-        </div>
+        <BookingsContent>
+            <Options>
+                <Filters>
+                    <p>All Bookings.</p>
+                    <p>Checking In</p>
+                    <p>Checking Out</p>
+                    <p>In Progress</p>
+                </Filters>
+
+                <select defaultValue={'date'}>
+                    <option value="date">Order Date</option>
+                    <option value="guest">Guest</option>
+                    <option value="checkin">Check in</option>
+                    <option value="checkout">Check out</option>
+                </select>
+            </Options>
+
+            <Table data={dataBookings} cols={cols} />
+        </BookingsContent>
     );
 }

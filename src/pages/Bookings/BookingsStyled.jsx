@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const BookingsContent = styled.div`
+    margin: 30px;
+`;
+
 export const NameBox = styled.div`
     display: flex;
     align-items: center;
@@ -99,4 +103,44 @@ export const Progress = styled.span`
     background: #FCF3AF;
     border-radius: 12px;
     padding: 10px 15px;
+`;
+
+export const Options = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 70px 10px 10px;
+    margin-bottom: 10px;
+
+    select {
+        border: 1px solid #135846;
+        border-radius: 10px;
+        padding: 10px 25px;
+        color: #135846;
+        font-family: 'Poppins', sans-serif;;
+        font-weight: 500;
+        font-size: 14px;
+        background: #F8F8F8;
+        margin-left: 10px;
+    }
+`;
+
+export const Filters = styled.div`
+    display: flex;
+    align-items: center;
+
+    p {
+        font-family: 'Poppins', sans-serif;;
+        font-weight: 500;
+        font-size: 14px;
+        color: #6E6E6E;
+        padding: 8px 20px; 
+        border-bottom: 2px solid #6E6E6E;
+        cursor: pointer;
+
+        &:active {
+            color: #135846;
+            border-bottom: 2px solid #135846;
+        }
+    }
 `;

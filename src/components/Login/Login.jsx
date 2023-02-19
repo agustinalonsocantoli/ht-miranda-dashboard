@@ -3,10 +3,12 @@ import { LoginComponent, BoxContent, Input, Button, BoxLogo, Logo, H, M, Label, 
 import { FaUserCircle } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { SlLogin } from "react-icons/sl";
+import { useState } from "react";
 
 export const Login = (props) => {
-
     const navigate = useNavigate();
+    const [ userName, setUserName ] = useState('agustin@hm.com');
+    const [ userPassword, setUserPassword ] = useState('000000');
 
     const user = {
         username: 'agustin@hm.com',
@@ -15,13 +17,11 @@ export const Login = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const username = e.target.username.value;
-        const password = e.target.password.value;
-
-        if(username === user.username && password === user.password) {
+        
+        if(userName === user.username && userPassword === user.password) {
             props.setAuthenticated(true);
             navigate('/')
-            localStorage.setItem('login', JSON.stringify(user));
+            localStorage.setItem('login', JSON.stringify(user.username));
         } else {
             alert('Usuario Incorrecto')
             e.target.reset()
@@ -47,12 +47,12 @@ export const Login = (props) => {
                     <Label>User</Label>
                     <IconConteiner>
                     <Icon><FaUserCircle /></Icon>
-                    <Input type="text" name="username" defaultValue={user.username}/>
+                    <Input type="text" name="username" defaultValue={userName} onChange={({ target }) => setUserName(target.value)}/>
                     </IconConteiner>
                     <Label>Password</Label>
                     <IconConteiner>
                     <Icon><RiLockPasswordFill /></Icon>
-                    <Input type="password" name="password" defaultValue={user.password}/>
+                    <Input type="password" name="password" defaultValue={userPassword} onChange={({ target }) => setUserPassword(target.value)}/>
                     </IconConteiner>
                     <Button type="submit"><SlLogin />Login</Button>
                 </Form>

@@ -1,5 +1,33 @@
 import styled from "styled-components";
 
+export const LateralNav = styled.div`
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    
+    ${props => props.visible ? `
+    animation-name: open;
+    animation-duration: 500ms; 
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    min-width: 275px;
+    ` : `
+    transition: 200ms ease;
+    transform: translateX(-275px);
+    width: 0;
+    `
+    }
+
+    @keyframes open {
+        from {
+            transform: translateX(-275px);
+            width: 0;
+        }
+        to {
+            transform: translateX(0);
+            min-width: 275px;
+        }
+    }
+`;
+
 export const Key = styled.div`
     display: inline;
 
@@ -56,10 +84,6 @@ export const P = styled.p`
     font-size: 8px;
 `;
 
-export const LateralNav = styled.div`
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-`;
-
 export const UserBox = styled.div`
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 20px 30px #00000014;
@@ -103,7 +127,7 @@ export const H5 = styled.h5`
 export const Button = styled.button`
     display: block;
     margin: auto;
-    background: #EBF1EF 0% 0% no-repeat padding-box;
+    background: #EBF1EF;
     border-radius: 8px;
     border: none;
     color: #135846;

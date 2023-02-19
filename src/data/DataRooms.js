@@ -3,7 +3,7 @@ import roomImg from '../assets/img/room1.png'
 export const dataRooms = [
     {   
         src: roomImg,
-        name: 'Deluxe A-91234',
+        name: 'Deluxe 91234',
         id: 'R001', 
         type: 'Double Bed',
         amenities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
@@ -13,7 +13,7 @@ export const dataRooms = [
     },
     {
         src: roomImg,
-        name: 'Deluxe A-91234',
+        name: 'Deluxe 91234',
         id: 'R002', 
         type: 'Double Bed',
         amenities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
@@ -23,7 +23,7 @@ export const dataRooms = [
     },
     {
         src: roomImg,
-        name: 'Deluxe A-91234',
+        name: 'Deluxe 91234',
         id: 'R003', 
         type: 'Double Bed',
         amenities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
@@ -33,7 +33,8 @@ export const dataRooms = [
     },
     {
         src: roomImg,
-        name: 'Deluxe A-91234',
+        name: 'Deluxe 91234',
+        id: 'R004', 
         type: 'Double Bed',
         amenities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
         price: '$145',
@@ -42,7 +43,7 @@ export const dataRooms = [
     },
     {
         src: roomImg,
-        name: 'Deluxe A-91234',
+        name: 'Deluxe 91234',
         id: 'R005', 
         type: 'Double Bed',
         amenities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
@@ -52,7 +53,7 @@ export const dataRooms = [
     },
     {
         src: roomImg,
-        name: 'Deluxe A-91234',
+        name: 'Deluxe 91234',
         id: 'R006', 
         type: 'Double Bed',
         amenities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
@@ -62,7 +63,7 @@ export const dataRooms = [
     },
     {
         src: roomImg,
-        name: 'Deluxe A-91234',
+        name: 'Deluxe 91234',
         id: 'R007', 
         type: 'Double Bed',
         amenities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
@@ -72,7 +73,7 @@ export const dataRooms = [
     },
     {
         src: roomImg,
-        name: 'Deluxe A-91234',
+        name: 'Deluxe 91234',
         id: 'R008', 
         type: 'Double Bed',
         amenities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
@@ -82,7 +83,7 @@ export const dataRooms = [
     },
     {
         src: roomImg,
-        name: 'Deluxe A-91234',
+        name: 'Deluxe 91234',
         id: 'R009', 
         type: 'Double Bed',
         amenities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',
@@ -92,7 +93,7 @@ export const dataRooms = [
     },
     {
         src: roomImg,
-        name: 'Deluxe A-91234',
+        name: 'Deluxe 91234',
         id: 'R010', 
         type: 'Double Bed',
         amenities: 'AC, Shower, Double Bed, Towel, Bathup, Coffee Set, LED TV, Wifi',

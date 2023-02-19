@@ -9,19 +9,20 @@ export const Table = ({ data, cols, actions }) => {
         <tr key={row.id}>
             {cols.map((item, index)=> (
                 <td key={index}>
-                    {item.display ? item.display(row[item.property[0]], row[item.property[1]], row[item.property[2]], row[item.property[3]]) : row[item.property]}
+                    {item.display ? item.display(row) : row[item.property]}
                 </td>
             ))}
 
+            { actions &&
             <td>
                 <BtnOptions>
                 <Icon><BsThreeDotsVertical onClick={() => setViewActions(prev => prev === row.id ? null : row.id)}/></Icon>
                 
                 <OptionsMenu visible={viewActions === row.id}>
-                    {actions.map(item => <li key={item.name} onClick={() => item.action(row.id)}>{item.icon}{item.name}</li>)}
+                    {actions.map((item, index) => <li key={index} onClick={() => item.action(row.id)}>{item.icon}{item.name}</li>)}
                 </OptionsMenu>
                 </BtnOptions>
-            </td>
+            </td>}
         </tr>
 
     );
@@ -49,3 +50,5 @@ export const Table = ({ data, cols, actions }) => {
         </StyledTable>
     );
 }
+
+//  [item.property[0]], row[item.property[1]], row[item.property[2]], row[item.property[3]]

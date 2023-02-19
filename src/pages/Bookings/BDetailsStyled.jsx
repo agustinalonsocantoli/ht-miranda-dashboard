@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const BoxBookings = styled.div`
     display: flex;
-    margin: 25px;
+    margin: 30px;
     border-radius: 10px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px #00000005;
@@ -25,6 +25,7 @@ export const ImgSlider = styled.div`
     min-width: 555px;
     height: 565px;
     position: relative;
+    overflow: hidden;
 
     & > img {
         objet-fit: cover;
@@ -36,12 +37,12 @@ export const ImgSlider = styled.div`
 
 export const Status = styled.div`
     position: absolute;
-    top: 8%;
+    top: 5%;
     left: 70%;
     background: ${props => props.status === 'Booked' ? '#5AD07A' : props.status === 'Refund' ? '#E23428' : '#E7D327'};
     opacity: .8;
     rotate: 45deg;
-    padding: 15px 50px;
+    padding: 15px 75px;
 
     p {
         color: #FFFFFF;

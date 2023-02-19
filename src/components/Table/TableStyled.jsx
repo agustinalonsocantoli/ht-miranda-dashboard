@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const StyledTable = styled.table`
     border-collapse: collapse;
     width: 95%;
-    margin: 20px;
     border-radius: 20px;
+    background: #FFFFFF;
 
     th {
         border-bottom: 1px solid #EBEBEB;
@@ -18,10 +18,23 @@ export const StyledTable = styled.table`
     }
     
     td {
-        border-bottom: 1px solid #EBEBEB;
         width: ${props => props.columnWidth }%;
         text-align: left;
         padding: 10px 15px;
+    }
+
+    tr {
+        border-bottom: 1px solid #EBEBEB;
+    }
+
+    tr:last-child {
+        border: none;
+    }
+
+    tbody > tr:hover {
+        background: #F8F8F8;
+        transform: scale(1.03);
+        transition: all 300ms ease;
     }
 `;
 

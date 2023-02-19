@@ -1,15 +1,23 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { SlLogout } from "react-icons/sl";
 import { MdOutlineMail } from "react-icons/md";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { AiOutlineMenuFold } from "react-icons/ai";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { NavBox, H1, Icon, IconMenu } from './TMenuStyled'
+import { getTitle } from '../../export/functions';
+import { NavBox, H1, Icon, IconMenu } from './NavBarStyled'
 
-export const TopMenu = ({ setAuthenticated, title, setVisibilityNav, visibilityNav }) => {
-
+export const NavBar = ({ setAuthenticated, viewBar ,setViewBar, setTitle, title }) => {
     const navigate = useNavigate();
+    const location = useLocation();
+    
+    useEffect(() => {
+
+        setTitle(getTitle(location.pathname));
+
+    }, [location.pathname, setTitle])
 
     const handleClick = () => {
         setAuthenticated(false);
@@ -21,10 +29,10 @@ export const TopMenu = ({ setAuthenticated, title, setVisibilityNav, visibilityN
         <NavBox>
             <div>
                 <IconMenu>
-                    {visibilityNav ? 
-                    <AiOutlineMenuFold onClick={() => {setVisibilityNav(prev => !prev)}}/>
+                    {viewBar ? 
+                    <AiOutlineMenuFold onClick={() => {setViewBar(prev => !prev)}}/>
                     :
-                    <AiOutlineMenuUnfold onClick={() => {setVisibilityNav(prev => !prev)}}/>
+                    <AiOutlineMenuUnfold onClick={() => {setViewBar(prev => !prev)}}/>
                     }
                 </IconMenu>
                 <H1>{title}</H1>
