@@ -1,12 +1,30 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Table } from '../../components/Table/Table'
-import { dataBookings } from '../../data/DataBookings'
+import { useSelector, useDispatch } from "react-redux";
+import { getBookings } from "../../features/bookingsSlice";
 import { BookingsContent, NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Progress, Options, Filters } from "./BookingsStyled";
+
 
 export const Bookings = () => {
 
+    const { bookings } = useSelector(state => state.bookingsReducer)
+    const dispatch = useDispatch();
+
+    const [ bookingsList , setBookingsList ] = useState([]);
+
+    useEffect(() => {
+        if(bookings.length === 0){
+            dispatch(getBookings());
+        }
+
+        setBookingsList(bookings)
+
+    }, [dispatch, bookings]);
+
+
     const cols = [
-        { property: ['src' ,'id', 'name'], label: 'User', display: (row) => (
+        { property: ['src' ,'id', 'name'], label: 'Guest', display: (row) => (
             <NameBox as={Link} to={`/bookings/${row.id}`}>
                 <img src={row.src} alt={`img/${row.id}`} />
 
@@ -56,7 +74,7 @@ export const Bookings = () => {
                 </select>
             </Options>
 
-            <Table data={dataBookings} cols={cols} />
+            <Table data={bookingsList} cols={cols} />
         </BookingsContent>
     );
 }

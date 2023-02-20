@@ -15,6 +15,7 @@ import { NewUser } from './pages/Users/NewUser'
 import { AppBox, ContentBox } from './AppStyled';
 
 const AuthContext = React.createContext();
+
 const initialState = {
     auth: localStorage.getItem('login') ? true : false,
     username: 'agustin@hm.com',

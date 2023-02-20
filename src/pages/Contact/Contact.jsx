@@ -1,9 +1,24 @@
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getReviews } from "../../features/contactSlice";
 import { Msg } from "../../components/Msg/Msg";
 import { Table } from "../../components/Table/Table";
-import { dataReview } from '../../data/DataReview';
 import { ContactContent, Review, Date, Customer, Comment, Button, Options, Filters } from './ContactStyled';
 
 export const Contact = () => {
+    const { reviews } = useSelector(state => state.reviewsReducer);
+    const dispatch = useDispatch();
+
+    const [ reviewsList , setReviewsList ] = useState([]);
+
+    useEffect(() => {
+        if(reviews.length === 0){
+            dispatch(getReviews());
+        }
+
+        setReviewsList(reviews)
+        
+    }, [dispatch, reviews])
 
     const archive = (id) => {
         console.log(`Archived ${id}`);
@@ -50,7 +65,7 @@ export const Contact = () => {
                 </select>
             </Options>
 
-            <Table data={dataReview} cols={cols} />
+            <Table data={reviewsList} cols={cols} />
         </ContactContent>
     );
 }

@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getUsers, deleteUser } from "../../features/usersSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { Table } from '../../components/Table/Table'
-import { dataUsers } from '../../data/DataUsers'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
 import { MdOutlinePhone } from "react-icons/md";
@@ -9,14 +11,28 @@ import { UsersContent, NameBox, Text, TextDate, TextEmail, TextCont, Active, Ina
 
 
 export const Users = () => {
+    const { users } = useSelector(state => state.usersReducer);
+    const dispatch = useDispatch();
+
+    const [ usersList , setUsersList ] = useState([]);
+
+    useEffect(() => {
+        if(users.length === 0){
+            dispatch(getUsers());
+        }
+
+        setUsersList(users)
+
+    }, [dispatch, users]);
+
     const navigate = useNavigate();
 
-    const deleteUser = (id) => {
-        console.log(`Delete user ${id}`);
+    const removeUser = (id) => {
+        dispatch(deleteUser(id))
     }
 
-    const editUser = (id) => {
-        console.log(`Edit user ${id}`);
+    const amendUser = (id) => {
+        navigate(`/users/${id}`)
     }
 
     const cols = [
@@ -40,8 +56,8 @@ export const Users = () => {
     ];
 
     const actions = [
-        { icon: <MdOutlineDeleteForever />, name: 'Delete', action: deleteUser },
-        { icon: <TiEdit />, name: 'Edit', action: editUser },
+        { icon: <MdOutlineDeleteForever />, name: 'Delete', action: removeUser },
+        { icon: <TiEdit />, name: 'Edit', action: amendUser },
     ];
 
     return(
@@ -68,7 +84,7 @@ export const Users = () => {
                 </div>
             </Options>
 
-            <Table data={dataUsers} cols={cols} actions={actions}/>
+            <Table data={usersList} cols={cols} actions={actions}/>
         </UsersContent>
     );
 }

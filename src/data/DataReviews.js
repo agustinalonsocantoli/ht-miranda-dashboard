@@ -1,4 +1,4 @@
-export const dataReview = [
+export const dataReviews = [
     {   
         id: 'C000001',
         date: 'Nov 21th 2020 09:21 AM',

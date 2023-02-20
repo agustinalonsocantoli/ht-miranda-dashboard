@@ -49,7 +49,7 @@ export const OptionsMenu = styled.ul`
     right: 15px;
     background: #EBF1EF 0% 0% no-repeat padding-box;
     border-radius: 5px;
-    padding: 10px;
+    padding: 15px;
 
     li {
         display: flex;
@@ -59,6 +59,17 @@ export const OptionsMenu = styled.ul`
         font-weight: 300;
         font-size: 14px;
         color: #135846;
+        margin-bottom: 10px;
+        cursor: pointer;
+
+        &:active {
+            transform: scale(1.1);
+            transition: all 100ms ease;
+        }
+    }
+
+    li:last-child {
+        margin-bottom: 0;
     }
 `;
 
