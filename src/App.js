@@ -48,7 +48,7 @@ const App = () => {
   const [ title, setTitle ] = useState(true);
 
   return (
-    <Router>
+    <Router basename='/ht-miranda-dashboard'>
       <AuthContext.Provider value={{ auth: state.auth, username: state.username, password: state.password, dispatch }}>
         <AppBox>
           {state.auth && <SideBar title={title} viewBar={viewBar}/>}

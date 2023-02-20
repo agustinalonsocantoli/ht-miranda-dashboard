@@ -6,11 +6,11 @@ import { ContentBox } from './GeneralStyled'
 export const EditUser = () => {
 
     const { id } = useParams();
-    const editUser = dataUsers.find(book => book.id === id);
+    const amendUser = dataUsers.find(book => book.id === id);
 
     return(
         <ContentBox>
-            <FormUser typeForm={'Edit Employee Data'} edit={true} editUser={editUser}/>
+            <FormUser typeForm={'Edit Employee Data'} edit={true} amendUser={amendUser}/>
         </ContentBox>
     );
 }

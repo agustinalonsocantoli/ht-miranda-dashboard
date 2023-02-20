@@ -76,6 +76,7 @@ export const Active = styled.span`
     font-family: 'Poppins', sans-serif;;
     font-weight: 600;
     font-size: 14px;
+    text-transform: uppercase;
 `;
 
 export const Inactive = styled.span`
@@ -83,6 +84,7 @@ export const Inactive = styled.span`
     font-family: 'Poppins', sans-serif;;
     font-weight: 600;
     font-size: 14px;
+    text-transform: uppercase;
 `;
 
 export const Options = styled.div`
@@ -105,22 +107,6 @@ export const Options = styled.div`
         &:active {
             transform: scale(0.98);
             transition: all 100ms ease-in-out;
-        }
-    }
-
-    form {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        
-        button {
-            padding: 0;
-            background: #F8F8F8;
-            color: #135846;
-            
-            svg {
-                font-size: 20px;
-            }
         }
     }
 

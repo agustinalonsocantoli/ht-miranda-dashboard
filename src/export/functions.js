@@ -80,3 +80,53 @@ export const getData = (data) => {
 //     console.log(err);
 //   }
 // };
+
+export const formatDate = (date) => {
+  let arrayDate = date.split('-')
+
+  switch(arrayDate[1]) {
+    case '01': 
+      arrayDate[1] = 'Jan'
+      break;
+    case '02': 
+      arrayDate[1] = 'Feb'
+      break;
+    case '03': 
+      arrayDate[1] = 'Mar'
+      break;
+    case '04': 
+      arrayDate[1] = 'Apr'
+      break;
+    case '05': 
+      arrayDate[1] = 'May'
+      break;
+    case '06': 
+      arrayDate[1] = 'Jun'
+      break;
+    case '07': 
+      arrayDate[1] = 'Jul'
+      break;
+    case '08': 
+      arrayDate[1] = 'Aug'
+      break;
+    case '09': 
+      arrayDate[1] = 'Sep'
+      break;
+    case '10': 
+      arrayDate[1] = 'Oct'
+      break;
+    case '11': 
+      arrayDate[1] = 'Nov'
+      break;
+    case '12': 
+      arrayDate[1] = 'Dec'
+      break;
+    default: 
+      return arrayDate[1]
+  }
+
+  let reverse = arrayDate.reverse();
+  let newDate = reverse.join(' ')
+
+  return newDate
+}
