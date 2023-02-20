@@ -1,12 +1,29 @@
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteRoom, getRooms } from '../../features/roomsSlice';
 import { Table } from '../../components/Table/Table'
-import { dataRooms } from '../../data/DataRooms'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
 import { RoomsContent, NameBox, Text, TextFac, TextRate, Available, Booked, TextOffer } from './RoomsStyled';
 
+
 export const Rooms = () => {
-    const deleteRoom = (id) => {
-        console.log(`Delete room ${id}`);
+    const { rooms } = useSelector(state => state.roomsReducer);
+    const dispatch = useDispatch();
+
+    const [ roomsList , setRoomsList ] = useState([]);
+
+    useEffect(() => {
+        if(rooms.length === 0){
+            dispatch(getRooms());
+        }
+
+        setRoomsList(rooms)
+        
+    }, [dispatch, rooms])
+
+    const removeRoom = (id) => {
+        dispatch(deleteRoom(id));
     }
 
     const editRoom = (id) => {
@@ -34,13 +51,13 @@ export const Rooms = () => {
     ];
 
     const actions = [
-        { icon: <MdOutlineDeleteForever />, name: 'Delete', action: deleteRoom },
+        { icon: <MdOutlineDeleteForever />, name: 'Delete', action: removeRoom },
         { icon: <TiEdit />, name: 'Edit', action: editRoom },
     ];
     
     return(
         <RoomsContent>
-            <Table data={dataRooms} cols={cols} actions={actions}/>
+            <Table data={roomsList} cols={cols} actions={actions}/>
         </RoomsContent>
     );
 }

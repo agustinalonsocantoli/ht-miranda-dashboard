@@ -1,22 +1,55 @@
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getUsers, deleteUser } from "../../features/usersSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { Table } from '../../components/Table/Table'
-import { dataUsers } from '../../data/DataUsers'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
 import { MdOutlinePhone } from "react-icons/md";
-import { MdManageSearch } from "react-icons/md";
+import { formatDate } from "../../export/functions";
 import { UsersContent, NameBox, Text, TextDate, TextEmail, TextCont, Active, Inactive, Options, Filters } from './UsersStyled';
 
 
 export const Users = () => {
+    const { users } = useSelector(state => state.usersReducer);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const deleteUser = (id) => {
-        console.log(`Delete user ${id}`);
+    const [ usersList , setUsersList ] = useState([]);
+    const [ order, setOrder ] = useState('start');
+    const [ search, setSearch ] = useState('');
+    const [ status, setStatus] = useState('');
+
+    useEffect(() => {
+        if(users.length === 0){
+            dispatch(getUsers());
+        }
+
+    }, [dispatch, users]);
+
+    useEffect(() => {
+        const usersOrderBy = users.filter(user => user.name.toLowerCase().includes(search.toLowerCase()));
+
+        usersOrderBy.sort((a, b) => {
+            if(a[order] > b[order]) {
+                return 1
+            } else if (a[order] < b[order]) {
+                return -1
+            }
+            return 0
+        });
+
+        const usersFilter = usersOrderBy.filter(user => user.status !== status)
+
+        setUsersList(usersFilter)
+    }, [order, search, users, status])
+
+    const removeUser = (id) => {
+        dispatch(deleteUser(id))
     }
 
-    const editUser = (id) => {
-        console.log(`Edit user ${id}`);
+    const amendUser = (id) => {
+        navigate(`/users/${id}`)
     }
 
     const cols = [
@@ -31,44 +64,41 @@ export const Users = () => {
             </NameBox>) 
         },
         { property: 'email', label: 'Email', display: (row) => (<TextEmail>{row.email}</TextEmail>) },
-        { property: 'start', label: 'Start Date', display: (row) => (<TextDate>{row.start}</TextDate>) },
+        { property: 'start', label: 'Start Date', display: (row) => (<TextDate>{formatDate(row.start)}</TextDate>) },
         { property: 'job', label: 'Description', display: (row) => (<Text>{row.job}</Text>) },
         { property: 'contact', label: 'Contact', display: (row) => (<TextCont><MdOutlinePhone />{row.contact}</TextCont>) },
         { property: 'status', label: 'Status', display: (row) => (
-            row.status === 'ACTIVE' ? <Active>{row.status}</Active> : <Inactive>{row.status}</Inactive>) 
+            row.status === 'active' ? <Active>{row.status}</Active> : <Inactive>{row.status}</Inactive>) 
         },
     ];
 
     const actions = [
-        { icon: <MdOutlineDeleteForever />, name: 'Delete', action: deleteUser },
-        { icon: <TiEdit />, name: 'Edit', action: editUser },
+        { icon: <MdOutlineDeleteForever />, name: 'Delete', action: removeUser },
+        { icon: <TiEdit />, name: 'Edit', action: amendUser },
     ];
 
     return(
         <UsersContent>
             <Options>
                 <Filters>
-                    <p>All Employee</p>
-                    <p>Active Employee</p>
-                    <p>Inactive Employee</p>
+                    <p onClick={() => setStatus('')}>All Employee</p>
+                    <p onClick={() => setStatus('active')}>Active Employee</p>
+                    <p onClick={() => setStatus('inactive')}>Inactive Employee</p>
                 </Filters>
                 
-                <form>
-                    <input type="text" placeholder="Search User"/>
-                    <button><MdManageSearch /></button>
-                </form>
+                <input type="text" placeholder="Search User" onChange={({ target }) => setSearch(target.value)}/>
 
                 <div>
                     <button onClick={() => navigate('/users/new-user')}>+ New Employee</button>
 
-                    <select defaultValue={'date'}>
-                        <option value="date">Start Date</option>
+                    <select value={order} onChange={({ target }) => setOrder(target.value)}>
+                        <option value="start">Start Date</option>
                         <option value="name">Name</option>
                     </select>
                 </div>
             </Options>
 
-            <Table data={dataUsers} cols={cols} actions={actions}/>
+            <Table data={usersList} cols={cols} actions={actions}/>
         </UsersContent>
     );
 }

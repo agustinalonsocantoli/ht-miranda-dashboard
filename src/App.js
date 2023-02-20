@@ -15,6 +15,7 @@ import { NewUser } from './pages/Users/NewUser'
 import { AppBox, ContentBox } from './AppStyled';
 
 const AuthContext = React.createContext();
+
 const initialState = {
     auth: localStorage.getItem('login') ? true : false,
     username: 'agustin@hm.com',
@@ -47,7 +48,7 @@ const App = () => {
   const [ title, setTitle ] = useState(true);
 
   return (
-    <Router>
+    <Router basename='/ht-miranda-dashboard'>
       <AuthContext.Provider value={{ auth: state.auth, username: state.username, password: state.password, dispatch }}>
         <AppBox>
           {state.auth && <SideBar title={title} viewBar={viewBar}/>}
