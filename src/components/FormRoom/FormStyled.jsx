@@ -176,7 +176,7 @@ export const Room = styled.div`
 
     img {
         object-fit: cover;
-        width: 75px;
+        width: 120px;
         height: 75px;
         border-radius: 12px;
     }

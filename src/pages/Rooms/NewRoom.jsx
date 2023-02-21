@@ -24,8 +24,6 @@ export const NewRoom = () => {
         status: '',
     });
 
-    console.log(currentRoom);
-
     const handleInput = (e) => {
         const { name, value, type, checked } = e.target;
         let valUpdate;

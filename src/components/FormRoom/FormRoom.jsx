@@ -1,4 +1,5 @@
 // React
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Icons
 import { MdOutlineAir } from "react-icons/md";
@@ -16,16 +17,24 @@ import { FormBox, Label, Input, FileBox, Text, StateBox, Select, BtnBox, Check, 
 export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoom }) => {
     const navigate = useNavigate();
 
+    const [ amenities, setAmenities ] = useState([])
+
+    useEffect(() => {
+        setAmenities(currentRoom.amenities);
+
+    }, [currentRoom.amenities])
+
+
     return(
         <FormBox>
             <h1>{typeForm}</h1>
 
-            {/* {edit && 
+            {edit && 
             <Room>
-                <img src={amendUser.src} alt={`img/${amendUser.id}`} />
-                <h3>ID {amendUser.id}</h3>
+                <img src={currentRoom.src} alt={`img/${currentRoom.id}`} />
+                <h3>ID {currentRoom.id}</h3>
             </Room>
-            } */}
+            }
 
             <form onSubmit={(e) => 
             {e.preventDefault();
@@ -48,7 +57,9 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
                 <Input type="number" name='price' value={currentRoom.price} onChange={handleInput}/>
 
                 <Label>Discount to apply</Label>
-                <Input type="number" name='discount' onChange={handleInput}/>
+                <Input type="number" name='discount' onChange={handleInput}
+                value={parseInt(((currentRoom.price - currentRoom.offer) * 100) / currentRoom.price)} 
+                />
 
                 <Text>Status</Text>
                 <StateBox>
@@ -78,8 +89,7 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
                     <div>  
                         <div>            
                             <label><MdOutlineAir />Air conditioner</label>
-                            <input name='amenities' type="checkbox" value={'Air conditioner'} onChange={handleInput} 
-                            
+                            <input name='amenities' type="checkbox" value={'Air conditioner'} onChange={handleInput}
                             />
                         </div>
 

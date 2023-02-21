@@ -53,7 +53,8 @@ export const EditRoom = () => {
             typeForm={'Edit Room'} 
             handleSubmit={handleSubmit}
             handleInput={handleInput}
-            currentRoom={currentRoom}/>
+            currentRoom={currentRoom}
+            edit/>
         </BoxContent>
     );
 }
