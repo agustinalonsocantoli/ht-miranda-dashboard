@@ -1,4 +1,7 @@
+// React
 import React, { useState, useContext, useReducer } from "react";
+import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
+// Components
 import { NavBar } from './components/NavBar/NavBar';
 import { SideBar } from './components/SideBar/SideBar';
 import { Bookings } from './pages/Bookings/Bookings';
@@ -8,11 +11,14 @@ import { Contact } from './pages/Contact/Contact';
 import { Dashboard } from './pages/Dashboard/Dashboard';
 import { Login } from './components/Login/Login';
 import { RequireAuth } from './components/RequireAuth/RequireAuth';
-import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import { BookDetails } from './pages/Bookings/BookDetails';
 import { EditUser } from './pages/Users/EditUser';
 import { NewUser } from './pages/Users/NewUser'
+import { NewRoom } from "./pages/Rooms/NewRoom";
+import { EditRoom } from "./pages/Rooms/EditRoom";
+// Styled
 import { AppBox, ContentBox } from './AppStyled';
+
 
 const AuthContext = React.createContext();
 
@@ -64,6 +70,8 @@ const App = () => {
                 <Route path='/bookings' element={<Bookings />} />
                 <Route path='/bookings/:id' element={<BookDetails />} />
                 <Route path='/rooms' element={<Rooms />} />
+                <Route path='/rooms/new-room' element={<NewRoom />} />
+                <Route path='/rooms/:id' element={<EditRoom />} />
                 <Route path='/users' element={<Users />} />
                 <Route path='/users/new-user' element={<NewUser />} />
                 <Route path='/users/:id' element={<EditUser />} />

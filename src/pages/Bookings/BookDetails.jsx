@@ -1,29 +1,18 @@
-import imgSlider from '../../assets/img/room.png'
+// React
+import { useParams } from 'react-router-dom';
+// Icons
 import { BsTelephoneFill } from "react-icons/bs";
 import { BsChatTextFill } from "react-icons/bs";
 import { IoBedOutline } from "react-icons/io5";
 import { BiCheckShield } from "react-icons/bi";
 import { IoWifi } from "react-icons/io5";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { useParams } from 'react-router-dom';
+// Image
+import imgSlider from '../../assets/img/room.png'
+// JSON
 import { dataBookings } from '../../data/DataBookings';
-import { BoxBookings, 
-        ImgSlider, 
-        ImgUser,
-        ImgText, 
-        DataUser, 
-        DataCheck, 
-        User, 
-        BtnPhone, 
-        BtnMsg, 
-        Icon, 
-        DataRooms, 
-        Rooms, 
-        Text,
-        Facilities,
-        Status
-    } 
-from './BDetailsStyled';
+// Styled
+import { BoxBookings, ImgSlider, ImgUser,ImgText, DataUser, DataCheck, User, BtnPhone, BtnMsg, Icon, DataRooms, Rooms, Text, Facilities, Status } from './BDetailsStyled';
 
 
 export const BookDetails = () => {

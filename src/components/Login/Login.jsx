@@ -1,10 +1,14 @@
+// React
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoginComponent, BoxContent, Input, Button, BoxLogo, Logo, H, M, Label, Form, IconConteiner, Icon, P } from "./LoginStyled";
+// Custom Hook
+import { useAuthContex } from "../../App";
+// Icons
 import { FaUserCircle } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { SlLogin } from "react-icons/sl";
-import { useState } from "react";
-import { useAuthContex } from "../../App";
+//  Styled
+import { LoginComponent, BoxContent, Input, Button, BoxLogo, Logo, H, M, Label, Form, IconConteiner, Icon, P } from "./LoginStyled";
 
 export const Login = () => {
     const navigate = useNavigate();

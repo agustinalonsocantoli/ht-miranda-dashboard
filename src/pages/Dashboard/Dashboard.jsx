@@ -1,9 +1,12 @@
+// Components
+import { Msg } from "../../components/Msg/Msg";
+// Icons
 import { IoBedOutline } from "react-icons/io5";
 import { BsCalendar2Check } from "react-icons/bs";
 import { TbLogin } from "react-icons/tb";
 import { IoIosArrowRoundForward } from "react-icons/io";
+// Styled
 import { DashboardContent, IconIn, Box, InfoBox, Review, Arrow } from './DashboardStyled';
-import { Msg } from "../../components/Msg/Msg";
 
 export const Dashboard = () => {
 

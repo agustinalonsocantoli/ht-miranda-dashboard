@@ -1,12 +1,17 @@
+// React
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+// Redux
 import { useSelector, useDispatch } from "react-redux";
 import { getUsers, deleteUser } from "../../features/usersSlice";
-import { Link, useNavigate } from "react-router-dom";
+// Components
 import { Table } from '../../components/Table/Table'
+// Icons
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
 import { MdOutlinePhone } from "react-icons/md";
 import { formatDate } from "../../export/functions";
+// Styled
 import { UsersContent, NameBox, Text, TextDate, TextEmail, TextCont, Active, Inactive, Options, Filters } from './UsersStyled';
 
 

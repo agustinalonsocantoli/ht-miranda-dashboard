@@ -1,42 +1,12 @@
-import { useState } from 'react';
-import { useSelector ,useDispatch } from 'react-redux';
-import { addUser } from '../../features/usersSlice';
+// React
 import { useNavigate } from 'react-router-dom';
+// Icons
+import { IoImagesOutline } from "react-icons/io5";
+// Styled
 import { FormBox, Label, Input, FileBox, Text, StateBox, Select, Date, BtnBox, User } from './FormStyled'
 
-export const FormUser = ({ typeForm, edit, amendUser }) => {
+export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUser }) => {
     const navigate = useNavigate();
-    const { users } = useSelector(state => state.usersReducer);
-    const dispatch = useDispatch();
-
-    const [ name, setName ] = useState();
-    const [ email, setEmail ] = useState();
-    const [ start, setStart ] = useState();
-    const [ job, setJob ] = useState();
-    const [ contact, setContact ] = useState();
-    const [ status, setStatus ] = useState();
-    const [ password, setPassword ] = useState();
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-
-        const newUser = {
-            src: users[0].src,
-            name: name,
-            id: `U000${users.length + 1}`,
-            email: email,
-            start: start,
-            job: job,
-            contact: contact,
-            status: status,
-            password: password,
-        }
-        
-        dispatch(addUser(newUser))
-
-        e.target.reset();
-        navigate('/users')
-    }
 
     return(
         <FormBox>
@@ -44,54 +14,77 @@ export const FormUser = ({ typeForm, edit, amendUser }) => {
 
             {edit && 
             <User>
-                <img src={amendUser.src} alt={`img/${amendUser.id}`} />
-                <h3>ID {amendUser.id}</h3>
+                <img src={currentUser.src} alt={`img/${currentUser.id}`} />
+                <h3>ID {currentUser.id}</h3>
             </User>
             }
 
-            <form onSubmit={handleSubmit}>
+            <form 
+            onSubmit={(e) => 
+            {e.preventDefault(); 
+            handleSubmit(); 
+            e.target.reset(); 
+            navigate('/users');
+            }}>
+
                 <Label>Name</Label>
-                <Input type="text" name='name' defaultValue={edit ? amendUser.name : ''} onChange={({ target }) => setName(target.value)}/>
+                <Input type="text" name='name' value={currentUser.name} onChange={handleInput}/>
 
                 <Label>Email</Label>
-                <Input type="email" name='email' defaultValue={edit ? amendUser.email : ''} onChange={({ target }) => setEmail(target.value)}/>
+                <Input type="email" name='email' value={currentUser.email} onChange={handleInput}/>
 
                 <Label>Phone Number</Label>
-                <Input type="text" name='phone' defaultValue={edit ? amendUser.contact : ''} onChange={({ target }) => setContact(target.value)}/>
+                <Input type="text" name='contact' value={currentUser.contact} onChange={handleInput}/>
 
                 <FileBox>
-                    <label>Upload Image</label>
+                    <label>Upload Image<IoImagesOutline /></label>
                     <input type="file" name='src' />
                 </FileBox>
 
                 <Label>Start Date</Label>
-                <Date type="date" name='date' onChange={({ target }) => setStart(target.value)}/>
+                <Date type="date" name='start' value={currentUser.start} onChange={handleInput}/>
 
                 <Label>Job</Label>
-                <Select defaultValue={'job'} name='job'>
-                    <option value="job" disabled>Select Job</option>
+                <Select defaultValue={'task'} name='task'>
+                    <option value="task" disabled>Select Job</option>
                     <option value="manager">Manager</option>
                     <option value="reception">Reception</option>
                     <option value="service">Rooms Service</option>
                 </Select>
 
                 <Label>Functions Description</Label>
-                <textarea name='description' defaultValue={edit ? amendUser.job : ''} onChange={({ target }) => setJob(target.value)}></textarea>
+                <textarea name='job' value={currentUser.job} onChange={handleInput}></textarea>
                 
-                <Text>State</Text>
+                <Text>Status</Text>
                 <StateBox>
-                    <input name='state' type="radio" value={'active'} onChange={({ target }) => setStatus(target.value)}/>
+                    <input 
+                    name='status' 
+                    type="radio" 
+                    value={'active'} 
+                    checked={currentUser.status === "active"} 
+                    onChange={handleInput}/>
                     <label>Active</label>
-                    <input name='state' type="radio" value={'inactive'} onChange={({ target }) => setStatus(target.value)}/>
+
+                    <input 
+                    name='status' 
+                    type="radio" 
+                    value={'inactive'}
+                    checked={currentUser.status === "inactive"} 
+                    onChange={handleInput}/>
                     <label>Inactive</label>
                 </StateBox>
                 
                 <Label>Password</Label>
-                <Input type="password" name='password' onChange={({ target }) => setPassword(target.value)}/>
+                <Input type="password" name='password' value={currentUser.password} onChange={handleInput}/>
 
                 <BtnBox>
                     <button type='submit'>Save</button>
-                    <button onClick={() => navigate('/users')}>Cancel</button>
+                    <button onClick={(e) => 
+                    {e.preventDefault(); 
+                    navigate('/users');
+                    }}>
+                        Cancel
+                    </button>
                 </BtnBox>
             </form>
         </FormBox>

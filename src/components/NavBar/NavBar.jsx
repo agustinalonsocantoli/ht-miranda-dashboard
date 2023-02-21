@@ -1,13 +1,18 @@
+// React
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+// Custom Hook
+import { useAuthContex } from "../../App";
+//  Function
+import { getTitle } from '../../export/functions';
+// Icons
 import { SlLogout } from "react-icons/sl";
 import { MdOutlineMail } from "react-icons/md";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { AiOutlineMenuFold } from "react-icons/ai";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import { getTitle } from '../../export/functions';
-import { useAuthContex } from "../../App";
+// Styled
 import { NavBox, H1, Icon, IconMenu } from './NavBarStyled'
 
 export const NavBar = ({ viewBar ,setViewBar, setTitle, title }) => {
