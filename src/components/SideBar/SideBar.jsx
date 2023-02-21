@@ -1,15 +1,51 @@
+// React
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { dataUsers } from "../../data/DataUsers";
+import { useAuthContex } from '../../App'
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import { getUsers } from "../../features/usersSlice";
+// Icons
 import { TbLayoutDashboard } from "react-icons/tb";
 import { BiKey } from "react-icons/bi";
 import { BsCalendar2Check } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import { TiContacts } from "react-icons/ti";
-import userImg from '../../assets/img/user.png'
+// Styled
+import Skeleton from '@mui/material/Skeleton';
 import { Key, List, BoxLogo, Logo, H, M, P, LateralNav, UserBox, Img, ImgBox, H4, H5, Button, H3, CopyRights, Foot, Active } from "./SideBarStyled";
+
+
 
 export const SideBar = ({ title, viewBar }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const { users } = useSelector(state => state.usersReducer);
+
+    const { username } = useAuthContex();
+
+    const [ userLog, setUserLog ] = useState({})
+    const [ log, setLog ] = useState(false)
+    
+
+
+    useEffect(() => {
+        if(users.length === 0){
+            dispatch(getUsers());
+        }
+
+        setUserLog(users.find(user => user.email === username))
+
+        const timeout = setTimeout(() => {
+            setLog(true)
+        }, 2000)
+
+        return () => {
+            clearTimeout(timeout);
+        }
+    }, [dispatch, users, username])
+
 
     return(
         <LateralNav visible={viewBar}>
@@ -70,14 +106,15 @@ export const SideBar = ({ title, viewBar }) => {
 
             <UserBox>
                 <ImgBox>
+                    {!log ? <Skeleton variant="rectangular" sx={{width: 70, height: 70, borderRadius: '8px'}}/> :
                     <Img 
-                    src={userImg} 
-                    alt="user/img" />
+                    src={userLog.src} 
+                    alt={`user/${userLog.id}`} />}
                 </ImgBox>
 
-                <H4>{dataUsers[9].name}</H4>
-                <H5>{dataUsers[9].email}</H5>
-                <Button onClick={() => navigate('/users/U00010')}>Edit</Button>
+                {!log ? <Skeleton sx={{height: 24}}/> : <H4>{userLog.name}</H4>}
+                {!log ? <Skeleton sx={{marginTop: '10px', height: 17}} /> :<H5>{userLog.email}</H5>}
+                <Button onClick={() => {log && navigate(`/users/${userLog.id}`)}}>Edit</Button>
             </UserBox>
 
             <div>

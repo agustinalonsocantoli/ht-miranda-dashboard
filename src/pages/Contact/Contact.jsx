@@ -1,8 +1,12 @@
+// React
 import { useEffect, useState } from "react";
+// Redux
 import { useSelector, useDispatch } from "react-redux";
 import { getReviews } from "../../features/contactSlice";
+// Components
 import { Msg } from "../../components/Msg/Msg";
 import { Table } from "../../components/Table/Table";
+// Styled
 import { ContactContent, Review, Date, Customer, Comment, Button, Options, Filters } from './ContactStyled';
 
 export const Contact = () => {

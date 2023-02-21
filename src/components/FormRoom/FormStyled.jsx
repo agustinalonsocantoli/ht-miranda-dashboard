@@ -14,23 +14,6 @@ export const FormBox = styled.div`
         margin-bottom: 30px;
         text-align: center;
     }
-
-    textarea {
-        resize: none;
-        display: block;
-        background: #EBEBEB;
-        border: none;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 400;
-        width: 50%;
-        min-height: 100px;
-        color: #262626;
-        outline: none;
-        padding: 5px;
-        margin: auto;
-        margin-bottom: 15px;
-        font-size: 13px;
-    }
 `;
 
 export const Label = styled.label`
@@ -51,6 +34,7 @@ export const Text = styled.p`
     width: 50%;
     margin: auto;
     font-size: 15px;
+    margin-bottom: 5px;
 `;
 
 export const Input = styled.input`
@@ -69,33 +53,16 @@ export const Input = styled.input`
     font-size: 13px;
 `;
 
-export const Date = styled.input`
-    display: block;
-    margin: auto;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    color: #135846;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #EBF1EF;
-    width: 50%;
-    min-height: 30px;
-    padding: 5px;
-    text-align: center;
-    margin-bottom: 15px;
-    font-size: 13px;
-`;
-
 export const FileBox = styled.div`
     background: #EBF1EF;
     border-radius: 8px;
-    padding: 10px;
+    padding: 7px;
     position: relative;
     text-align: center;
-    width: 25%;
+    width: 30%;
     margin: auto;
     margin-top: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 
     &:active {
         transform: scale(0.9);
@@ -128,27 +95,43 @@ export const FileBox = styled.div`
 export const StateBox = styled.div`
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10%;
     justify-content: center;
     margin-bottom: 15px;
+
+    div {
+        margin-bottom: 10px;
+    }
 
     label {
         font-family: 'Poppins', sans-serif;
         font-weight: 400;
-        color: #E23428;
+        color: #292929;
         font-size: 15px;
+        margin-right: 10px;
+    }
+`;
+
+export const Check = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    label {
+        color: #5AD07A;
     }
 
-    label:nth-child(2) {
-        color: #5AD07A;
-        margin-right: 10%;
+    &:nth-child(2) {
+        label {
+            color: #E23428;
+        }
     }
 `;
 
 export const Select = styled.select`
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    color: #135846;
+    color: #292929;
     border: none;
     outline: none;
     border-bottom: 2px solid #EBF1EF;
@@ -186,14 +169,14 @@ export const BtnBox = styled.div`
     }
 `;
 
-export const User = styled.div`
+export const Room = styled.div`
     position: absolute;
     top: 30px;
     right: 30px;
 
     img {
         object-fit: cover;
-        width: 75px;
+        width: 120px;
         height: 75px;
         border-radius: 12px;
     }

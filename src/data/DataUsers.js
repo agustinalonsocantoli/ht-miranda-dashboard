@@ -35,7 +35,7 @@ export const dataUsers = [
         name: 'Agustin Corominas',
         id: 'U00003',
         email: 'acorominas@hm.com',
-        start: '2020-05-28 ',
+        start: '2020-05-28',
         job: 'Directing phone calls, coordinating travel plans.',
         contact: '012 334 55512',
         status: 'inactive',

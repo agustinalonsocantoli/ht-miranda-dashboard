@@ -1,6 +1,10 @@
+// React
 import { useState } from 'react';
-import { StyledTable, OptionsMenu, BtnOptions, Icon } from './TableStyled';
+// Icons
 import { BsThreeDotsVertical } from "react-icons/bs";
+// Styled
+import { StyledTable, OptionsMenu, BtnOptions, Icon } from './TableStyled';
+
 
 export const Table = ({ data, cols, actions }) => {
     const [ viewActions, setViewActions ] = useState(false);

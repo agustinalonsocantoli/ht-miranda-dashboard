@@ -1,9 +1,12 @@
-import { MsgBox, MsgContent, Icons, UserInfo } from './MsgStyled';
+// Icons
 import { RxCrossCircled } from "react-icons/rx";
 import { RxCheckCircled } from "react-icons/rx";
+// Images
 import user1 from '../../assets/img/user11.png';
 import user2 from '../../assets/img/user12.png';
 import user3 from '../../assets/img/user13.png';
+// Styled
+import { MsgBox, MsgContent, Icons, UserInfo } from './MsgStyled';
 
 
 export const Msg = () => {

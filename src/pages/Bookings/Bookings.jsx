@@ -1,10 +1,16 @@
+// React
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Table } from '../../components/Table/Table'
+// Redux
 import { useSelector, useDispatch } from "react-redux";
 import { getBookings } from "../../features/bookingsSlice";
-import { BookingsContent, NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Progress, Options, Filters } from "./BookingsStyled";
+// Components
+import { Table } from '../../components/Table/Table'
+// Functions
 import { formatDate } from "../../export/functions";
+// Styled
+import { BookingsContent, NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Progress, Options, Filters } from "./BookingsStyled";
+
 
 
 export const Bookings = () => {

@@ -16,16 +16,17 @@ export const NameBox = styled.div`
         gap: 3px;
 
         p {
-            color: #393939;
-            font-family: 'Poppins', sans-serif;;
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        p:first-child {
+            font-family: 'Poppins', sans-serif;
             color: #799283;
             font-weight: 400;
             font-size: 12px;
+            
+        }
+
+        p:first-child {
+            color: #393939;
+            font-weight: 500;
+            font-size: 14px;
         }
     }
 
@@ -43,7 +44,7 @@ export const Text = styled.p`
     font-size: 14px;
 `;
 
-export const TextFac = styled.p`
+export const TextFac = styled.span`
     color: #212121;
     font-family: 'Poppins', sans-serif;;
     font-weight: 300;
@@ -94,4 +95,60 @@ export const Booked = styled.span`
     background: #E23428;
     border-radius: 12px;
     padding: 10px;
+`;
+
+export const Options = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 70px 10px 10px;
+
+    button {
+        background: #135846;
+        border-radius: 10px;
+        color: #FFFFFF;
+        font-family: 'Poppins', sans-serif;;
+        font-weight: 500;
+        font-size: 14px;
+        border: none;
+        padding: 10px 25px;
+        cursor: pointer;
+
+        &:active {
+            transform: scale(0.98);
+            transition: all 100ms ease-in-out;
+        }
+    }
+
+    select {
+        border: 1px solid #135846;
+        border-radius: 10px;
+        padding: 10px 25px;
+        color: #135846;
+        font-family: 'Poppins', sans-serif;;
+        font-weight: 500;
+        font-size: 14px;
+        background: #F8F8F8;
+        margin-left: 10px;
+    }
+`;
+
+export const Filters = styled.div`
+    display: flex;
+    align-items: center;
+
+    p {
+        font-family: 'Poppins', sans-serif;;
+        font-weight: 500;
+        font-size: 14px;
+        color: #6E6E6E;
+        padding: 8px 15px; 
+        border-bottom: 2px solid #6E6E6E;
+        cursor: pointer;
+
+        &:active {
+            color: #135846;
+            border-bottom: 2px solid #135846;
+        }
+    }
 `;

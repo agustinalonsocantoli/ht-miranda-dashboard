@@ -40,6 +40,7 @@ export const Icon = styled.div`
     & > svg {
         font-size: 28px;
         color: #135846;
+        cursor: pointer;
     }
 
     &:hover {
@@ -53,5 +54,6 @@ export const IconMenu = styled.div`
     & > svg {
         font-size: 28px;
         color: #000000;
+        cursor: pointer;
     }
 `;
