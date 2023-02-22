@@ -41,7 +41,7 @@ export const Rooms = () => {
             return 0
         });
 
-        const roomsFilter = roomsOrderBy.filter(user => user.status !== status)
+        const roomsFilter = roomsOrderBy.filter(room => room.status !== status)
 
         setRoomsList(roomsFilter)
         
@@ -79,7 +79,7 @@ export const Rooms = () => {
         { property: 'price', label: 'Price', display: (row) => (<TextRate>${row.price}<span>/night</span></TextRate>) },
         { property: 'offer', label: 'Offer Price', display: (row) => (
             <TextOffer>
-                ${row.discount ? (row.price - (row.price * row.discount / 100)) : row.offer}<span>/night</span>
+                {parseInt(row.price - (row.price * row.offer / 100))}<span>/night</span>
             </TextOffer>) 
         },
         { property: 'status', label: 'Status', display: (row) => (

@@ -17,13 +17,12 @@ import { FormBox, Label, Input, FileBox, Text, StateBox, Select, BtnBox, Check, 
 export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoom }) => {
     const navigate = useNavigate();
 
-    const [ amenities, setAmenities ] = useState([])
+    const [ amenities, setAmenities ] = useState([]);
 
     useEffect(() => {
-        setAmenities(currentRoom.amenities);
+        setAmenities(currentRoom.amenities)
 
-    }, [currentRoom.amenities])
-
+    }, [currentRoom])
 
     return(
         <FormBox>
@@ -57,8 +56,8 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
                 <Input type="number" name='price' value={currentRoom.price} onChange={handleInput}/>
 
                 <Label>Discount to apply</Label>
-                <Input type="number" name='discount' onChange={handleInput}
-                value={parseInt(((currentRoom.price - currentRoom.offer) * 100) / currentRoom.price)} 
+                <Input type="number" name='offer' onChange={handleInput}
+                value={currentRoom.offer} 
                 />
 
                 <Text>Status</Text>
@@ -95,12 +94,14 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
 
                         <div>
                             <label><FaShower />Shower</label>
-                            <input name='amenities' type="checkbox" value={'Shower'} onChange={handleInput}/>
+                            <input name='amenities' type="checkbox" value={'Shower'} onChange={handleInput}
+                            />
                         </div>
 
                         <div>
                             <label><GiTowel />Towels</label>
-                            <input name='amenities' type="checkbox" value={'Towels'} onChange={handleInput}/>
+                            <input name='amenities' type="checkbox" value={'Towels'} onChange={handleInput}
+                            />
                         </div>
 
                         <div>

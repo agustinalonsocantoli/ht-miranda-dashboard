@@ -1,4 +1,5 @@
 // React
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 // Icons
 import { BsTelephoneFill } from "react-icons/bs";
@@ -7,18 +8,22 @@ import { IoBedOutline } from "react-icons/io5";
 import { BiCheckShield } from "react-icons/bi";
 import { IoWifi } from "react-icons/io5";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { MdOutlineDeleteForever } from "react-icons/md";
+import { TiEdit } from "react-icons/ti";
 // Image
 import imgSlider from '../../assets/img/room.png'
 // JSON
 import { dataBookings } from '../../data/DataBookings';
 // Styled
-import { BoxBookings, ImgSlider, ImgUser,ImgText, DataUser, DataCheck, User, BtnPhone, BtnMsg, Icon, DataRooms, Rooms, Text, Facilities, Status } from './BDetailsStyled';
+import { BoxBookings, ImgSlider, ImgUser,ImgText, DataUser, DataCheck, User, BtnPhone, BtnMsg, Icon, DataRooms, Rooms, Text, Facilities, Status, BtnOptions, Actions } from './DetailsStyled';
 
 
 export const BookDetails = () => {
 
     const { id } = useParams()
     const bookSelect = dataBookings.find(book => book.id === id);
+    const [ viewActions, setViewActions ] = useState(false);
+
 
     return(
         <BoxBookings>
@@ -39,7 +44,14 @@ export const BookDetails = () => {
                             </div>
                         </User>
 
-                        <Icon><BsThreeDotsVertical /></Icon>
+                        <BtnOptions>
+                            <Icon><BsThreeDotsVertical onClick={() => setViewActions(prev => !prev)}/></Icon>
+
+                            <Actions actions={viewActions}>
+                                <p><MdOutlineDeleteForever />Delete</p>
+                                <p><TiEdit />Edit</p>
+                            </Actions>
+                        </BtnOptions>
                     </DataUser>
 
                     <DataCheck>
