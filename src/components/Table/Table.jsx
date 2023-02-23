@@ -11,7 +11,7 @@ import { StyledTable, OptionsMenu, BtnOptions, Icon } from './TableStyled';
 export const Table = ({ data, cols, actions }) => {
     const [ viewActions, setViewActions ] = useState(false);
     const [ page, setPage ] = useState(1);
-    const [ perPage ] = useState(2);
+    const [ perPage ] = useState(5);
 
     const max = data.length / perPage
 

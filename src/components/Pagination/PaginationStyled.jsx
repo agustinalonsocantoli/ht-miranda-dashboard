@@ -17,13 +17,18 @@ export const PaginationBox = styled.div`
         font-family: 'Poppins', sans-serif;;
         font-weight: 400;
         font-size: 14px;
-        color:${props => props.page ? '#FFFFFF' : '#393939'};
-        background: ${props => props.active === props.content ? '#135846' : 'transparent'};
+        color: #393939;
+        background: transparent;
 
         &:active {
             transform: scale(0.9);
             transition: all 100ms ease;
         }
+    }
+
+    p:nth-child(${props => props.active + 1}) {
+        color: #FFFFFF;
+        background: #135846;
     }
 
     button {

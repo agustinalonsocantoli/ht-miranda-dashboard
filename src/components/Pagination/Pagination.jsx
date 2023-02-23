@@ -10,11 +10,11 @@ export const Pagination = ({page, setPage, max}) => {
     }
 
     return(
-        <PaginationBox>
+        <PaginationBox  active={page}>
             <button disabled={page <= 1} onClick={() => setPage(page - 1)}>Prev</button>
 
-            {countPages.map(item => (
-                <p key={item} onClick={() => setPage(item)} active={page} content={item}>
+            {countPages.map(item=> (
+                <p key={item} onClick={() => setPage(item)}>
                     {item}
                 </p>
             ))}
