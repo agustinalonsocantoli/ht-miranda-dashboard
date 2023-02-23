@@ -1,14 +1,11 @@
 {
   "files": {
     "main.css": "/ht-miranda-dashboard/static/css/main.c0c4ffeb.css",
-    "main.js": "/ht-miranda-dashboard/static/js/main.c409fb70.js",
+    "main.js": "/ht-miranda-dashboard/static/js/main.3600c4b4.js",
     "static/js/787.bd7590ef.chunk.js": "/ht-miranda-dashboard/static/js/787.bd7590ef.chunk.js",
     "static/media/room.png": "/ht-miranda-dashboard/static/media/room.ee2525e738c750623d73.png",
-    "static/media/user11.png": "/ht-miranda-dashboard/static/media/user11.e561123614a2b5bc396d.png",
-    "static/media/user12.png": "/ht-miranda-dashboard/static/media/user12.c7fd97b24b6fe28b1611.png",
     "static/media/room1.png": "/ht-miranda-dashboard/static/media/room1.79b7cd5cf23b95789757.png",
     "static/media/user10.png": "/ht-miranda-dashboard/static/media/user10.72bea23b9f119e092d73.png",
-    "static/media/user13.png": "/ht-miranda-dashboard/static/media/user13.649f5f738d5c23945b39.png",
     "static/media/user8.png": "/ht-miranda-dashboard/static/media/user8.4bb7e7c133c3a5f8575d.png",
     "static/media/user2.png": "/ht-miranda-dashboard/static/media/user2.e300b96026423974146f.png",
     "static/media/user1.png": "/ht-miranda-dashboard/static/media/user1.313938485c9fd2ddc59c.png",
@@ -21,11 +18,11 @@
     "static/media/user.png": "/ht-miranda-dashboard/static/media/user.643761bcfd6a755adf66.png",
     "index.html": "/ht-miranda-dashboard/index.html",
     "main.c0c4ffeb.css.map": "/ht-miranda-dashboard/static/css/main.c0c4ffeb.css.map",
-    "main.c409fb70.js.map": "/ht-miranda-dashboard/static/js/main.c409fb70.js.map",
+    "main.3600c4b4.js.map": "/ht-miranda-dashboard/static/js/main.3600c4b4.js.map",
     "787.bd7590ef.chunk.js.map": "/ht-miranda-dashboard/static/js/787.bd7590ef.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c0c4ffeb.css",
-    "static/js/main.c409fb70.js"
+    "static/js/main.3600c4b4.js"
   ]
 }
