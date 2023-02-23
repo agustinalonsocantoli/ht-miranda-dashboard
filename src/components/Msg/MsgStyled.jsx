@@ -4,6 +4,8 @@ export const MsgBox = styled.div`
     display: flex;
     gap: 30px;
     align-items: center;
+    transform: translate(-${props => props.translate <= props.max ? props.translate : props.max}px);
+    transition: transform 600ms ease;
 `;
 
 export const MsgContent = styled.div`
@@ -12,9 +14,12 @@ export const MsgContent = styled.div`
     border-radius: 20px;
     padding: 20px 25px;
     position: relative;
+    min-width: 320px;
 
     &:hover {
         box-shadow: 0px 16px 30px #00000014;
+        transform: scale(0.98);
+        transition: all 200ms ease-in-out;
     }
 
     p {

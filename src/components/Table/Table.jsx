@@ -7,13 +7,16 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 // Styled
 import { StyledTable, OptionsMenu, BtnOptions, Icon } from './TableStyled';
 
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
 
 export const Table = ({ data, cols, actions }) => {
     const [ viewActions, setViewActions ] = useState(false);
     const [ page, setPage ] = useState(1);
     const [ perPage ] = useState(5);
 
-    const max = data.length / perPage
+    const max = data.length / perPage  
 
     const getRow = (row) => (
         <tr key={row.id}>
@@ -56,7 +59,9 @@ export const Table = ({ data, cols, actions }) => {
                 </thead>
 
                 <tbody>
-                    {data.slice((page - 1) * perPage, (page - 1) * perPage + perPage).map(getRow)}
+                    <DndProvider backend={HTML5Backend}>
+                        {data.slice((page - 1) * perPage, (page - 1) * perPage + perPage).map(getRow)}
+                    </DndProvider>
                 </tbody>
             </StyledTable>
             

@@ -57,15 +57,19 @@ export const IconIn = styled.div`
     rotate: 180deg;
 `;
 
+export const ReviewsBox = styled.div`
+    position: relative;
+`;
+
 export const Review = styled.div`
     background: #FFFFFF;
     box-shadow: 0px 4px 4px #00000005;
     border-radius: 20px;
-    padding: 25px;
-    padding-right: 35px;
+    padding: 25px 30px;
     margin-top: 30px;
-    margin-right: 15px;
-    position: relative;
+    max-width: 1090px;
+    overflow: hidden;
+
 
     h1 {
         font-family: 'Poppins', sans-serif;;
@@ -76,13 +80,29 @@ export const Review = styled.div`
     }
 `;
 
-export const Arrow = styled.div`
+export const Next = styled.div`
     position: absolute;
-    right: -25px;
+    right: -5px;
     top: 50%;
     background: #135846;
     padding: 8px 10px 5px 10px;
     border-radius: 12px;
+    cursor: pointer;
+
+    svg {
+        color: #FFFFFF;
+        font-size: 30px;
+    }
+`;
+
+export const Prev = styled.div`
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    background: #135846;
+    padding: 8px 10px 5px 10px;
+    border-radius: 12px;
+    cursor: pointer;
 
     svg {
         color: #FFFFFF;

@@ -25,6 +25,7 @@ export const StyledTable = styled.table`
 
     tr {
         border-bottom: 1px solid #EBEBEB;
+        // cursor: move;
     }
 
     tr:last-child {
