@@ -32,8 +32,7 @@ export const EditRoom = () => {
             if (checked) {
                 newVal.push(value);
             } else {
-                const index = newVal.indexOf(value);
-                newVal.splice(index, 1);
+                newVal.filter(item => item === value);
             }
 
             valUpdate = newVal;

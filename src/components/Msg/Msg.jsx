@@ -1,82 +1,51 @@
+// React
+import { useState, useEffect } from "react";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { getReviews } from '../../features/contactSlice';
 // Icons
 import { RxCrossCircled } from "react-icons/rx";
 import { RxCheckCircled } from "react-icons/rx";
-// Images
-import user1 from '../../assets/img/user11.png';
-import user2 from '../../assets/img/user12.png';
-import user3 from '../../assets/img/user13.png';
+// Image
+import reviewImages from '../../assets/img/user5.png'
 // Styled
 import { MsgBox, MsgContent, Icons, UserInfo } from './MsgStyled';
 
 
-export const Msg = () => {
+export const Msg = ({ filter, translate }) => {
+    const dispatch = useDispatch();
+    const { reviews } = useSelector(state => state.reviewsReducer);
+    const [ messages, SetMessages ] = useState([]);
+
+    useEffect(() => {
+        dispatch(getReviews())
+
+        SetMessages(reviews)
+    }, [dispatch, reviews])
+
+
     return(
-        <MsgBox>
-            <MsgContent>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-                </p>
+        <MsgBox translate={translate} max={(messages.length * 350) - (350 * 3)}>
+            {messages.slice(0, filter).map(item => (
+                <MsgContent key={item.id}>
+                    <p>{item.comment}</p>
 
-                <UserInfo>
-                    <img src={user1} alt="img/name" />
+                    <UserInfo>
+                        <img src={reviewImages} alt="img/name" />
 
-                    <div>
-                        <h4>Kusnaidi Anderson</h4>
-                        <h5>kanderson@gmail.com</h5>
-                        <h5>+34 623 455 928</h5>
-                    </div>
-                </UserInfo>
+                        <div>
+                            <h4>{item.customer}</h4>
+                            <h5>{item.email}</h5>
+                            <h5>{item.phone}</h5>
+                        </div>
+                    </UserInfo>
 
-                <Icons>
-                    <RxCheckCircled />
-                    <RxCrossCircled /> 
-                </Icons>
-            </MsgContent>
-
-            <MsgContent>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-                </p>
-
-                <UserInfo>
-                    <img src={user2} alt="img/name" />
-
-                    <div>
-                        <h4>Kusnaidi Anderson</h4>
-                        <h5>kanderson@gmail.com</h5>
-                        <h5>+34 623 455 928</h5>
-                    </div>
-                </UserInfo>
-
-                <Icons>
-                    <RxCheckCircled />
-                    <RxCrossCircled /> 
-                </Icons>
-            </MsgContent>
-
-            <MsgContent>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-                </p>
-
-                <UserInfo>
-                    <img src={user3} alt="img/name" />
-
-                    <div>
-                        <h4>Kusnaidi Anderson</h4>
-                        <h5>kanderson@gmail.com</h5>
-                        <h5>+34 623 455 928</h5>
-                    </div>
-                </UserInfo>
-
-                <Icons>
-                    <RxCheckCircled />
-                    <RxCrossCircled /> 
-                </Icons>
-            </MsgContent>
+                    <Icons>
+                        <RxCheckCircled />
+                        <RxCrossCircled /> 
+                    </Icons>
+                </MsgContent>
+            ))}
         </MsgBox>
     );
 }

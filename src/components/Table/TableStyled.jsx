@@ -25,6 +25,7 @@ export const StyledTable = styled.table`
 
     tr {
         border-bottom: 1px solid #EBEBEB;
+        // cursor: move;
     }
 
     tr:last-child {
@@ -76,4 +77,9 @@ export const OptionsMenu = styled.ul`
 export const Icon = styled.div`
     color: #575757;
     font-size: 20px;
+
+    &:active {
+        transform: scale(0.9);
+        transition: all 100ms ease;
+    }
 `;

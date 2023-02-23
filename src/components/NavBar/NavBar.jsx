@@ -21,7 +21,6 @@ export const NavBar = ({ viewBar ,setViewBar, setTitle, title }) => {
     const { dispatch } = useAuthContex();
     
     useEffect(() => {
-
         setTitle(getTitle(location.pathname));
 
     }, [location.pathname, setTitle])

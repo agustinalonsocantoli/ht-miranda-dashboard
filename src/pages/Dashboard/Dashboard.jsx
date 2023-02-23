@@ -1,3 +1,5 @@
+// React
+import { useState } from "react";
 // Components
 import { Msg } from "../../components/Msg/Msg";
 // Icons
@@ -5,10 +7,13 @@ import { IoBedOutline } from "react-icons/io5";
 import { BsCalendar2Check } from "react-icons/bs";
 import { TbLogin } from "react-icons/tb";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { IoIosArrowRoundBack } from "react-icons/io";
 // Styled
-import { DashboardContent, IconIn, Box, InfoBox, Review, Arrow } from './DashboardStyled';
+import { DashboardContent, IconIn, Box, InfoBox, ReviewsBox, Review, Next, Prev } from './DashboardStyled';
+
 
 export const Dashboard = () => {
+    const [ translate, setTraslate ] = useState(0)
 
     return(
         <DashboardContent>
@@ -50,15 +55,23 @@ export const Dashboard = () => {
                 </Box>
             </InfoBox>
 
-            <Review>
-                <h1>Latest Review by Customers</h1>
+            <ReviewsBox>
+                <Review>
+                    <h1>Latest Review by Customers</h1>
 
-                <Msg />
+                    <Msg translate={translate}/>
 
-                <Arrow>
-                    <IoIosArrowRoundForward />
-                </Arrow>
-            </Review>
+                    <Next onClick={() => setTraslate(prev => prev + 300)}>
+                        <IoIosArrowRoundForward />
+                    </Next>
+
+                    {translate > 0 && 
+                        <Prev onClick={() => setTraslate(prev => prev - 300)}>
+                            <IoIosArrowRoundBack />
+                        </Prev>
+                    }
+                </Review>
+            </ReviewsBox>
         </DashboardContent>
     );
 }

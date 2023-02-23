@@ -1,13 +1,22 @@
 // React
 import { useState } from 'react';
+// Components
+import { Pagination } from '../Pagination/Pagination';
 // Icons
 import { BsThreeDotsVertical } from "react-icons/bs";
 // Styled
 import { StyledTable, OptionsMenu, BtnOptions, Icon } from './TableStyled';
 
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
 
 export const Table = ({ data, cols, actions }) => {
     const [ viewActions, setViewActions ] = useState(false);
+    const [ page, setPage ] = useState(1);
+    const [ perPage ] = useState(5);
+
+    const max = data.length / perPage  
 
     const getRow = (row) => (
         <tr key={row.id}>
@@ -34,25 +43,29 @@ export const Table = ({ data, cols, actions }) => {
     const columnWidth = 100 / cols.length;
 
     return(
-        <StyledTable columnWidth={columnWidth}>
-            <thead>
-                <tr>
-                    {cols.map((item, index) => (
-                        <th key={index}>
-                            {item.label}
+        <div>
+            <StyledTable columnWidth={columnWidth}>
+                <thead>
+                    <tr>
+                        {cols.map((item, index) => (
+                            <th key={index}>
+                                {item.label}
+                            </th>
+                        ))}
+
+                        <th>
                         </th>
-                    ))}
+                    </tr>
+                </thead>
 
-                    <th>
-                    </th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {data.map(getRow)}
-            </tbody>
-        </StyledTable>
+                <tbody>
+                    <DndProvider backend={HTML5Backend}>
+                        {data.slice((page - 1) * perPage, (page - 1) * perPage + perPage).map(getRow)}
+                    </DndProvider>
+                </tbody>
+            </StyledTable>
+            
+            <Pagination page={page} setPage={setPage} max={max} />
+        </div>
     );
 }
-
-//  [item.property[0]], row[item.property[1]], row[item.property[2]], row[item.property[3]]

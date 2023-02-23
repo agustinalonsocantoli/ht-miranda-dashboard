@@ -20,7 +20,6 @@ export const NewRoom = () => {
         amenities: [],
         price: 0,
         offer: 0,
-        discount: 0,
         status: '',
     });
 
@@ -34,8 +33,7 @@ export const NewRoom = () => {
             if (checked) {
                 newVal.push(value);
             } else {
-                const index = newVal.indexOf(value);
-                newVal.splice(index, 1);
+                newVal.filter(item => item === value);
             }
 
             valUpdate = newVal;

@@ -52,7 +52,7 @@ export const Comment = styled.div`
 `;
 
 export const Button = styled.button`
-    color: #E23428;
+    color: ${props => props.archived ? '#E23428' : '#5AD07A'};
     font-family: 'Poppins', sans-serif;;
     font-weight: 500;
     font-size: 16px;

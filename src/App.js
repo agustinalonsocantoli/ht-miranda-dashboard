@@ -20,6 +20,7 @@ import { EditRoom } from "./pages/Rooms/EditRoom";
 import { AppBox, ContentBox } from './AppStyled';
 
 
+
 const AuthContext = React.createContext();
 
 const initialState = {
@@ -76,6 +77,7 @@ const App = () => {
                 <Route path='/users/new-user' element={<NewUser />} />
                 <Route path='/users/:id' element={<EditUser />} />
                 <Route path='/contact' element={<Contact />} />
+                <Route path='contact/:id' element={<Contact />} />
                 <Route path='*' element={ <Navigate to={'/'} />} />
               </Route>
               
