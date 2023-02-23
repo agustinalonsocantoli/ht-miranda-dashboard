@@ -1,6 +1,9 @@
 // React
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { getBook, deleteBook } from '../../features/bookingsSlice';
 // Icons
 import { BsTelephoneFill } from "react-icons/bs";
 import { BsChatTextFill } from "react-icons/bs";
@@ -12,17 +15,26 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
 // Image
 import imgSlider from '../../assets/img/room.png'
-// JSON
-import { dataBookings } from '../../data/DataBookings';
 // Styled
 import { BoxBookings, ImgSlider, ImgUser,ImgText, DataUser, DataCheck, User, BtnPhone, BtnMsg, Icon, DataRooms, Rooms, Text, Facilities, Status, BtnOptions, Actions } from './DetailsStyled';
 
 
 export const BookDetails = () => {
-
-    const { id } = useParams()
-    const bookSelect = dataBookings.find(book => book.id === id);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { id } = useParams();
+    const { book } = useSelector(state => state.bookingsReducer);
     const [ viewActions, setViewActions ] = useState(false);
+
+    useEffect(() => {
+        dispatch(getBook(id));
+
+    }, [dispatch, id])
+
+    const removeBook = (id) => {
+        dispatch(deleteBook(id));
+        navigate('/bookings')
+    }
 
 
     return(
@@ -31,12 +43,12 @@ export const BookDetails = () => {
                 <div>
                     <DataUser>
                         <ImgUser>
-                            <img src={bookSelect.src} alt={`img/${bookSelect.name}`} />
+                            <img src={book.src} alt={`img/${book.name}`} />
                         </ImgUser>
 
                         <User>
-                            <h3>{bookSelect.name}</h3>
-                            <h4>{`ID ${bookSelect.id}`}</h4>
+                            <h3>{book.name}</h3>
+                            <h4>{`ID ${book.id}`}</h4>
 
                             <div>
                                 <BtnPhone><BsTelephoneFill/></BtnPhone>
@@ -48,7 +60,7 @@ export const BookDetails = () => {
                             <Icon><BsThreeDotsVertical onClick={() => setViewActions(prev => !prev)}/></Icon>
 
                             <Actions actions={viewActions}>
-                                <p><MdOutlineDeleteForever />Delete</p>
+                                <p onClick={() => removeBook(book.id)}><MdOutlineDeleteForever />Delete</p>
                                 <p><TiEdit />Edit</p>
                             </Actions>
                         </BtnOptions>
@@ -57,12 +69,12 @@ export const BookDetails = () => {
                     <DataCheck>
                         <div>
                             <h5>Check In</h5>
-                            <p>{`${bookSelect.checkinDate} | ${bookSelect.checkinTime}`}</p>
+                            <p>{`${book.checkinDate} | ${book.checkinTime}`}</p>
                         </div>
 
                         <div>
                             <h5>Check Out</h5>
-                            <p>{bookSelect.checkoutDate}</p>
+                            <p>{book.checkoutDate}</p>
                         </div>
                     </DataCheck>
                 </div>
@@ -70,7 +82,7 @@ export const BookDetails = () => {
                 <DataRooms>
                     <Rooms>
                         <h5>Room Info</h5>
-                        <p>{bookSelect.type}</p>
+                        <p>{book.type}</p>
                     </Rooms>
                     <Rooms>
                         <h5>Room Info</h5>
@@ -78,15 +90,7 @@ export const BookDetails = () => {
                     </Rooms>
                 </DataRooms>
 
-                <Text>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
-                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
-                    qui officia deserunt mollit anim id est laborum
-                </Text>
+                <Text>{book.note}</Text>
 
                 <Facilities>
                     <h5>Facilities</h5>
@@ -111,8 +115,8 @@ export const BookDetails = () => {
                 src={imgSlider} 
                 alt="img/slider" />
 
-                <Status status={bookSelect.status}>
-                    <p>{bookSelect.status}</p>
+                <Status status={book.status}>
+                    <p>{book.status}</p>
                 </Status>
 
                 <ImgText>

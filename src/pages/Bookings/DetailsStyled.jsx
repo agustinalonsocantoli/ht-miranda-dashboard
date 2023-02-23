@@ -111,6 +111,12 @@ export const BtnPhone = styled.button`
     color: #135846;
     padding: 10px;
     font-size: 13px;
+    cursor: pointer;
+
+    &:active {
+        transform: scale(0.9);
+        transition: all 100ms ease;
+    }
 `;
 
 export const BtnMsg = styled.button`
@@ -125,7 +131,12 @@ export const BtnMsg = styled.button`
     display: flex;
     align-items: center;
     gap: 5px;
+    cursor: pointer;
 
+    &:active {
+        transform: scale(0.9);
+        transition: all 100ms ease;
+    }
 `;
 
 export const DataCheck = styled.div`
@@ -153,6 +164,7 @@ export const DataCheck = styled.div`
 
 export const Icon = styled.div`
     font-size: 25px;
+    cursor: pointer;
 
     &:active {
         transform: scale(0.9);

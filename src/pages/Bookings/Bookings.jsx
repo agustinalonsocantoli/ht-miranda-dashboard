@@ -75,7 +75,7 @@ export const Bookings = () => {
                 <p>{row.checkoutTime}</p>
             </Check>) 
         },
-        { property: 'note', label: 'Special Request', display: (row) => (<Notes>{row.note}</Notes>) },
+        { property: 'note', label: 'Special Request', display: () => (<Notes>View Notes</Notes>) },
         { property: 'type', label: 'Room Type', display: (row) => (<TextRoom>{row.type}</TextRoom>) },
         { property: 'status', label: 'Status', display: (row) => (
             row.status === 'Booked' ? <Booked>{row.status}</Booked> : 
