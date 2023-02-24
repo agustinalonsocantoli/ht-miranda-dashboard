@@ -16,7 +16,8 @@ import { TiEdit } from "react-icons/ti";
 // Image
 import imgSlider from '../../assets/img/room.png'
 // Styled
-import { BoxBookings, ImgSlider, ImgUser,ImgText, DataUser, DataCheck, User, BtnPhone, BtnMsg, Icon, DataRooms, Rooms, Text, Facilities, Status, BtnOptions, Actions } from './DetailsStyled';
+import CircularProgress from '@mui/material/CircularProgress';
+import { BoxBookings, ImgSlider, ImgUser,ImgText, DataUser, DataCheck, User, BtnPhone, BtnMsg, Icon, DataRooms, Rooms, Text, Facilities, Status, BtnOptions, Actions, Loading } from './DetailsStyled';
 
 
 export const BookDetails = () => {
@@ -25,17 +26,26 @@ export const BookDetails = () => {
     const { id } = useParams();
     const { book } = useSelector(state => state.bookingsReducer);
     const [ viewActions, setViewActions ] = useState(false);
+    const [ currentBook, setCurrentBook ] = useState({})
 
     useEffect(() => {
         dispatch(getBook(id));
 
-    }, [dispatch, id])
+        setCurrentBook(book)
+    }, [dispatch, id, book])
 
     const removeBook = (id) => {
         dispatch(deleteBook(id));
         navigate('/bookings')
     }
 
+    if(Object.keys(currentBook).length === 0) {
+        return(
+            <Loading>
+                <CircularProgress color="error" size={200} />
+            </Loading>
+        );
+    }
 
     return(
         <BoxBookings>
@@ -43,12 +53,12 @@ export const BookDetails = () => {
                 <div>
                     <DataUser>
                         <ImgUser>
-                            <img src={book.src} alt={`img/${book.name}`} />
+                            <img src={currentBook.src} alt={`img/${currentBook.name}`} />
                         </ImgUser>
 
                         <User>
-                            <h3>{book.name}</h3>
-                            <h4>{`ID ${book.id}`}</h4>
+                            <h3>{currentBook.name}</h3>
+                            <h4>{`ID ${currentBook.id}`}</h4>
 
                             <div>
                                 <BtnPhone><BsTelephoneFill/></BtnPhone>
@@ -60,7 +70,7 @@ export const BookDetails = () => {
                             <Icon><BsThreeDotsVertical onClick={() => setViewActions(prev => !prev)}/></Icon>
 
                             <Actions actions={viewActions}>
-                                <p onClick={() => removeBook(book.id)}><MdOutlineDeleteForever />Delete</p>
+                                <p onClick={() => removeBook(currentBook.id)}><MdOutlineDeleteForever />Delete</p>
                                 <p><TiEdit />Edit</p>
                             </Actions>
                         </BtnOptions>
@@ -69,12 +79,12 @@ export const BookDetails = () => {
                     <DataCheck>
                         <div>
                             <h5>Check In</h5>
-                            <p>{`${book.checkinDate} | ${book.checkinTime}`}</p>
+                            <p>{`${currentBook.checkinDate} | ${currentBook.checkinTime}`}</p>
                         </div>
 
                         <div>
                             <h5>Check Out</h5>
-                            <p>{book.checkoutDate}</p>
+                            <p>{currentBook.checkoutDate}</p>
                         </div>
                     </DataCheck>
                 </div>
@@ -82,7 +92,7 @@ export const BookDetails = () => {
                 <DataRooms>
                     <Rooms>
                         <h5>Room Info</h5>
-                        <p>{book.type}</p>
+                        <p>{currentBook.type}</p>
                     </Rooms>
                     <Rooms>
                         <h5>Room Info</h5>
@@ -90,7 +100,7 @@ export const BookDetails = () => {
                     </Rooms>
                 </DataRooms>
 
-                <Text>{book.note}</Text>
+                <Text>{currentBook.note}</Text>
 
                 <Facilities>
                     <h5>Facilities</h5>
@@ -115,8 +125,8 @@ export const BookDetails = () => {
                 src={imgSlider} 
                 alt="img/slider" />
 
-                <Status status={book.status}>
-                    <p>{book.status}</p>
+                <Status status={currentBook.status}>
+                    <p>{currentBook.status}</p>
                 </Status>
 
                 <ImgText>

@@ -27,12 +27,12 @@ export const EditRoom = () => {
         let valUpdate;
 
         if (type === "checkbox") {
-            const newVal = [...currentRoom[name]];
+            let newVal = [...currentRoom[name]];
 
             if (checked) {
                 newVal.push(value);
             } else {
-                newVal.filter(item => item === value);
+                newVal = newVal.filter(item => item !== value);
             }
 
             valUpdate = newVal;

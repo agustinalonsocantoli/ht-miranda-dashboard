@@ -53,10 +53,6 @@ export const Users = () => {
         dispatch(deleteUser(id))
     }
 
-    const amendUser = (id) => {
-        navigate(`/users/${id}`)
-    }
-
     const cols = [
         { property: ['src' ,'id', 'name'], label: 'Name', display: (row) => (
             <NameBox as={Link} to={`/users/${row.id}`}>
@@ -79,7 +75,7 @@ export const Users = () => {
 
     const actions = [
         { icon: <MdOutlineDeleteForever />, name: 'Delete', action: removeUser },
-        { icon: <TiEdit />, name: 'Edit', action: amendUser },
+        { icon: <TiEdit />, name: 'Edit', action: (id) => navigate(`/users/${id}`) },
     ];
 
     return(

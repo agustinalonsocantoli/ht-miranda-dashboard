@@ -1,5 +1,4 @@
 // React
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Icons
 import { MdOutlineAir } from "react-icons/md";
@@ -16,13 +15,6 @@ import { FormBox, Label, Input, FileBox, Text, StateBox, Select, BtnBox, Check, 
 
 export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoom }) => {
     const navigate = useNavigate();
-
-    const [ amenities, setAmenities ] = useState([]);
-
-    useEffect(() => {
-        setAmenities(currentRoom.amenities)
-
-    }, [currentRoom])
 
     return(
         <FormBox>
@@ -89,46 +81,59 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
                         <div>            
                             <label><MdOutlineAir />Air conditioner</label>
                             <input name='amenities' type="checkbox" value={'Air conditioner'} onChange={handleInput}
+                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Air conditioner')}
                             />
                         </div>
 
                         <div>
                             <label><FaShower />Shower</label>
                             <input name='amenities' type="checkbox" value={'Shower'} onChange={handleInput}
+                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Shower')}
                             />
                         </div>
 
                         <div>
                             <label><GiTowel />Towels</label>
                             <input name='amenities' type="checkbox" value={'Towels'} onChange={handleInput}
+                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Towels')}
                             />
                         </div>
 
                         <div>
                             <label><MdSystemSecurityUpdateGood />Smart Locker</label>
-                            <input name='amenities' type="checkbox" value={'Smart Locker'} onChange={handleInput}/>
+                            <input name='amenities' type="checkbox" value={'Smart Locker'} onChange={handleInput}
+                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Smart Locker')}
+                            />
                         </div>
                     </div>
 
                     <div>  
                         <div>
                             <label><BiCheckShield />24 Hours Guard</label>
-                            <input name='amenities' type="checkbox" value={'24 Hours Guard'} onChange={handleInput}/>
+                            <input name='amenities' type="checkbox" value={'24 Hours Guard'} onChange={handleInput}
+                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === '24 Hours Guard')}
+                            />
                         </div>
 
                         <div>
                             <label><BiWifi />Free Wifi</label>
-                            <input name='amenities' type="checkbox" value={'Free Wifi'} onChange={handleInput}/>
+                            <input name='amenities' type="checkbox" value={'Free Wifi'} onChange={handleInput}
+                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Free Wifi')}
+                            />
                         </div>
 
                         <div>
                             <label><RiComputerFill />Television</label>
-                            <input name='amenities' type="checkbox" value={'Television'} onChange={handleInput}/>
+                            <input name='amenities' type="checkbox" value={'Television'} onChange={handleInput}
+                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Television')}
+                            />
                         </div>
 
                         <div>
                             <label><TbHotelService />Room Services</label>
-                            <input name='amenities' type="checkbox" value={'Room Services'} onChange={handleInput}/>
+                            <input name='amenities' type="checkbox" value={'Room Services'} onChange={handleInput}
+                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Room Services')}
+                            />
                         </div>
                     </div>
                 </StateBox>

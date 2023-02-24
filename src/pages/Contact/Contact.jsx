@@ -22,7 +22,7 @@ export const Contact = () => {
         if(reviews.length === 0){
             dispatch(getReviews());
         }
-        
+
     }, [dispatch, reviews])
 
     useEffect(() => {

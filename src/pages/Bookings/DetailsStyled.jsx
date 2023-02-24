@@ -8,6 +8,12 @@ export const BoxBookings = styled.div`
     box-shadow: 0px 4px 4px #00000005;
 `;
 
+export const Loading = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
+`;
+
 export const ImgUser = styled.div`
     width: 130px;
     height: 130px;
@@ -271,3 +277,4 @@ export const Facilities = styled.div`
         gap: 5px;
     }
 `;
+

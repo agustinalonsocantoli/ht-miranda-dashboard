@@ -16,7 +16,7 @@ export const Table = ({ data, cols, actions }) => {
     const [ page, setPage ] = useState(1);
     const [ perPage ] = useState(5);
 
-    const max = data.length / perPage  
+    const max = Math.ceil(data.length / perPage)
 
     const getRow = (row) => (
         <tr key={row.id}>

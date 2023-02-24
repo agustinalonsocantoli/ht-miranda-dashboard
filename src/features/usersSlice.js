@@ -19,13 +19,13 @@ export const deleteUser = createAsyncThunk('user/deleteUser',
 );
 
 export const editUser = createAsyncThunk('user/editUser',
-    async (id) => { return await id}
+    async (user) => { return await user}
 );
 
 
 const initialState = {
     users: [],
-    user: ''
+    user: null
 }
 
 export const usersSlice = createSlice({
