@@ -7,8 +7,8 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 // Styled
 import { StyledTable, OptionsMenu, BtnOptions, Icon } from './TableStyled';
 
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
 
 
 export const Table = ({ data, cols, actions }) => {
@@ -18,53 +18,62 @@ export const Table = ({ data, cols, actions }) => {
 
     const max = Math.ceil(data.length / perPage)
 
-    const getRow = (row) => (
-        <tr key={row.id}>
-            {cols.map((item, index)=> (
-                <td key={index}>
-                    {item.display ? item.display(row) : row[item.property]}
-                </td>
-            ))}
+    const getRow = (row, index) => (
+        <Draggable key={row.id} draggableId={row.id} index={index}>
+            {(provided, _) => (
+                <tr ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                    {cols.map((item, index)=> (
+                        <td key={index}>
+                            {item.display ? item.display(row) : row[item.property]}
+                        </td>
+                    ))}
 
-            { actions &&
-            <td>
-                <BtnOptions>
-                <Icon><BsThreeDotsVertical onClick={() => setViewActions(prev => prev === row.id ? null : row.id)}/></Icon>
-                
-                <OptionsMenu visible={viewActions === row.id}>
-                    {actions.map((item, index) => <li key={index} onClick={() => item.action(row.id)}>{item.icon}{item.name}</li>)}
-                </OptionsMenu>
-                </BtnOptions>
-            </td>}
-        </tr>
-
+                    { actions &&
+                    <td>
+                        <BtnOptions>
+                        <Icon><BsThreeDotsVertical onClick={() => setViewActions(prev => prev === row.id ? null : row.id)}/></Icon>
+                        
+                        <OptionsMenu visible={viewActions === row.id}>
+                            {actions.map((item, index) => <li key={index} onClick={() => item.action(row.id)}>{item.icon}{item.name}</li>)}
+                        </OptionsMenu>
+                        </BtnOptions>
+                    </td>}
+                </tr>
+            )}
+        </Draggable>
     );
 
     const columnWidth = 100 / cols.length;
-
+                        
     return(
         <div>
-            <StyledTable columnWidth={columnWidth}>
-                <thead>
-                    <tr>
-                        {cols.map((item, index) => (
-                            <th key={index}>
-                                {item.label}
+            <DragDropContext
+            onDragEnd={() => {}}>
+                <StyledTable columnWidth={columnWidth}>
+                    <thead>
+                        <tr>
+                            {cols.map((item, index) => (
+                                <th key={index}>
+                                    {item.label}
+                                </th>
+                            ))}
+
+                            <th>
                             </th>
-                        ))}
+                        </tr>
+                    </thead>
 
-                        <th>
-                        </th>
-                    </tr>
-                </thead>
+                    <Droppable droppableId={'tbody'}>
+                        {(provided, _) => (
+                            <tbody ref={provided.innerRef} {...provided.droppableProps}>
+                                {data.slice((page - 1) * perPage, (page - 1) * perPage + perPage).map((item, index) => getRow(item, index))}
+                                {provided.placeholder}
+                            </tbody>
+                        )}
+                    </Droppable>
 
-                <tbody>
-                    <DndProvider backend={HTML5Backend}>
-                        {data.slice((page - 1) * perPage, (page - 1) * perPage + perPage).map(getRow)}
-                    </DndProvider>
-                </tbody>
-            </StyledTable>
-            
+                </StyledTable>
+            </DragDropContext>
             <Pagination page={page} setPage={setPage} max={max} />
         </div>
     );
