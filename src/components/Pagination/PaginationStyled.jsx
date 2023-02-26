@@ -9,26 +9,9 @@ export const PaginationBox = styled.div`
     margin-top: 15px;
     padding-right: 3%;
 
-    p {
-        position: relative;
-        padding: 15px;
-        cursor: pointer;
-        border-radius: 12px;
-        font-family: 'Poppins', sans-serif;;
-        font-weight: 400;
-        font-size: 14px;
-        color: #393939;
-        background: transparent;
-
-        &:active {
-            transform: scale(0.9);
-            transition: all 100ms ease;
-        }
-    }
-
-    p:nth-child(${props => props.active + 1}) {
-        color: #FFFFFF;
-        background: #135846;
+    ul {
+        display: flex;
+        align-items: center;
     }
 
     button {
@@ -50,5 +33,22 @@ export const PaginationBox = styled.div`
             border: 1px solid #B2B2B2;
             color: #B2B2B2;
         }
+    }
+`;
+
+export const List = styled.div`
+    position: relative;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;;
+    font-weight: 400;
+    font-size: 14px;
+    color:${props => props.active === props.item ? '#FFFFFF' : '#393939'};
+    background:${props => props.active === props.item ? '#135846' : 'transparent'};
+
+    &:active {
+        transform: scale(0.9);
+        transition: all 100ms ease;
     }
 `;

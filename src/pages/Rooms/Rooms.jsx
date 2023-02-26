@@ -30,9 +30,9 @@ export const Rooms = () => {
     }, [dispatch, rooms])
 
     useEffect(() => {
-        const roomsOrderBy = [...rooms];
+        const roomsFilter = rooms.filter(room => room.status !== status)
 
-        roomsOrderBy.sort((a, b) => {
+        roomsFilter.sort((a, b) => {
             if(a[order] > b[order]) {
                 return 1
             } else if (a[order] < b[order]) {
@@ -41,7 +41,6 @@ export const Rooms = () => {
             return 0
         });
 
-        const roomsFilter = roomsOrderBy.filter(room => room.status !== status)
 
         setRoomsList(roomsFilter)
         
@@ -49,10 +48,6 @@ export const Rooms = () => {
 
     const removeRoom = (id) => {
         dispatch(deleteRoom(id));
-    }
-
-    const editRoom = (id) => {
-        navigate(`/rooms/${id}`)
     }
 
     const cols = [
@@ -89,7 +84,7 @@ export const Rooms = () => {
 
     const actions = [
         { icon: <MdOutlineDeleteForever />, name: 'Delete', action: removeRoom },
-        { icon: <TiEdit />, name: 'Edit', action: editRoom },
+        { icon: <TiEdit />, name: 'Edit', action: (id) => navigate(`/rooms/${id}`) },
     ];
     
     return(

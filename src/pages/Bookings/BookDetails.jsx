@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { getBook, deleteBook } from '../../features/bookingsSlice';
+import { getBook, deleteBook, editBook } from '../../features/bookingsSlice';
 // Icons
 import { BsTelephoneFill } from "react-icons/bs";
 import { BsChatTextFill } from "react-icons/bs";
@@ -13,10 +13,18 @@ import { IoWifi } from "react-icons/io5";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
-// Image
-import imgSlider from '../../assets/img/room.png'
+import { IoIosArrowRoundForward } from "react-icons/io";
+import { IoIosArrowRoundBack } from "react-icons/io";
+// JSON
+import { sliderRoom } from '../../data/SliderRoom';
 // Styled
-import { BoxBookings, ImgSlider, ImgUser,ImgText, DataUser, DataCheck, User, BtnPhone, BtnMsg, Icon, DataRooms, Rooms, Text, Facilities, Status, BtnOptions, Actions } from './DetailsStyled';
+import CircularProgress from '@mui/material/CircularProgress';
+import { 
+    BoxBookings, ImgSlider, ImgUser,ImgText, DataUser, DataCheck, User, 
+    BtnPhone, BtnMsg, Icon, DataRooms, Rooms, Text, Facilities, Status, 
+    BtnOptions, Actions, Loading, ImgBox, Arrows 
+} from './DetailsStyled';
+import { EditBook } from './EditBook';
 
 
 export const BookDetails = () => {
@@ -25,30 +33,61 @@ export const BookDetails = () => {
     const { id } = useParams();
     const { book } = useSelector(state => state.bookingsReducer);
     const [ viewActions, setViewActions ] = useState(false);
+    const [ currentBook, setCurrentBook ] = useState({})
+    const [ slider, setSlider ] = useState(0);
+    const maxSlider = (sliderRoom.length - 1) * 550;
+    const [ edit, setEdit ] = useState(false);
 
     useEffect(() => {
         dispatch(getBook(id));
 
-    }, [dispatch, id])
+        setCurrentBook(book)
+    }, [dispatch, id, book])
 
     const removeBook = (id) => {
         dispatch(deleteBook(id));
         navigate('/bookings')
     }
 
+    const handleInput = (e) => {
+        const { name, value} = e.target;
+        
+        setCurrentBook(prev => ({...prev, [name]: value}));
+    }
+
+    const handleSubmit = () => {
+        dispatch(editBook(currentBook))
+        setEdit(false);
+    }
+
+    if(Object.keys(currentBook).length === 0) {
+        return(
+            <Loading>
+                <CircularProgress color="error" size={200} />
+            </Loading>
+        );
+    }
 
     return(
         <BoxBookings>
+            {edit && 
+            <EditBook
+                handleInput={handleInput}
+                handleSubmit={handleSubmit}
+                currentBook={currentBook}
+                setEdit={setEdit}
+            />}
+
             <div>
                 <div>
                     <DataUser>
                         <ImgUser>
-                            <img src={book.src} alt={`img/${book.name}`} />
+                            <img src={currentBook.src} alt={`img/${currentBook.name}`} />
                         </ImgUser>
 
                         <User>
-                            <h3>{book.name}</h3>
-                            <h4>{`ID ${book.id}`}</h4>
+                            <h3>{currentBook.name}</h3>
+                            <h4>{`ID ${currentBook.id}`}</h4>
 
                             <div>
                                 <BtnPhone><BsTelephoneFill/></BtnPhone>
@@ -60,8 +99,8 @@ export const BookDetails = () => {
                             <Icon><BsThreeDotsVertical onClick={() => setViewActions(prev => !prev)}/></Icon>
 
                             <Actions actions={viewActions}>
-                                <p onClick={() => removeBook(book.id)}><MdOutlineDeleteForever />Delete</p>
-                                <p><TiEdit />Edit</p>
+                                <p onClick={() => removeBook(currentBook.id)}><MdOutlineDeleteForever />Delete</p>
+                                <p onClick={() => {setEdit(true); setViewActions(prev => !prev);}}><TiEdit />Edit</p>
                             </Actions>
                         </BtnOptions>
                     </DataUser>
@@ -69,12 +108,12 @@ export const BookDetails = () => {
                     <DataCheck>
                         <div>
                             <h5>Check In</h5>
-                            <p>{`${book.checkinDate} | ${book.checkinTime}`}</p>
+                            <p>{`${currentBook.checkinDate} | ${currentBook.checkinTime}`}</p>
                         </div>
 
                         <div>
                             <h5>Check Out</h5>
-                            <p>{book.checkoutDate}</p>
+                            <p>{currentBook.checkoutDate}</p>
                         </div>
                     </DataCheck>
                 </div>
@@ -82,7 +121,7 @@ export const BookDetails = () => {
                 <DataRooms>
                     <Rooms>
                         <h5>Room Info</h5>
-                        <p>{book.type}</p>
+                        <p>{currentBook.type}</p>
                     </Rooms>
                     <Rooms>
                         <h5>Room Info</h5>
@@ -90,7 +129,7 @@ export const BookDetails = () => {
                     </Rooms>
                 </DataRooms>
 
-                <Text>{book.note}</Text>
+                <Text>{currentBook.note}</Text>
 
                 <Facilities>
                     <h5>Facilities</h5>
@@ -111,13 +150,21 @@ export const BookDetails = () => {
             </div>
 
             <ImgSlider>
-                <img 
-                src={imgSlider} 
-                alt="img/slider" />
-
-                <Status status={book.status}>
-                    <p>{book.status}</p>
+                
+                <ImgBox slider={slider}>
+                    {sliderRoom.map((item, index) => 
+                    <img src={item} alt={`img/${index}`} key={index} />
+                    )}
+                </ImgBox>
+                
+                <Status status={currentBook.status}>
+                    <p>{currentBook.status}</p>
                 </Status>
+
+                <Arrows>
+                    <IoIosArrowRoundBack onClick={() => setSlider(slider > 0 && slider - 550)} />
+                    <IoIosArrowRoundForward onClick={() => setSlider(slider < maxSlider && slider + 550)}/>
+                </Arrows>
 
                 <ImgText>
                     <h4>Bed Room</h4>

@@ -1,23 +1,56 @@
 // Styled
-import { PaginationBox } from './PaginationStyled';
+import { PaginationBox, List } from './PaginationStyled';
 
 export const Pagination = ({page, setPage, max}) => {
+    
+    let count = [1];
+    const paginate = (page, max) => {
+        if (!page || !max){
+            return null;
+        }
 
-    const countPages = [];
+        if (page === 1 && max === 1){
+            return {count};
+        }
+        if (page > 3){
+            count.push('...');
+        }
 
-    for(let i = 1; i <= max; i++) {
-        countPages.push(i);
-    }
+        let dots = 1;
+        let firstDot = page - dots;
+        let lastDot = page + dots;
+        
+        for (let i = firstDot > 2 ? firstDot : 2; i <= Math.min(max, lastDot); i++){
+            count.push(i);
+        }
+
+        if (lastDot + 1 < max){ 
+            count.push('...');
+        }
+
+        if (lastDot < max){
+            count.push(max);
+        }
+
+        return {count};
+      };
+
+    const countPages = paginate(page, max);
+
+
+    const pageNumbers = countPages && countPages.count.map((item, index) => (
+        <List key={index} onClick={() => setPage(item)} active={page} item={item}>
+            {item}
+        </List>  
+    ))
 
     return(
-        <PaginationBox  active={page}>
+        <PaginationBox>
             <button disabled={page <= 1} onClick={() => setPage(page - 1)}>Prev</button>
 
-            {countPages.map(item=> (
-                <p key={item} onClick={() => setPage(item)}>
-                    {item}
-                </p>
-            ))}
+            <ul>
+                {pageNumbers}
+            </ul>
 
             <button disabled={page >= max} onClick={() => setPage(page + 1)}>Next</button>
         </PaginationBox>

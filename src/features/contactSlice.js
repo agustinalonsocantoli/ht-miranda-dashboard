@@ -19,12 +19,12 @@ export const deleteReview = createAsyncThunk('review/deleteReview',
 );
 
 export const editReview = createAsyncThunk('review/editReview', 
-    async (id) => { return await id }
+    async (review) => { return await review }
 );
 
 const initialState = {
     reviews: [],
-    review: ''
+    review: null
 }
 
 export const contactSlice = createSlice({

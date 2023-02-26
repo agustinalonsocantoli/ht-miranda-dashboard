@@ -19,12 +19,12 @@ export const deleteRoom = createAsyncThunk('room/deleteRoom',
 );
 
 export const editRoom = createAsyncThunk('room/editRoom', 
-    async (id) => { return await id}
+    async (room) => { return await room}
 );
 
 const initialState = {
     rooms: [],
-    room: ''
+    room: null
 }
 
 export const roomsSlice = createSlice({

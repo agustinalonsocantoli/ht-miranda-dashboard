@@ -19,12 +19,12 @@ export const deleteBook = createAsyncThunk('book/deleteBook',
 );
 
 export const editBook = createAsyncThunk('book/editBook',
-async (id) => {return await id}
+async (book) => {return await book}
 );
 
 const initialState = {
     bookings: [],
-    book: ''
+    book: null
 }
 
 export const bookingsSlice = createSlice({
