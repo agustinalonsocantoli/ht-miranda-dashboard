@@ -1,8 +1,9 @@
 // React
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
-import { getReviews, getReview, editReview } from "../../features/contactSlice";
+import { getReviews } from "../../features/contactSlice";
 // Components
 import { Msg } from "../../components/Msg/Msg";
 import { Table } from "../../components/Table/Table";
@@ -12,8 +13,8 @@ import { formatDate } from "../../export/functions";
 
 export const Contact = () => {
     const { reviews } = useSelector(state => state.reviewsReducer);
-    const { review } = useSelector(state => state.reviewsReducer);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [ reviewsList , setReviewsList ] = useState([]);
     const [ archived , setArchived ] = useState(true);
@@ -43,13 +44,6 @@ export const Contact = () => {
         
     }, [reviews, archived])
 
-    const handleClick = (id, value) => {
-        dispatch(getReview(id))
-        dispatch(editReview({
-            ...review,
-            archived: value
-        }))
-    }
 
     const cols = [
         { property: ['date', 'id'], label: 'Date', display: (row) => (
@@ -72,7 +66,7 @@ export const Contact = () => {
             </Comment>) 
         },
         { label: 'Action', display: (row) => (
-            <Button archived={archived} onClick={() => handleClick(row.id, archived)}>
+            <Button archived={archived} onClick={() => navigate(`/contact/${row.id}`)}>
                 {archived ? 'Archive' : 'Unarchive'}
             </Button>) 
         }

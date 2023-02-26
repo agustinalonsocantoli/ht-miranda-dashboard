@@ -28,18 +28,25 @@ export const ImgUser = styled.div`
 `;
 
 export const ImgSlider = styled.div`
-    min-width: 555px;
-    height: 565px;
+    max-width: 550px;
     position: relative;
     overflow: hidden;
+`;
 
-    & > img {
+export const ImgBox = styled.div`
+    display: flex;  
+    height: 565px;
+    transform: translate(-${props => props.slider}px);
+    transition: transform 600ms ease;
+
+    img {
         objet-fit: cover;
         width: 100%;
         height: 100%;
         border-radius: 0 10px 10px 0;
-    }   
+    } 
 `;
+
 
 export const Status = styled.div`
     position: absolute;
@@ -78,6 +85,24 @@ export const ImgText = styled.div`
         font-family: 'Poppins', sans-serif;;
         font-weight: 400;
         font-size: 12px;
+    }
+`;
+
+export const Arrows = styled.div`
+    position: absolute;
+    bottom: 30%;
+    left: 10%;
+    right: 10%;
+    margin: auto;
+    display flex;
+    justify-content: space-between;
+
+    svg {
+        font-size: 50px;
+        color: #FFFFFF;
+        padding: 5px;
+        border-radius: 12px;
+        background: rgb(204 204 204 / 80%);
     }
 `;
 
@@ -277,4 +302,3 @@ export const Facilities = styled.div`
         gap: 5px;
     }
 `;
-

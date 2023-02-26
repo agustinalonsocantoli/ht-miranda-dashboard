@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { getBook, deleteBook } from '../../features/bookingsSlice';
+import { getBook, deleteBook, editBook } from '../../features/bookingsSlice';
 // Icons
 import { BsTelephoneFill } from "react-icons/bs";
 import { BsChatTextFill } from "react-icons/bs";
@@ -13,11 +13,18 @@ import { IoWifi } from "react-icons/io5";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
-// Image
-import imgSlider from '../../assets/img/room.png'
+import { IoIosArrowRoundForward } from "react-icons/io";
+import { IoIosArrowRoundBack } from "react-icons/io";
+// JSON
+import { sliderRoom } from '../../data/SliderRoom';
 // Styled
 import CircularProgress from '@mui/material/CircularProgress';
-import { BoxBookings, ImgSlider, ImgUser,ImgText, DataUser, DataCheck, User, BtnPhone, BtnMsg, Icon, DataRooms, Rooms, Text, Facilities, Status, BtnOptions, Actions, Loading } from './DetailsStyled';
+import { 
+    BoxBookings, ImgSlider, ImgUser,ImgText, DataUser, DataCheck, User, 
+    BtnPhone, BtnMsg, Icon, DataRooms, Rooms, Text, Facilities, Status, 
+    BtnOptions, Actions, Loading, ImgBox, Arrows 
+} from './DetailsStyled';
+import { EditBook } from './EditBook';
 
 
 export const BookDetails = () => {
@@ -27,6 +34,9 @@ export const BookDetails = () => {
     const { book } = useSelector(state => state.bookingsReducer);
     const [ viewActions, setViewActions ] = useState(false);
     const [ currentBook, setCurrentBook ] = useState({})
+    const [ slider, setSlider ] = useState(0);
+    const maxSlider = (sliderRoom.length - 1) * 550;
+    const [ edit, setEdit ] = useState(false);
 
     useEffect(() => {
         dispatch(getBook(id));
@@ -39,6 +49,17 @@ export const BookDetails = () => {
         navigate('/bookings')
     }
 
+    const handleInput = (e) => {
+        const { name, value} = e.target;
+        
+        setCurrentBook(prev => ({...prev, [name]: value}));
+    }
+
+    const handleSubmit = () => {
+        dispatch(editBook(currentBook))
+        setEdit(false);
+    }
+
     if(Object.keys(currentBook).length === 0) {
         return(
             <Loading>
@@ -49,6 +70,14 @@ export const BookDetails = () => {
 
     return(
         <BoxBookings>
+            {edit && 
+            <EditBook
+                handleInput={handleInput}
+                handleSubmit={handleSubmit}
+                currentBook={currentBook}
+                setEdit={setEdit}
+            />}
+
             <div>
                 <div>
                     <DataUser>
@@ -71,7 +100,7 @@ export const BookDetails = () => {
 
                             <Actions actions={viewActions}>
                                 <p onClick={() => removeBook(currentBook.id)}><MdOutlineDeleteForever />Delete</p>
-                                <p><TiEdit />Edit</p>
+                                <p onClick={() => {setEdit(true); setViewActions(prev => !prev);}}><TiEdit />Edit</p>
                             </Actions>
                         </BtnOptions>
                     </DataUser>
@@ -121,13 +150,21 @@ export const BookDetails = () => {
             </div>
 
             <ImgSlider>
-                <img 
-                src={imgSlider} 
-                alt="img/slider" />
-
+                
+                <ImgBox slider={slider}>
+                    {sliderRoom.map((item, index) => 
+                    <img src={item} alt={`img/${index}`} key={index} />
+                    )}
+                </ImgBox>
+                
                 <Status status={currentBook.status}>
                     <p>{currentBook.status}</p>
                 </Status>
+
+                <Arrows>
+                    <IoIosArrowRoundBack onClick={() => setSlider(slider > 0 && slider - 550)} />
+                    <IoIosArrowRoundForward onClick={() => setSlider(slider < maxSlider && slider + 550)}/>
+                </Arrows>
 
                 <ImgText>
                     <h4>Bed Room</h4>
