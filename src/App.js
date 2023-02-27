@@ -19,8 +19,6 @@ import { EditRoom } from "./pages/Rooms/EditRoom";
 // Styled
 import { AppBox, ContentBox } from './AppStyled';
 
-
-
 const AuthContext = React.createContext();
 
 const initialState = {

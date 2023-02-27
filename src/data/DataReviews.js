@@ -21,7 +21,7 @@ export const dataReviews = [
     },
     {   
         id: 'C0003',
-        date: '2021-09-005',
+        date: '2021-09-05',
         customer: 'Kusnaidi Anderson',
         email: 'kanderson@gmail.com',
         phone: '+34 623 455 928',
