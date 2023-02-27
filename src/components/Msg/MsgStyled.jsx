@@ -57,23 +57,79 @@ export const UserInfo = styled.div`
     }
 `;
 
-export const Icons = styled.div`
+export const Check = styled.div`
     position: absolute;
     right: 15px;
     bottom: 15px;
     font-size: 20px;
+    cursor: pointer;
 
-    svg:nth-child(1) {
+    svg {
         color: #5AD07A;
         margin-right: 5px;
-    }
-
-    svg:nth-child(2) {
-        color: #E23428;
     }
 
     svg:active {
         transform: scale(0.9);
         transition: all 100ms ease-in-out;
+    }
+`;
+
+
+export const Close = styled.div`
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 20px;
+    cursor: pointer;
+
+    svg {
+        color: #FFFFFF;
+        margin-right: 5px;
+    }
+
+    svg:active {
+        transform: scale(0.9);
+        transition: all 100ms ease-in-out;
+    }
+`;
+
+export const PopupBox = styled.div`
+    border-radius: 10px;
+    padding: 2%;
+    font-family: 'Poppins', sans-serif;;
+    color: #FFFFFF;
+    background: rgb(19 88 70 / 95%);
+    position: absolute;
+    margin: 1% 10%;
+    top: 0;
+
+    h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+
+        span {
+            text-transform: capitalize;
+            font-size: 16px;
+            font-weight: 400;
+            margin-left: 10px;
+        }
+    }
+
+    p {
+        text-transform: capitalize;
+        font-size: 16px;
+        font-weight: 400;
+        margin-left: 10%;
+        margin-bottom: 10px;
+
+        span {
+            text-transform: capitalize;
+            font-size: 14px;
+            font-weight: 300;
+            margin-left: 10px;
+            
+        }
     }
 `;
