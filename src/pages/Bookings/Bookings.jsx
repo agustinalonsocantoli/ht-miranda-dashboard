@@ -8,8 +8,13 @@ import { getBookings } from "../../features/bookingsSlice";
 import { Table } from '../../components/Table/Table'
 // Functions
 import { formatDate } from "../../export/functions";
+// Icons
+import { RxCrossCircled } from "react-icons/rx";
 // Styled
-import { BookingsContent, NameBox, Date, Check, Notes, TextRoom, Booked, Refund, Progress, Options, Filters } from "./BookingsStyled";
+import { 
+    BookingsContent, NameBox, Date, Check, Notes, TextRoom, 
+    Booked, Refund, Progress, Options, Filters, Close, PopupBox 
+} from "./BookingsStyled";
 
 
 
@@ -21,6 +26,8 @@ export const Bookings = () => {
     const [ bookingsList , setBookingsList ] = useState([]);
     const [ order, setOrder ] = useState('date');
     const [ status, setStatus] = useState('');
+    const [ popupData, setPopupData ] = useState({});
+    const [ popup, setPopup ] = useState(false);
 
     useEffect(() => {
         if(bookings.length === 0){
@@ -50,6 +57,10 @@ export const Bookings = () => {
         
     }, [order, bookings, status])
 
+    const handleClick = (booking) => {
+        setPopupData(booking);
+        setPopup(true);
+    }
 
     const cols = [
         { property: ['src' ,'id', 'name'], label: 'Guest', display: (row) => (
@@ -75,7 +86,7 @@ export const Bookings = () => {
                 <p>{row.checkoutTime}</p>
             </Check>) 
         },
-        { property: 'note', label: 'Special Request', display: () => (<Notes>View Notes</Notes>) },
+        { property: 'note', label: 'Special Request', display: (row) => (<Notes onClick={() => handleClick({...row})}>View Notes</Notes>) },
         { property: 'type', label: 'Room Type', display: (row) => (<TextRoom>{row.type}</TextRoom>) },
         { property: 'status', label: 'Status', display: (row) => (
             row.status === 'Booked' ? <Booked>{row.status}</Booked> : 
@@ -103,6 +114,18 @@ export const Bookings = () => {
             </Options>
 
             <Table data={bookingsList} cols={cols} />
+
+            {popup &&
+            <PopupBox>
+                <h3><span>" {popupData.name} "</span> sent the following note:</h3>
+                <p>{popupData.note}</p>
+                <p>Date: {popupData ? formatDate(popupData.date) : popupData.date}</p>
+
+                <Close onClick={() => setPopup(false)}>
+                    <RxCrossCircled /> 
+                </Close>
+            </PopupBox>
+            }
         </BookingsContent>
     );
 }

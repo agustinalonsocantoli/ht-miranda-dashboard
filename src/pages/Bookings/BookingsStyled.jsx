@@ -58,14 +58,21 @@ export const Check = styled.div`
     }
 `;
 
-export const Notes = styled.span`
+export const Notes = styled.button`
     color: #212121;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 14px;
-    background: #EEF9F2 0% 0% no-repeat padding-box;
+    background: #EEF9F2;
     border-radius: 12px;
     padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+
+    &:active {
+        transform: scale(1.1);
+        transition: all 100ms ease;
+    }
 `;
 
 export const TextRoom = styled.span`
@@ -142,5 +149,55 @@ export const Filters = styled.div`
             color: #135846;
             border-bottom: 2px solid #135846;
         }
+    }
+`;
+
+export const Close = styled.div`
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 20px;
+    cursor: pointer;
+
+    svg {
+        color: #FFFFFF;
+        margin-right: 5px;
+    }
+
+    svg:active {
+        transform: scale(0.9);
+        transition: all 100ms ease-in-out;
+    }
+`;
+
+export const PopupBox = styled.div`
+    border-radius: 10px;
+    padding: 2% 3% 1% 3%;
+    font-family: 'Poppins', sans-serif;;
+    color: #FFFFFF;
+    background: rgb(19 88 70 / 95%);
+    position: fixed;
+    margin: 0 20% 0 5%;
+    top: 35%;
+
+    h3 {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 15px;
+
+        span {
+            text-transform: capitalize;
+            font-weight: 600;
+        }
+    }
+
+    p {
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    p:nth-child(3) {
+        text-align: right;
+        margin-top: 20px;
     }
 `;

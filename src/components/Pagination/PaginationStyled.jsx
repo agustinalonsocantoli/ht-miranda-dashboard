@@ -36,7 +36,7 @@ export const PaginationBox = styled.div`
     }
 `;
 
-export const List = styled.div`
+export const List = styled.li`
     position: relative;
     padding: 15px;
     cursor: pointer;
