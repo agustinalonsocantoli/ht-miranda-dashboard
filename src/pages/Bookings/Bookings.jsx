@@ -115,8 +115,7 @@ export const Bookings = () => {
 
             <Table data={bookingsList} cols={cols} />
 
-            {popup &&
-            <PopupBox>
+            {popup && <PopupBox>
                 <h3><span>" {popupData.name} "</span> sent the following note:</h3>
                 <p>{popupData.note}</p>
                 <p>Date: {popupData ? formatDate(popupData.date) : popupData.date}</p>
@@ -124,8 +123,8 @@ export const Bookings = () => {
                 <Close onClick={() => setPopup(false)}>
                     <RxCrossCircled /> 
                 </Close>
-            </PopupBox>
-            }
+            </PopupBox>}
+
         </BookingsContent>
     );
 }
