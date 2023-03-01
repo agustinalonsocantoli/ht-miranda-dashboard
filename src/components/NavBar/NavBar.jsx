@@ -50,7 +50,7 @@ export const NavBar = ({ viewBar ,setViewBar, setTitle, title }) => {
             <div>
                 <Icon as={Link} to={'/contact'}><span>5</span><MdOutlineMail /></Icon>
                 <Icon as={Link} to={'/bookings'}><span>8</span><IoNotificationsOutline /></Icon>
-                <Icon><SlLogout onClick={handleClick} /></Icon>
+                <Icon><SlLogout data-cy="logout" onClick={handleClick} /></Icon>
             </div>
         </NavBox>
     );
