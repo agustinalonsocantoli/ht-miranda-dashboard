@@ -19,21 +19,13 @@ import { EditRoom } from "./pages/Rooms/EditRoom";
 // Styled
 import { AppBox, ContentBox } from './AppStyled';
 
-// interface State {
-//   auth: boolean;
-//   username: string;
-//   password: string;
-// }
-
-const AuthContext = React.createContext();
-
 const initialState = {
     auth: localStorage.getItem('login') ? true : false,
     username: 'agustin@hm.com',
     password: '000000',
 }
 
-const reducer = (state, action) => {
+const reducer = (state: any, action: any) => {
     switch (action.type) {
         case 'LOG_IN': return {
             ...state,
@@ -47,6 +39,8 @@ const reducer = (state, action) => {
             return state
     }
 }
+
+const AuthContext = React.createContext({});
 
 export const useAuthContex = () => {
   return useContext(AuthContext);
