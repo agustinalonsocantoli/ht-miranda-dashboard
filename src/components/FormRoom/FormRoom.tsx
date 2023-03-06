@@ -24,8 +24,8 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
 
             {edit && 
             <Room>
-                <img src={currentRoom.src} alt={`img/${currentRoom.id}`} />
-                <h3>ID {currentRoom.id}</h3>
+                <img src={currentRoom && currentRoom.src} alt={`img/${currentRoom && currentRoom.id}`} />
+                <h3>ID {currentRoom && currentRoom.id}</h3>
             </Room>
             }
 
@@ -35,10 +35,10 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
             e.target.reset();
             navigate('/rooms')}}>
                 <Label>Room Name - Number</Label>
-                <Input type="text" name='name' value={currentRoom.name} onChange={handleInput}/>
+                <Input type="text" name='name' value={currentRoom && currentRoom.name} onChange={handleInput}/>
 
                 <Label>Room Type</Label>
-                <Select name='type' value={currentRoom.type} onChange={handleInput}>
+                <Select name='type' value={currentRoom && currentRoom.type} onChange={handleInput}>
                     <option disabled>Select</option>
                     <option value="Single Bed">Single Bed</option>
                     <option value="Double Bed">Double Bed</option>
@@ -47,11 +47,11 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
                 </Select>
 
                 <Label>Price</Label>
-                <Input type="number" name='price' value={currentRoom.price} onChange={handleInput}/>
+                <Input type="number" name='price' value={currentRoom && currentRoom.price} onChange={handleInput}/>
 
                 <Label>Discount to apply</Label>
                 <Input type="number" name='offer' onChange={handleInput}
-                value={currentRoom.offer} 
+                value={currentRoom && currentRoom.offer} 
                 />
 
                 <Text>Status</Text>
@@ -61,7 +61,7 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
                         name='status' 
                         type="radio" 
                         value={'Available'}
-                        checked={currentRoom.status === "Available"}  
+                        checked={currentRoom && currentRoom.status === "Available"}  
                         onChange={handleInput}/>
                         <label>Available</label>
                     </Check>
@@ -71,7 +71,7 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
                         name='status' 
                         type="radio" 
                         value={'Booked'}
-                        checked={currentRoom.status === "Booked"} 
+                        checked={currentRoom && currentRoom.status === "Booked"} 
                         onChange={handleInput}/>
                         <label>Booked</label>
                     </Check>
@@ -83,28 +83,28 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
                         <div>            
                             <label><MdOutlineAir />Air conditioner</label>
                             <input name='amenities' type="checkbox" value={'Air conditioner'} onChange={handleInput}
-                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Air conditioner')}
+                            checked={currentRoom && currentRoom.amenities && currentRoom.amenities.find (item => item === 'Air conditioner')}
                             />
                         </div>
 
                         <div>
                             <label><FaShower />Shower</label>
                             <input name='amenities' type="checkbox" value={'Shower'} onChange={handleInput}
-                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Shower')}
+                            checked={currentRoom && currentRoom.amenities && currentRoom.amenities.find (item => item === 'Shower')}
                             />
                         </div>
 
                         <div>
                             <label><GiTowel />Towels</label>
                             <input name='amenities' type="checkbox" value={'Towels'} onChange={handleInput}
-                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Towels')}
+                            checked={currentRoom && currentRoom.amenities && currentRoom.amenities.find (item => item === 'Towels')}
                             />
                         </div>
 
                         <div>
                             <label><MdSystemSecurityUpdateGood />Smart Locker</label>
                             <input name='amenities' type="checkbox" value={'Smart Locker'} onChange={handleInput}
-                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Smart Locker')}
+                            checked={currentRoom && currentRoom.amenities && currentRoom.amenities.find (item => item === 'Smart Locker')}
                             />
                         </div>
                     </div>
@@ -113,28 +113,28 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
                         <div>
                             <label><BiCheckShield />24 Hours Guard</label>
                             <input name='amenities' type="checkbox" value={'24 Hours Guard'} onChange={handleInput}
-                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === '24 Hours Guard')}
+                            checked={currentRoom && currentRoom.amenities && currentRoom.amenities.find (item => item === '24 Hours Guard')}
                             />
                         </div>
 
                         <div>
                             <label><BiWifi />Free Wifi</label>
                             <input name='amenities' type="checkbox" value={'Free Wifi'} onChange={handleInput}
-                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Free Wifi')}
+                            checked={currentRoom && currentRoom.amenities && currentRoom.amenities.find (item => item === 'Free Wifi')}
                             />
                         </div>
 
                         <div>
                             <label><RiComputerFill />Television</label>
                             <input name='amenities' type="checkbox" value={'Television'} onChange={handleInput}
-                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Television')}
+                            checked={currentRoom && currentRoom.amenities && currentRoom.amenities.find (item => item === 'Television')}
                             />
                         </div>
 
                         <div>
                             <label><TbHotelService />Room Services</label>
                             <input name='amenities' type="checkbox" value={'Room Services'} onChange={handleInput}
-                            checked={currentRoom.amenities && currentRoom.amenities.find (item => item === 'Room Services')}
+                            checked={currentRoom && currentRoom.amenities && currentRoom.amenities.find (item => item === 'Room Services')}
                             />
                         </div>
                     </div>

@@ -62,12 +62,14 @@ export const BookDetails = () => {
         setEdit(false);
     }
 
-    if(Object.keys(currentBook).length === 0) {
-        return(
-            <Loading>
-                <CircularProgress color="error" size={200} />
-            </Loading>
-        );
+    if(currentBook !== null && currentBook !== undefined){
+        if(Object.keys(currentBook).length === 0) {
+            return(
+                <Loading>
+                    <CircularProgress color="error" size={200} />
+                </Loading>
+            );
+        }
     }
 
     return(
@@ -84,12 +86,12 @@ export const BookDetails = () => {
                 <div>
                     <DataUser>
                         <ImgUser>
-                            <img src={currentBook.src} alt={`img/${currentBook.name}`} />
+                            <img src={currentBook && currentBook.src} alt={`img/${currentBook && currentBook.name}`} />
                         </ImgUser>
 
                         <User>
-                            <h3>{currentBook.name}</h3>
-                            <h4>{`ID ${currentBook.id}`}</h4>
+                            <h3>{currentBook && currentBook.name}</h3>
+                            <h4>{`ID ${currentBook && currentBook.id}`}</h4>
 
                             <div>
                                 <BtnPhone><BsTelephoneFill/></BtnPhone>
@@ -110,12 +112,12 @@ export const BookDetails = () => {
                     <DataCheck>
                         <div>
                             <h5>Check In</h5>
-                            <p>{`${currentBook.checkinDate} | ${currentBook.checkinTime}`}</p>
+                            <p>{`${currentBook && currentBook.checkinDate} | ${currentBook && currentBook.checkinTime}`}</p>
                         </div>
 
                         <div>
                             <h5>Check Out</h5>
-                            <p>{currentBook.checkoutDate}</p>
+                            <p>{currentBook && currentBook.checkoutDate}</p>
                         </div>
                     </DataCheck>
                 </div>
@@ -123,7 +125,7 @@ export const BookDetails = () => {
                 <DataRooms>
                     <Rooms>
                         <h5>Room Info</h5>
-                        <p>{currentBook.type}</p>
+                        <p>{currentBook && currentBook.type}</p>
                     </Rooms>
                     <Rooms>
                         <h5>Room Info</h5>
@@ -131,7 +133,7 @@ export const BookDetails = () => {
                     </Rooms>
                 </DataRooms>
 
-                <Text>{currentBook.note}</Text>
+                <Text>{currentBook && currentBook.note}</Text>
 
                 <Facilities>
                     <h5>Facilities</h5>
@@ -159,8 +161,8 @@ export const BookDetails = () => {
                     )}
                 </ImgBox>
                 
-                <Status status={currentBook.status}>
-                    <p>{currentBook.status}</p>
+                <Status status={currentBook && currentBook.status}>
+                    <p>{currentBook && currentBook.status}</p>
                 </Status>
 
                 <Arrows>

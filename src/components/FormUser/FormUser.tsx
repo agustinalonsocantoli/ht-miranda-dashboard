@@ -15,8 +15,8 @@ export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUse
 
             {edit && 
             <User>
-                <img src={currentUser.src} alt={`img/${currentUser.id}`} />
-                <h3>ID {currentUser.id}</h3>
+                <img src={currentUser && currentUser.src} alt={`img/${currentUser && currentUser.id}`} />
+                <h3>ID {currentUser && currentUser.id}</h3>
             </User>
             }
 
@@ -29,13 +29,13 @@ export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUse
             }}>
 
                 <Label>Name</Label>
-                <Input type="text" name='name' value={currentUser.name} onChange={handleInput}/>
+                <Input type="text" name='name' value={currentUser && currentUser.name} onChange={handleInput}/>
 
                 <Label>Email</Label>
-                <Input type="email" name='email' value={currentUser.email} onChange={handleInput}/>
+                <Input type="email" name='email' value={currentUser && currentUser.email} onChange={handleInput}/>
 
                 <Label>Phone Number</Label>
-                <Input type="text" name='contact' value={currentUser.contact} onChange={handleInput}/>
+                <Input type="text" name='contact' value={currentUser && currentUser.contact} onChange={handleInput}/>
 
                 <FileBox>
                     <label>Upload Image<IoImagesOutline /></label>
@@ -43,7 +43,7 @@ export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUse
                 </FileBox>
 
                 <Label>Start Date</Label>
-                <Date type="date" name='start' value={currentUser.start} onChange={handleInput}/>
+                <Date type="date" name='start' value={currentUser && currentUser.start} onChange={handleInput}/>
 
                 <Label>Job</Label>
                 <Select defaultValue={'task'} name='task'>
@@ -54,7 +54,7 @@ export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUse
                 </Select>
 
                 <Label>Functions Description</Label>
-                <textarea name='job' value={currentUser.job} onChange={handleInput}></textarea>
+                <textarea name='job' value={currentUser && currentUser.job} onChange={handleInput}></textarea>
                 
                 <Text>Status</Text>
                 <StateBox>
@@ -62,7 +62,7 @@ export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUse
                     name='status' 
                     type="radio" 
                     value={'active'} 
-                    checked={currentUser.status === "active"} 
+                    checked={currentUser && currentUser.status === "active"} 
                     onChange={handleInput}/>
                     <label>Active</label>
 
@@ -70,13 +70,13 @@ export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUse
                     name='status' 
                     type="radio" 
                     value={'inactive'}
-                    checked={currentUser.status === "inactive"} 
+                    checked={currentUser && currentUser.status === "inactive"} 
                     onChange={handleInput}/>
                     <label>Inactive</label>
                 </StateBox>
                 
                 <Label>Password</Label>
-                <Input type="password" name='password' value={currentUser.password} onChange={handleInput}/>
+                <Input type="password" name='password' value={currentUser && currentUser.password} onChange={handleInput}/>
 
                 <BtnBox>
                     <button type='submit'>Save</button>
