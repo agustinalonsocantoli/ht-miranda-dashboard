@@ -10,6 +10,9 @@ import { RxCheckCircled } from "react-icons/rx";
 import reviewImages from '../../assets/img/user5.png'
 // Styled
 import { MsgBox, MsgContent, Check, Close, UserInfo, PopupBox } from './MsgStyled';
+// Ext
+import { truncate } from "lodash";
+
 
 export const Msg = ({ filter, translate, popup }) => {
     const dispatch = useDispatch();
@@ -33,7 +36,7 @@ export const Msg = ({ filter, translate, popup }) => {
         <MsgBox translate={translate} max={(messages.length * 350) - (350 * 3)}>
             {messages.slice(0, filter).map(item => (
                 <MsgContent key={item.id} onClick={() => handleClick({...item})}>
-                    <p>{item.comment}</p>
+                    <p>{truncate(item.comment, {length: 82})}</p>
 
                     <UserInfo>
                         <img src={reviewImages} alt="img/name" />

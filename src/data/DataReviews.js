@@ -47,6 +47,6 @@ export const dataReviews = [
         phone: '+34 623 455 928',
         affair: 'Recommendation',
         comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
-        archived: false,
+        archived: true,
     },
 ]

@@ -53,14 +53,14 @@ export const Login = () => {
                     <Label>User</Label>
                     <IconConteiner>
                     <Icon><FaUserCircle /></Icon>
-                    <Input type="text" name="username" defaultValue={username} onChange={({ target }) => setUsernameFrom(target.value)}/>
+                    <Input data-cy="username" type="text" name="username" defaultValue={username} onChange={({ target }) => setUsernameFrom(target.value)}/>
                     </IconConteiner>
                     <Label>Password</Label>
                     <IconConteiner>
                     <Icon><RiLockPasswordFill /></Icon>
-                    <Input type="password" name="password" defaultValue={password} onChange={({ target }) => setPasswordFrom(target.value)}/>
+                    <Input data-cy="password" type="password" name="password" defaultValue={password} onChange={({ target }) => setPasswordFrom(target.value)}/>
                     </IconConteiner>
-                    <Button type="submit"><SlLogin />Login</Button>
+                    <Button data-cy="btn" type="submit"><SlLogin />Login</Button>
                 </Form>
             </BoxContent>
         </LoginComponent>

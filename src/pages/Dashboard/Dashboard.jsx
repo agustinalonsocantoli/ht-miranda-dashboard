@@ -59,7 +59,7 @@ export const Dashboard = () => {
                 <Review>
                     <h1>Latest Review by Customers</h1>
 
-                    <Msg translate={translate}/>
+                    <Msg translate={translate} />
 
                     <Next onClick={() => setTraslate(prev => prev + 300)}>
                         <IoIosArrowRoundForward />
