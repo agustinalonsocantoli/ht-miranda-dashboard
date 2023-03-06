@@ -1,13 +1,13 @@
 // React
 import { useState, useEffect } from "react";
 // Redux
-import { useDispatch, useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../../app/hook";
 import { getReviews } from '../../features/contactSlice';
 // Icons
 import { RxCrossCircled } from "react-icons/rx";
 import { RxCheckCircled } from "react-icons/rx";
 // Image
-import reviewImages from '../../assets/img/user5.png'
+import reviewImages from '../../assets/img/user5.png';
 // Styled
 import { MsgBox, MsgContent, Check, Close, UserInfo, PopupBox } from './MsgStyled';
 // Ext
@@ -15,10 +15,10 @@ import { truncate } from "lodash";
 
 
 export const Msg = ({ filter, translate, popup }) => {
-    const dispatch = useDispatch();
-    const { reviews } = useSelector(state => state.reviewsReducer);
+    const dispatch = useAppDispatch();
+    const { reviews } = useAppSelector(state => state.reviewsReducer);
     const [ messages, SetMessages ] = useState([]);
-    const [ popupData, setPopupData ] = useState({});
+    const [ popupData, setPopupData ] = useState(null);
     const [ openPopup, setOpenPopup ] = useState(false);
 
     useEffect(() => {
