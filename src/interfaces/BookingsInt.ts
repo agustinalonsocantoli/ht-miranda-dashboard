@@ -1,4 +1,4 @@
-export interface Bookings {   
+export interface BookingsInt {   
     src: any;
     id: string; 
     name: string;

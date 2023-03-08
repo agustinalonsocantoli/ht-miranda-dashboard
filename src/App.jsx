@@ -19,13 +19,19 @@ import { EditRoom } from "./pages/Rooms/EditRoom";
 // Styled
 import { AppBox, ContentBox } from './AppStyled';
 
+const AuthContext = React.createContext();
+
+export const useAuthContex = () => {
+  return useContext(AuthContext);
+}
+
 const initialState = {
     auth: localStorage.getItem('login') ? true : false,
     username: 'agustin@hm.com',
     password: '000000',
 }
 
-const reducer = (state: any, action: any) => {
+const reducer = (state, action) => {
     switch (action.type) {
         case 'LOG_IN': return {
             ...state,
@@ -40,11 +46,6 @@ const reducer = (state: any, action: any) => {
     }
 }
 
-const AuthContext = React.createContext({});
-
-export const useAuthContex = () => {
-  return useContext(AuthContext);
-}
 
 const App = () => {
   const [ state, dispatch ] = useReducer(reducer, initialState);
@@ -54,7 +55,7 @@ const App = () => {
 
   return (
     <Router basename='/ht-miranda-dashboard'>
-      <AuthContext.Provider value={{ auth: state.auth, username: state.username, password: state.password, dispatch }}>
+      <AuthContext.Provider value={{ auth: state.auth, username: state.username, password: state.password , dispatch}}>
         <AppBox>
           {state.auth && <SideBar title={title} viewBar={viewBar}/>}
 

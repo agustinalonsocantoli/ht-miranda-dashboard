@@ -1,4 +1,5 @@
 // React
+import React from "react";
 import { useState, useEffect } from "react";
 // Redux
 import { useAppSelector, useAppDispatch } from "../../app/hook";
@@ -12,6 +13,7 @@ import reviewImages from '../../assets/img/user5.png';
 import { MsgBox, MsgContent, Check, Close, UserInfo, PopupBox } from './MsgStyled';
 // Ext
 import { truncate } from "lodash";
+import { Reviews } from "../../interfaces/ContactInt";
 
 
 export const Msg = ({ filter, translate, popup }) => {
@@ -27,7 +29,7 @@ export const Msg = ({ filter, translate, popup }) => {
         SetMessages(reviews)
     }, [dispatch, reviews])
 
-    const handleClick = (message) => {
+    const handleClick = (message: Reviews) => {
         setPopupData(message);
         setOpenPopup(true);
     }

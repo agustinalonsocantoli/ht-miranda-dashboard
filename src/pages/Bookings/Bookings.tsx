@@ -16,6 +16,7 @@ import {
     BookingsContent, NameBox, Date, Check, Notes, TextRoom, 
     Booked, Refund, Progress, Options, Filters, Close, PopupBox 
 } from "./BookingsStyled";
+import { BookingsInt } from '../../interfaces/BookingsInt';
 
 
 export const Bookings = () => {
@@ -57,13 +58,13 @@ export const Bookings = () => {
         
     }, [order, bookings, status])
 
-    const handleClick = (booking: any) => {
+    const handleClick = (booking: BookingsInt) => {
         setPopupData(booking);
         setPopup(true);
     }
 
     const cols = [
-        { property: ['src' ,'id', 'name'], label: 'Guest', display: (row) => (
+        { property: ['src' ,'id', 'name'], label: 'Guest', display: (row: any) => (
             <NameBox as={Link} to={`/bookings/${row.id}`}>
                 <img src={row.src} alt={`img/${row.id}`} />
 

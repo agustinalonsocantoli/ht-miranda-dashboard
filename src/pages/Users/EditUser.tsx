@@ -25,7 +25,7 @@ export const EditUser = () => {
         setCurrentUser(user)
     }, [dispatch, id, user])
 
-    const handleInput = (e: any) => {
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value} = e.target
         
         setCurrentUser(prev => ({...prev, [name]: value}));

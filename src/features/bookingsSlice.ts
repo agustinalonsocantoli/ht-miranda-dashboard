@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getData } from "../export/functions";
 import { dataBookings } from "../data/DataBookings";
-import type { Bookings } from "../interfaces/BookingsInt";
+import type { BookingsInt } from "../interfaces/BookingsInt";
 
 interface BookingsState {
-    bookings: Bookings[] | [],
-    book: Bookings | null | undefined,
+    bookings: BookingsInt[] | [],
+    book: BookingsInt | null | undefined,
 }
 
 interface Action {
@@ -22,7 +22,7 @@ export const getBook = createAsyncThunk('book/getBook',
 );
 
 export const addBook = createAsyncThunk('book/addBook',
-    async (newBook: Bookings) => {return await newBook}
+    async (newBook: BookingsInt) => {return await newBook}
 );
 
 export const deleteBook = createAsyncThunk('book/deleteBook',
@@ -30,7 +30,7 @@ export const deleteBook = createAsyncThunk('book/deleteBook',
 );
 
 export const editBook = createAsyncThunk('book/editBook',
-async (book: Bookings) => {return await book}
+async (book: BookingsInt) => {return await book}
 );
 
 const initialState: BookingsState = {

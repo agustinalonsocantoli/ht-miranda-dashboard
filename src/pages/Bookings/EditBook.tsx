@@ -8,10 +8,10 @@ export const EditBook = ({ currentBook, handleInput, handleSubmit, setEdit }) =>
         <EditBox>
             <h1>Edit Book</h1>
 
-            <form onSubmit={(e: any) => {
+            <form onSubmit={(e: React.FormEvent) => {
                 e.preventDefault();
                 handleSubmit();
-                e.target.reset();
+                (e.target as HTMLFormElement).reset();
             }}>
                 <label>Name</label>
                 <input name='name' value={currentBook.name} type="text" onChange={handleInput}/>
@@ -46,7 +46,7 @@ export const EditBook = ({ currentBook, handleInput, handleSubmit, setEdit }) =>
 
                 <BtnBox>
                     <button type='submit'>Save</button>
-                    <button onClick={(e) => {e.preventDefault(); setEdit(false)}}>Cancel</button>
+                    <button onClick={(e: React.FormEvent) => {e.preventDefault(); setEdit(false)}}>Cancel</button>
                 </BtnBox>
             </form>
         </EditBox>

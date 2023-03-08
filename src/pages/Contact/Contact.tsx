@@ -76,7 +76,7 @@ export const Contact = () => {
     return(
         <ContactContent>
             <Review>
-                <Msg filter={3} translate={0} popup/>
+                <Msg filter={3} translate={0} popup={true}/>
             </Review>
 
             <Options>

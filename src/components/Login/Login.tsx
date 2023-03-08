@@ -18,7 +18,7 @@ export const Login = () => {
     const [ usernameFrom, setUsernameFrom ] = useState('agustin@hm.com');
     const [ passwordFrom, setPasswordFrom ] = useState('000000');
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         
         if(usernameFrom === username && passwordFrom === password) {
@@ -30,8 +30,8 @@ export const Login = () => {
             navigate('/')
             localStorage.setItem('login', JSON.stringify(username));
         } else {
-            alert('Usuario Incorrecto')
-            e.target.reset()
+            alert('Usuario Incorrecto');
+            (e.target as HTMLFormElement).reset()
         }
     }
 

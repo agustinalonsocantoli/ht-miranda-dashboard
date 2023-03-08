@@ -40,9 +40,9 @@ export const NavBar = ({ viewBar ,setViewBar, setTitle, title }) => {
             <div>
                 <IconMenu>
                     {viewBar ? 
-                    <AiOutlineMenuFold onClick={() => {setViewBar(prev => !prev)}}/>
+                    <AiOutlineMenuFold onClick={() => {setViewBar((prev: boolean) => !prev)}}/>
                     :
-                    <AiOutlineMenuUnfold onClick={() => {setViewBar(prev => !prev)}}/>
+                    <AiOutlineMenuUnfold onClick={() => {setViewBar((prev: boolean) => !prev)}}/>
                     }
                 </IconMenu>
                 <H1>{title}</H1>

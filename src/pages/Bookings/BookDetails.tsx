@@ -26,7 +26,7 @@ import {
     BtnOptions, Actions, Loading, ImgBox, Arrows 
 } from './DetailsStyled';
 import { EditBook } from './EditBook';
-import { Bookings } from '../../interfaces/BookingsInt';
+import { BookingsInt } from '../../interfaces/BookingsInt';
 
 
 export const BookDetails = () => {
@@ -35,7 +35,7 @@ export const BookDetails = () => {
     const { id } = useParams();
     const { book } = useAppSelector(state => state.bookingsReducer);
     const [ viewActions, setViewActions ] = useState(false);
-    const [ currentBook, setCurrentBook ] = useState<Bookings>(null)
+    const [ currentBook, setCurrentBook ] = useState<BookingsInt>(null)
     const [ slider, setSlider ] = useState(0);
     const maxSlider = (sliderRoom.length - 1) * 550;
     const [ edit, setEdit ] = useState(false);
@@ -51,7 +51,7 @@ export const BookDetails = () => {
         navigate('/bookings')
     }
 
-    const handleInput = (e: any) => {
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value} = e.target;
         
         setCurrentBook(prev => ({...prev, [name]: value}));
@@ -86,12 +86,12 @@ export const BookDetails = () => {
                 <div>
                     <DataUser>
                         <ImgUser>
-                            <img src={currentBook && currentBook.src} alt={`img/${currentBook && currentBook.name}`} />
+                            <img src={currentBook?.src} alt={`img/${currentBook?.name}`} />
                         </ImgUser>
 
                         <User>
-                            <h3>{currentBook && currentBook.name}</h3>
-                            <h4>{`ID ${currentBook && currentBook.id}`}</h4>
+                            <h3>{currentBook?.name}</h3>
+                            <h4>{`ID ${currentBook?.id}`}</h4>
 
                             <div>
                                 <BtnPhone><BsTelephoneFill/></BtnPhone>
@@ -112,12 +112,12 @@ export const BookDetails = () => {
                     <DataCheck>
                         <div>
                             <h5>Check In</h5>
-                            <p>{`${currentBook && currentBook.checkinDate} | ${currentBook && currentBook.checkinTime}`}</p>
+                            <p>{`${currentBook?.checkinDate} | ${currentBook?.checkinTime}`}</p>
                         </div>
 
                         <div>
                             <h5>Check Out</h5>
-                            <p>{currentBook && currentBook.checkoutDate}</p>
+                            <p>{currentBook?.checkoutDate}</p>
                         </div>
                     </DataCheck>
                 </div>
@@ -125,7 +125,7 @@ export const BookDetails = () => {
                 <DataRooms>
                     <Rooms>
                         <h5>Room Info</h5>
-                        <p>{currentBook && currentBook.type}</p>
+                        <p>{currentBook?.type}</p>
                     </Rooms>
                     <Rooms>
                         <h5>Room Info</h5>
@@ -133,7 +133,7 @@ export const BookDetails = () => {
                     </Rooms>
                 </DataRooms>
 
-                <Text>{currentBook && currentBook.note}</Text>
+                <Text>{currentBook?.note}</Text>
 
                 <Facilities>
                     <h5>Facilities</h5>

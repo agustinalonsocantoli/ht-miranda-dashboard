@@ -24,9 +24,9 @@ export const EditRoom = () => {
         setCurrentRoom(room)
     }, [dispatch, id, room]);
 
-    const handleInput = (e: any) => {
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target;
-        let valUpdate: string[];
+        let valUpdate: string[] | string;
 
         if (type === "checkbox") {
             let newVal = [...currentRoom[name]];

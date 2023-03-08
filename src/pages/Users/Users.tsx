@@ -34,7 +34,7 @@ export const Users = () => {
     }, [dispatch, users]);
 
     useEffect(() => {
-        const usersOrderBy = users.filter(user => user.name.toLowerCase().includes(search.toLowerCase()));
+        const usersOrderBy = users.filter(user => user['name'].toLowerCase().includes(search.toLowerCase()));
 
         usersOrderBy.sort((a, b) => {
             if(a[order] > b[order]) {
