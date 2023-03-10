@@ -18,6 +18,11 @@ import { FormBox, Label, Input, FileBox, Text, StateBox, Select, BtnBox, Check, 
 export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoom }) => {
     const navigate = useNavigate();
 
+    const cancelForm = (e: React.FormEvent) => {
+        e.preventDefault()
+        navigate('/rooms')
+    }
+
     return(
         <FormBox>
             <h1>{typeForm}</h1>
@@ -29,11 +34,7 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
             </Room>
             }
 
-            <form onSubmit={(e: React.FormEvent) => 
-            {e.preventDefault();
-            handleSubmit();
-            (e.target as HTMLFormElement).reset();
-            navigate('/rooms')}}>
+            <form onSubmit={handleSubmit}>
                 <Label>Room Name - Number</Label>
                 <Input type="text" name='name' value={currentRoom?.name} onChange={handleInput}/>
 
@@ -147,7 +148,7 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
 
                 <BtnBox>
                     <button type='submit'>Save</button>
-                    <button onClick={(e: React.FormEvent) => { e.preventDefault(); navigate('/rooms')}}>Cancel</button>
+                    <button onClick={cancelForm}>Cancel</button>
                 </BtnBox>
             </form>
         </FormBox>

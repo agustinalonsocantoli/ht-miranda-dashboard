@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 // Redux
 import { useAppSelector, useAppDispatch } from '../../app/hook';
 import { getUser ,editUser } from '../../features/usersSlice';
@@ -13,7 +13,7 @@ import { Users } from '../../interfaces/UsersInt';
 
 export const EditUser = () => {
     const dispatch = useAppDispatch();
-
+    const navigate = useNavigate();
     const { id } = useParams();
     const { user } = useAppSelector(state => state.usersReducer);
 
@@ -31,8 +31,16 @@ export const EditUser = () => {
         setCurrentUser(prev => ({...prev, [name]: value}));
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
         dispatch(editUser(currentUser));
+
+        try{
+            (e.target as HTMLFormElement).reset(); 
+            navigate('/users');
+        } catch(err) {
+            console.log(err);
+        }
     }
 
     return(

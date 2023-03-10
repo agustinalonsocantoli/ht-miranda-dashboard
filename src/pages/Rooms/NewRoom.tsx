@@ -1,6 +1,7 @@
 // React
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // Redux
 import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { addRoom } from '../../features/roomsSlice';
@@ -10,6 +11,7 @@ import { FormRoom } from '../../components/FormRoom/FormRoom';
 import { BoxContent } from './GeneralStyled';
 
 export const NewRoom = () => {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { rooms } = useAppSelector(state => state.roomsReducer)
 
@@ -44,8 +46,16 @@ export const NewRoom = () => {
         setCurrentRoom(prev => ({ ...prev, [name]: valUpdate }));
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
         dispatch(addRoom(currentRoom))
+
+        try {
+            (e.target as HTMLFormElement).reset();
+            navigate('/rooms')
+        } catch(err) {
+            console.log(err);
+        } 
     }
 
     return(

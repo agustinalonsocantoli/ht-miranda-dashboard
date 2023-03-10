@@ -9,6 +9,11 @@ import { FormBox, Label, Input, FileBox, Text, StateBox, Select, Date, BtnBox, U
 export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUser }) => {
     const navigate = useNavigate();
 
+    const cancelForm = (e: React.FormEvent) => {
+        e.preventDefault()
+        navigate('/users')
+    }
+
     return(
         <FormBox>
             <h1>{typeForm}</h1>
@@ -20,13 +25,7 @@ export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUse
             </User>
             }
 
-            <form 
-            onSubmit={(e: React.FormEvent) => 
-            {e.preventDefault(); 
-            handleSubmit(); 
-            (e.target as HTMLFormElement).reset(); 
-            navigate('/users');
-            }}>
+            <form onSubmit={handleSubmit}>
 
                 <Label>Name</Label>
                 <Input type="text" name='name' value={currentUser?.name} onChange={handleInput}/>
@@ -80,12 +79,7 @@ export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUse
 
                 <BtnBox>
                     <button type='submit'>Save</button>
-                    <button onClick={(e: React.FormEvent) => 
-                    {e.preventDefault(); 
-                    navigate('/users');
-                    }}>
-                        Cancel
-                    </button>
+                    <button onClick={cancelForm}>Cancel</button>
                 </BtnBox>
             </form>
         </FormBox>

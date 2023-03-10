@@ -18,12 +18,7 @@ import { NewRoom } from "./pages/Rooms/NewRoom";
 import { EditRoom } from "./pages/Rooms/EditRoom";
 // Styled
 import { AppBox, ContentBox } from './AppStyled';
-
-const AuthContext = React.createContext();
-
-export const useAuthContex = () => {
-  return useContext(AuthContext);
-}
+// import { UserLogin } from "./interfaces/UserLoginInt";
 
 const initialState = {
     auth: localStorage.getItem('login') ? true : false,
@@ -46,6 +41,11 @@ const reducer = (state, action) => {
     }
 }
 
+const AuthContext = React.createContext();
+
+export const useAuthContex = () => {
+  return useContext(AuthContext);
+}
 
 const App = () => {
   const [ state, dispatch ] = useReducer(reducer, initialState);
