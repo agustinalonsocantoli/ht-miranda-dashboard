@@ -18,15 +18,15 @@ import { NewRoom } from "./pages/Rooms/NewRoom";
 import { EditRoom } from "./pages/Rooms/EditRoom";
 // Styled
 import { AppBox, ContentBox } from './AppStyled';
-// import { UserLogin } from "./interfaces/UserLoginInt";
+import { UserLogin, Action } from "./interfaces/UserLoginInt";
 
-const initialState = {
+const initialState: UserLogin = {
     auth: localStorage.getItem('login') ? true : false,
     username: 'agustin@hm.com',
     password: '000000',
 }
 
-const reducer = (state, action) => {
+const reducer = (state: UserLogin, action: Action) => {
     switch (action.type) {
         case 'LOG_IN': return {
             ...state,
@@ -41,7 +41,7 @@ const reducer = (state, action) => {
     }
 }
 
-const AuthContext = React.createContext();
+const AuthContext = React.createContext<UserLogin | null>(null);
 
 export const useAuthContex = () => {
   return useContext(AuthContext);
