@@ -11,6 +11,10 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^29.4.0",
+    "@types/node": "^18.14.6",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
@@ -22,6 +26,7 @@
     "react-scripts": "5.0.1",
     "redux-mock-store": "^1.5.4",
     "styled-components": "^5.3.6",
+    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -52,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "@types/styled-components": "^5.1.26",
     "cypress": "^12.7.0",
     "gh-pages": "^5.0.0",
     "jest": "^27.5.1"

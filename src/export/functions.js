@@ -130,3 +130,9 @@ export const formatDate = (date) => {
 
   return newDate
 }
+
+export const getDiscount = (price, offer) => {
+  const result = parseInt(price - (price * offer / 100));
+
+  return result
+}
