@@ -2,10 +2,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuthContex } from '../../App'
-// Redux
-import { useAppSelector, useAppDispatch } from "../../app/hook";
-import { getUsers } from "../../features/usersSlice";
 // Icons
 import { TbLayoutDashboard } from "react-icons/tb";
 import { BiKey } from "react-icons/bi";
@@ -15,16 +11,13 @@ import { TiContacts } from "react-icons/ti";
 // Styled
 import Skeleton from '@mui/material/Skeleton';
 import { Key, List, BoxLogo, Logo, H, M, P, LateralNav, UserBox, Img, ImgBox, H4, H5, Button, H3, CopyRights, Foot, Active } from "./SideBarStyled";
+// Img
+import userImg from '../../assets/img/user.png'
 
 
 
 export const SideBar = ({ title, viewBar }) => {
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-
-    const { users } = useAppSelector(state => state.usersReducer);
-
-    const { username } = useAuthContex();
 
     const [ userLog, setUserLog ] = useState(null)
     const [ log, setLog ] = useState(false)
@@ -32,11 +25,12 @@ export const SideBar = ({ title, viewBar }) => {
 
 
     useEffect(() => {
-        if(users.length === 0){
-            dispatch(getUsers());
-        }
-
-        setUserLog(users.find(user => user['email'] === username))
+        setUserLog({
+            name: "Agustin Alonso",
+            email: 'agustin@hm.com',
+            password: '000000',
+            src: userImg
+        })
 
         const timeout = setTimeout(() => {
             setLog(true)
@@ -45,7 +39,7 @@ export const SideBar = ({ title, viewBar }) => {
         return () => {
             clearTimeout(timeout);
         }
-    }, [dispatch, users, username])
+    }, [])
 
 
     return(
@@ -110,12 +104,12 @@ export const SideBar = ({ title, viewBar }) => {
                     {!log ? <Skeleton variant="rectangular" sx={{width: 70, height: 70, borderRadius: '8px'}}/> :
                     <Img 
                     src={userLog.src} 
-                    alt={`user/${userLog.id}`} />}
+                    alt={`user/img`} />}
                 </ImgBox>
 
                 {!log ? <Skeleton sx={{height: 24}}/> : <H4>{userLog.name}</H4>}
                 {!log ? <Skeleton sx={{marginTop: '10px', height: 17}} /> :<H5>{userLog.email}</H5>}
-                <Button onClick={() => {log && navigate(`/users/${userLog.id}`)}}>Edit</Button>
+                <Button onClick={() => {log && navigate(`/users/`)}}>Edit</Button>
             </UserBox>
 
             <div>

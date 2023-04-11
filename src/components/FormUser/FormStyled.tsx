@@ -190,6 +190,10 @@ export const User = styled.div`
     position: absolute;
     top: 30px;
     right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 
     img {
         object-fit: cover;
@@ -203,6 +207,11 @@ export const User = styled.div`
         font-weight: 300;
         font-size: 14px;
         color: #799283;
-        text-align: center;
     }   
+`;
+
+export const Loading = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
 `;

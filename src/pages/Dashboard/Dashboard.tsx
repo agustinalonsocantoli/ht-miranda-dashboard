@@ -12,7 +12,6 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 // Styled
 import { DashboardContent, IconIn, Box, InfoBox, ReviewsBox, Review, Next, Prev } from './DashboardStyled';
 
-
 export const Dashboard = () => {
     const [ translate, setTraslate ] = useState(0)
 

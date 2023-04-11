@@ -33,53 +33,27 @@ export const getData = (data) => {
   })
 }
 
-// export const fetchBookings = async () => {
-//   try {
-//     const response = await fetch();
-//     const data = await response.json();
+export const fetchApi = async (query, method, body) => {
+  const token = process.env.REACT_APP_API_TOKEN;
 
-//     return data
+  try {
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}${query}`, {
+      method: method,
+      headers: {
+        "Content-Type": 'application/json',
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify(body)
+    });
 
-//   } catch(err) {
-//     console.log(err);
-//   }
-// };
+    const data = await response.json();
 
-// export const fetchReview = async () => {
-//   try {
-//     const response = await fetch();
-//     const data = await response.json();
+    return data.data;
 
-//     return data
-
-//   } catch(err) {
-//     console.log(err);
-//   }
-// };
-
-// export const fetchRooms = async () => {
-//   try {
-//     const response = await fetch();
-//     const data = await response.json();
-
-//     return data
-
-//   } catch(err) {
-//     console.log(err);
-//   }
-// };
-
-// export const fetchUsers = async () => {
-//   try {
-//     const response = await fetch();
-//     const data = await response.json();
-
-//     return data
-
-//   } catch(err) {
-//     console.log(err);
-//   }
-// };
+  } catch(err) {
+    console.log(err);
+  }
+};
 
 export const formatDate = (date) => {
   let arrayDate = date.split('-')
@@ -129,6 +103,12 @@ export const formatDate = (date) => {
   let newDate = reverse.join(' ')
 
   return newDate
+}
+
+export const FormDate = (date) => {
+  let arrayDate = date.split('T')
+
+  return arrayDate[0];
 }
 
 export const getDiscount = (price, offer) => {

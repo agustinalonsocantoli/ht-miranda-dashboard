@@ -91,7 +91,7 @@ export const BookDetails = () => {
 
                         <User>
                             <h3>{currentBook?.name}</h3>
-                            <h4>{`ID ${currentBook?.id}`}</h4>
+                            <h4>{`ID ${currentBook?._id}`}</h4>
 
                             <div>
                                 <BtnPhone><BsTelephoneFill/></BtnPhone>
@@ -103,7 +103,7 @@ export const BookDetails = () => {
                             <Icon><BsThreeDotsVertical onClick={() => setViewActions(prev => !prev)}/></Icon>
 
                             <Actions actions={viewActions}>
-                                <p onClick={() => removeBook(currentBook.id)}><MdOutlineDeleteForever />Delete</p>
+                                <p onClick={() => removeBook(currentBook._id)}><MdOutlineDeleteForever />Delete</p>
                                 <p onClick={() => {setEdit(true); setViewActions(prev => !prev);}}><TiEdit />Edit</p>
                             </Actions>
                         </BtnOptions>

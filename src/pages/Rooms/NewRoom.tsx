@@ -18,7 +18,6 @@ export const NewRoom = () => {
     const [ currentRoom, setCurrentRoom ] = useState({
         src: rooms[0].src,
         name: '',
-        id: `R0${rooms.length + 1}`, 
         type: '',
         amenities: [],
         price: 0,

@@ -1,7 +1,7 @@
 export interface Rooms {   
     src: any;
     name: string;
-    id: string; 
+    _id?: string; 
     type: string;
     amenities: string[];
     price: number;

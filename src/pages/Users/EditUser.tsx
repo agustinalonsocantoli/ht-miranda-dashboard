@@ -26,7 +26,7 @@ export const EditUser = () => {
     }, [dispatch, id, user])
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value} = e.target
+        const { name, value } = e.target
         
         setCurrentUser(prev => ({...prev, [name]: value}));
     }
@@ -36,8 +36,10 @@ export const EditUser = () => {
         dispatch(editUser(currentUser));
 
         try{
-            (e.target as HTMLFormElement).reset(); 
+            (e.target as HTMLFormElement).reset();
+
             navigate('/users');
+            window.location.reload();
         } catch(err) {
             console.log(err);
         }
