@@ -4,7 +4,8 @@ import { fetchApi } from "../export/functions.js";
 
 interface UsersState {
     users: Users[] | [];
-    user: Users | null | undefined; 
+    user: Users | null | undefined;
+    statusData: string;
 }
 
 interface Action {
@@ -39,6 +40,7 @@ export const editUser = createAsyncThunk('user/editUser',
 const initialState: UsersState = {
     users: [],
     user: null,
+    statusData: "idle",
 }
 
 export const usersSlice = createSlice({
@@ -48,11 +50,17 @@ export const usersSlice = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(getUsers.fulfilled, (state: UsersState, action: Action) => {
-            console.log('Success!');
+            console.log('Success');
+            state.statusData = "fulfilled"
             state.users = action.payload;
         })
-        .addCase(getUsers.rejected, () => {
+        .addCase(getUsers.pending, (state: UsersState, action: Action) => {
+            console.log('Pending');
+            state.statusData = "pending"
+        })
+        .addCase(getUsers.rejected, (state: UsersState, action: Action) => {
             console.log('Failed');
+            state.statusData = "rejected"
         });
 
         builder

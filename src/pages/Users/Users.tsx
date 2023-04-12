@@ -13,9 +13,11 @@ import { TiEdit } from "react-icons/ti";
 import { MdOutlinePhone } from "react-icons/md";
 // Styled
 import { UsersContent, NameBox, Text, TextDate, TextEmail, TextCont, Active, Inactive, Options, Filters } from './UsersStyled';
+// Functions
+import { FormDate } from '../../export/functions.js';
 
 export const Users = () => {
-    const { users } = useAppSelector(state => state.usersReducer);
+    const { users, statusData } = useAppSelector(state => state.usersReducer);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -25,11 +27,11 @@ export const Users = () => {
     const [ status, setStatus] = useState('');
 
     useEffect(() => {
-        if(users && users.length === 0){
+        if(statusData === "idle"){
             dispatch(getUsers());
         }
-
-    }, [dispatch, users]);
+        
+    }, [dispatch, statusData]);
 
     useEffect(() => {
         if(users){
@@ -52,8 +54,10 @@ export const Users = () => {
     }, [order, search, users, status])
 
     const removeUser = (id: string) => {
-        dispatch(deleteUser(id))
-    
+        dispatch(deleteUser(id));
+        
+        const updateUserList = usersList.filter(user => user._id !== id);
+        setUsersList(updateUserList);
     }
 
     const cols = [
@@ -68,7 +72,7 @@ export const Users = () => {
             </NameBox>) 
         },
         { property: 'email', label: 'Email', display: (row: any) => (<TextEmail>{row.email}</TextEmail>) },
-        { property: 'start', label: 'Start Date', display: (row: any) => (<TextDate>{row.start}</TextDate>) },
+        { property: 'start', label: 'Start Date', display: (row: any) => (<TextDate>{FormDate(row.start)}</TextDate>) },
         { property: 'job', label: 'Description', display: (row: any) => (<Text>{row.job}</Text>) },
         { property: 'contact', label: 'Contact', display: (row: any) => (<TextCont><MdOutlinePhone />{row.contact}</TextCont>) },
         { property: 'status', label: 'Status', display: (row: any) => (

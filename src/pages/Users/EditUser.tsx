@@ -39,7 +39,6 @@ export const EditUser = () => {
             (e.target as HTMLFormElement).reset();
 
             navigate('/users');
-            window.location.reload();
         } catch(err) {
             console.log(err);
         }

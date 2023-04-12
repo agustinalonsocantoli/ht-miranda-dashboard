@@ -24,8 +24,10 @@ export const Msg = ({ filter, translate, popup }) => {
     const [ openPopup, setOpenPopup ] = useState(false);
 
     useEffect(() => {
-        dispatch(getReviews())
-
+        if(reviews && reviews.length === 0){
+            dispatch(getReviews())
+        }
+        
         SetMessages(reviews)
     }, [dispatch, reviews])
 
