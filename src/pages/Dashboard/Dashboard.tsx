@@ -61,9 +61,11 @@ export const Dashboard = () => {
 
                     <Msg translate={translate} popup={false} filter={10}/>
 
-                    <Next onClick={() => setTraslate(prev => prev + 300)}>
-                        <IoIosArrowRoundForward />
-                    </Next>
+                    {translate < 2400 &&
+                        <Next onClick={() => setTraslate(prev => prev + 300)}>
+                            <IoIosArrowRoundForward />
+                        </Next>
+                    }
 
                     {translate > 0 && 
                         <Prev onClick={() => setTraslate(prev => prev - 300)}>

@@ -53,6 +53,7 @@ export const EditRoom = () => {
         try{
             (e.target as HTMLFormElement).reset();
             navigate('/rooms')
+            window.location.reload();
         } catch(err) {
             console.log(err);
         }

@@ -10,7 +10,7 @@ import { Msg } from "../../components/Msg/Msg";
 import { Table } from "../../components/Table/Table";
 // Styled
 import { ContactContent, Review, Date, Customer, Comment, Button, Options, Filters } from './ContactStyled';
-import { formatDate } from "../../export/functions";
+import { FormDate } from "../../export/functions";
 
 export const Contact = () => {
     const { reviews } = useAppSelector(state => state.reviewsReducer);
@@ -21,36 +21,37 @@ export const Contact = () => {
     const [ archived , setArchived ] = useState(true);
 
     useEffect(() => {
-        if(reviews.length === 0){
+        if(reviews && reviews.length === 0){
             dispatch(getReviews());
         }
 
     }, [dispatch, reviews])
 
     useEffect(() => {
-        const reviewOrderBy = [...reviews];
+        if(reviews) {
+            const reviewOrderBy = [...reviews];
 
-        reviewOrderBy.sort((a, b) => {
-            if(a['date'] > b['date']) {
-                return 1
-            } else if (a['date'] < b['date']) {
-                return -1
-            }
-            return 0
-        });
+            reviewOrderBy.sort((a, b) => {
+                if(a['date'] > b['date']) {
+                    return 1
+                } else if (a['date'] < b['date']) {
+                    return -1
+                }
+                return 0
+            });
 
-        const reviewFilter = reviewOrderBy.filter(review => review.archived !== archived)
+            const reviewFilter = reviewOrderBy.filter(review => review.archived !== archived)
 
-        setReviewsList(reviewFilter)
-        
+            setReviewsList(reviewFilter)
+        }
     }, [reviews, archived])
 
 
     const cols = [
         { property: ['date', 'id'], label: 'Date', display: (row: any) => (
             <Date>
-                <p>{formatDate(row.date)}</p>
-                <p>ID # {row.id}</p>
+                <p>{FormDate(row.date)}</p>
+                <p>ID # {row._id}</p>
             </Date>) 
         },
         { property: ['customer', 'email', 'phone'], label: 'Customer', display: (row: any) => (
@@ -67,7 +68,7 @@ export const Contact = () => {
             </Comment>) 
         },
         { label: 'Action', display: (row: any) => (
-            <Button archived={archived} onClick={() => navigate(`/contact/${row.id}`)}>
+            <Button archived={archived} onClick={() => navigate(`/contact/${row._id}`)}>
                 {archived ? 'Archive' : 'Unarchive'}
             </Button>) 
         }

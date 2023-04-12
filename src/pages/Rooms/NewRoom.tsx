@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Redux
-import { useAppDispatch, useAppSelector } from '../../app/hook';
+import { useAppDispatch } from '../../app/hook';
 import { addRoom } from '../../features/roomsSlice';
 // Components
 import { FormRoom } from '../../components/FormRoom/FormRoom';
@@ -13,10 +13,9 @@ import { BoxContent } from './GeneralStyled';
 export const NewRoom = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { rooms } = useAppSelector(state => state.roomsReducer)
 
     const [ currentRoom, setCurrentRoom ] = useState({
-        src: rooms[0].src,
+        src: 'none',
         name: '',
         type: '',
         amenities: [],

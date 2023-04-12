@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getData } from "../export/functions";
-import { dataRooms } from "../data/DataRooms";
 import type { Rooms } from "../interfaces/RoomsInt";
+import { fetchApi } from "../export/functions.js";
 
 interface RoomsState {
     rooms: Rooms[] | [],
@@ -14,23 +13,23 @@ interface Action {
 }
 
 export const getRooms = createAsyncThunk('rooms/getRooms', 
-    async () => { return await getData(dataRooms)}
+    () => { return fetchApi("rooms", "GET"); }
 );
 
 export const getRoom = createAsyncThunk('room/getRoom', 
-    async (id: string) => { return await id}
+    (id: string) => { return id}
 );
 
-export const addRoom = createAsyncThunk('room/addRoom', 
-    async (newRoom: Rooms) => { return await newRoom}
+export const addRoom = createAsyncThunk('room/addRoom',
+    (newRoom: Rooms) => { return fetchApi("rooms", "POST", newRoom); } 
 );
 
 export const deleteRoom = createAsyncThunk('room/deleteRoom', 
-    async (id: string) => { return await id}
+    (id: string) => { return fetchApi(`rooms/${id}`, "DELETE"); }
 );
 
 export const editRoom = createAsyncThunk('room/editRoom', 
-    async (room: Rooms) => { return await room}
+    (room: Rooms) => { return fetchApi(`rooms/${room._id}`, "PUT", room); }
 );
 
 const initialState: RoomsState = {
@@ -54,7 +53,7 @@ export const roomsSlice = createSlice({
 
         builder
         .addCase(getRoom.fulfilled, (state: RoomsState, action: Action) => {
-            state.room = state.rooms.find(room => room['id'] === action.payload);
+            state.room = state.rooms.find(room => room['_id'] === action.payload);
         });
 
         builder
@@ -64,12 +63,12 @@ export const roomsSlice = createSlice({
 
         builder
         .addCase(deleteRoom.fulfilled, (state: RoomsState, action: Action) => {
-            state.rooms = state.rooms.filter(room => room['id'] !== action.payload);
+            state.rooms = state.rooms.filter(room => room['_id'] !== action.payload);
         });
 
         builder
         .addCase(editRoom.fulfilled, (state: RoomsState, action: Action) => {
-            state.rooms = state.rooms.map(room => room.id === action.payload.id ? action.payload : room);
+            state.rooms = state.rooms.map((room: Rooms) => room._id === action.payload._id ? action.payload : room);
         });
     }
 });

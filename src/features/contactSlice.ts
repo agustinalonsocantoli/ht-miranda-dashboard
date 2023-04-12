@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getData } from "../export/functions";
-import { dataReviews } from "../data/DataReviews";
 import type { Reviews } from "../interfaces/ContactInt";
+import { fetchApi } from "../export/functions.js";
 
 interface ReviewsState {
     reviews: Reviews[] | [],
@@ -14,23 +13,23 @@ interface Action {
 }
 
 export const getReviews = createAsyncThunk('reviews/getReviews', 
-    async () => { return await getData(dataReviews)}
+    () => { return fetchApi("contact", "GET"); }
 );
 
 export const getReview = createAsyncThunk('review/getReview', 
-    async (id: string) => { return await id }
+    (id: string) => { return id}
 );
 
 export const addReview = createAsyncThunk('review/addReview', 
-    async (newReview: Reviews) => { return await newReview }
+    (newReview: Reviews) => { return fetchApi("contact", "POST", newReview); } 
 );
 
 export const deleteReview = createAsyncThunk('review/deleteReview', 
-    async (id: string) => { return await id }
+    (id: string) => { return fetchApi(`contact/${id}`, "DELETE"); }
 );
 
 export const editReview = createAsyncThunk('review/editReview', 
-    async (review: Reviews) => { return await review }
+    (review: Reviews) => { return fetchApi(`contact/${review._id}`, "PUT", review); }
 );
 
 const initialState: ReviewsState = {
@@ -54,7 +53,7 @@ export const contactSlice = createSlice({
 
         builder
         .addCase(getReview.fulfilled, (state: ReviewsState, action: Action) => {
-            state.review = state.reviews.find(review => review['id'] === action.payload);
+            state.review = state.reviews.find(review => review['_id'] === action.payload);
         });
 
         builder
@@ -64,12 +63,12 @@ export const contactSlice = createSlice({
 
         builder
         .addCase(deleteReview.fulfilled, (state: ReviewsState, action: Action) => {
-            state.reviews = state.reviews.filter(review => review['id'] !== action.payload);
+            state.reviews = state.reviews.filter(review => review['_id'] !== action.payload);
         });
 
         builder
         .addCase(editReview.fulfilled, (state: ReviewsState, action: Action) => {
-            state.reviews = state.reviews.map(review => review.id === action.payload.id ? action.payload : review);
+            state.reviews = state.reviews.map((review: Reviews) => review._id === action.payload._id ? action.payload : review);
         });
     }
 });

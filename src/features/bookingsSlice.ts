@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getData } from "../export/functions";
-import { dataBookings } from "../data/DataBookings";
 import type { BookingsInt } from "../interfaces/BookingsInt";
+import { fetchApi } from "../export/functions.js";
 
 interface BookingsState {
     bookings: BookingsInt[] | [],
@@ -14,23 +13,23 @@ interface Action {
 }
 
 export const getBookings = createAsyncThunk('bookings/getBookings', 
-    async () => { return await getData(dataBookings)}
+    () => { return fetchApi("bookings", "GET"); }
 );
 
 export const getBook = createAsyncThunk('book/getBook',
-    async (id: string) => { return await id}
+    (id: string) => { return id}
 );
 
 export const addBook = createAsyncThunk('book/addBook',
-    async (newBook: BookingsInt) => {return await newBook}
+    (newBook: BookingsInt) => { return fetchApi("bookings", "POST", newBook); }
 );
 
 export const deleteBook = createAsyncThunk('book/deleteBook',
-    async (id: string) => {return await id}
+    (id: string) => { return fetchApi(`bookings/${id}`, "DELETE"); }
 );
 
 export const editBook = createAsyncThunk('book/editBook',
-async (book: BookingsInt) => {return await book}
+    (book: BookingsInt) => { return fetchApi(`bookings/${book._id}`, "PUT", book); }
 );
 
 const initialState: BookingsState = {
@@ -54,7 +53,7 @@ export const bookingsSlice = createSlice({
 
         builder
         .addCase(getBook.fulfilled, (state: BookingsState, action: Action) => {
-            state.book = state.bookings.find(book => book['id'] === action.payload)
+            state.book = state.bookings.find(book => book['_id'] === action.payload)
         });
 
         builder
@@ -64,12 +63,12 @@ export const bookingsSlice = createSlice({
 
         builder
         .addCase(deleteBook.fulfilled, (state: BookingsState, action: Action) => {
-            state.bookings = state.bookings.filter(book => book['id'] !== action.payload); 
+            state.bookings = state.bookings.filter(book => book['_id'] !== action.payload); 
         });
 
         builder
         .addCase(editBook.fulfilled, (state: BookingsState, action: Action) => {
-            state.bookings = state.bookings.map(book => book.id === action.payload.id ? action.payload : book);
+            state.bookings = state.bookings.map((book: BookingsInt) => book._id === action.payload._id ? action.payload : book);
         });
     }
 

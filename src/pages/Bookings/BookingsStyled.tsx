@@ -50,12 +50,6 @@ export const Check = styled.div`
         font-weight: 500;
         font-size: 14px;
     }
-    
-    p:nth-child(2) {
-        font-weight: 400;
-        font-size: 12px;
-        margin-top: 10px;
-    }
 `;
 
 export const Notes = styled.button`

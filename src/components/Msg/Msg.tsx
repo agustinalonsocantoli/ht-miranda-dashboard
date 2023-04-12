@@ -35,9 +35,9 @@ export const Msg = ({ filter, translate, popup }) => {
     }
 
     return(
-        <MsgBox translate={translate} max={(messages.length * 350) - (350 * 3)}>
-            {messages.slice(0, filter).map(item => (
-                <MsgContent key={item.id} onClick={() => handleClick({...item})}>
+        <MsgBox translate={translate} max={(messages?.length * 350) - (350 * 3)}>
+            {messages?.slice(0, filter).map(item => (
+                <MsgContent key={item._id} onClick={() => handleClick({...item})}>
                     <p>{truncate(item.comment, {length: 82})}</p>
 
                     <UserInfo>

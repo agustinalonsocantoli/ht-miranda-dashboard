@@ -8,7 +8,7 @@ import { getBookings } from "../../features/bookingsSlice";
 // Components
 import { Table } from '../../components/Table/Table'
 // Functions
-import { formatDate } from "../../export/functions";
+import { FormDate } from "../../export/functions";
 // Icons
 import { RxCrossCircled } from "react-icons/rx";
 // Styled
@@ -31,31 +31,33 @@ export const Bookings = () => {
     const [ popup, setPopup ] = useState(false);
 
     useEffect(() => {
-        if(bookings.length === 0){
+        if(bookings && bookings.length === 0){
             dispatch(getBookings());
         }
 
     }, [dispatch, bookings]);
 
     useEffect(() => {
-        const bookingsOrderBy = [...bookings];
+        if(bookings){
+            const bookingsOrderBy = [...bookings];
 
-        bookingsOrderBy.sort((a, b) => {
-            if(a[order] > b[order]) {
-                return 1
-            } else if (a[order] < b[order]) {
-                return -1
+            bookingsOrderBy.sort((a, b) => {
+                if(a[order] > b[order]) {
+                    return 1
+                } else if (a[order] < b[order]) {
+                    return -1
+                }
+                return 0
+            });
+
+            if(status !== ''){
+                const bookingsFilter = bookingsOrderBy.filter(book => book.status === status)
+                setBookingsList(bookingsFilter)
+            } else {
+                setBookingsList(bookingsOrderBy)
             }
-            return 0
-        });
 
-        if(status !== ''){
-            const bookingsFilter = bookingsOrderBy.filter(book => book.status === status)
-            setBookingsList(bookingsFilter)
-        } else {
-            setBookingsList(bookingsOrderBy)
         }
-        
     }, [order, bookings, status])
 
     const handleClick = (booking: BookingsInt) => {
@@ -65,26 +67,24 @@ export const Bookings = () => {
 
     const cols = [
         { property: ['src' ,'id', 'name'], label: 'Guest', display: (row: any) => (
-            <NameBox as={Link} to={`/bookings/${row.id}`}>
-                <img src={row.src} alt={`img/${row.id}`} />
+            <NameBox as={Link} to={`/bookings/${row._id}`}>
+                <img src={row.src} alt={`img/${row._id}`} />
 
                 <div>
-                    <p>{row.id}</p>
+                    <p>{row._id}</p>
                     <p>{row.name}</p>
                 </div>
             </NameBox>) 
         },
-        { property: 'date', label: 'Order Date', display: (row: any) => (<Date>{formatDate(row.date)}</Date>) },
-        { property: ['checkinDate', 'checkinTime'], label: 'Check In', display: (row: any) => (
+        { property: 'date', label: 'Order Date', display: (row: any) => (<Date>{FormDate(row.date)}</Date>) },
+        { property: 'checkin', label: 'Check In', display: (row: any) => (
             <Check>
-                <p>{row.checkinDate}</p>
-                <p>{row.checkinTime}</p>
+                <p>{FormDate(row.checkin)}</p>
             </Check>) 
         },
-        { property: ['checkoutDate', 'checkoutTime'], label: 'Check Out', display: (row: any) => (
+        { property: 'checkout', label: 'Check Out', display: (row: any) => (
             <Check>
-                <p>{row.checkoutDate}</p>
-                <p>{row.checkoutTime}</p>
+                <p>{FormDate(row.checkout)}</p>
             </Check>) 
         },
         { property: 'note', label: 'Special Request', display: (row: any) => (<Notes onClick={() => handleClick({...row})}>View Notes</Notes>) },
@@ -119,7 +119,7 @@ export const Bookings = () => {
             {popup && <PopupBox>
                 <h3><span>" {popupData.name} "</span> sent the following note:</h3>
                 <p>{popupData.note}</p>
-                <p>Date: {popupData ? formatDate(popupData.date) : popupData.date}</p>
+                <p>Date: {popupData ? FormDate(popupData.date) : popupData.date}</p>
 
                 <Close onClick={() => setPopup(false)}>
                     <RxCrossCircled /> 

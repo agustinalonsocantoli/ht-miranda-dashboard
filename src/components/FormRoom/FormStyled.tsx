@@ -189,3 +189,9 @@ export const Room = styled.div`
         text-align: center;
     }   
 `;
+
+export const Loading = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
+`;
