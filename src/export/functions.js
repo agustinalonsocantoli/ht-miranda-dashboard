@@ -34,7 +34,7 @@ export const getData = (data) => {
 }
 
 export const fetchApi = async (query, method, body) => {
-  const token = process.env.REACT_APP_API_TOKEN;
+  const token = localStorage.getItem('token').replace(/["]/g, "");
 
   try {
     const response = await fetch(`${process.env.REACT_APP_BASE_URL}${query}`, {
@@ -50,6 +50,26 @@ export const fetchApi = async (query, method, body) => {
 
     return data.data;
 
+  } catch(err) {
+    console.log(err);
+  }
+};
+
+export const fetchLogin = async (query, body) => {
+
+  try {
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}${query}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": 'application/json',
+      },
+      body: JSON.stringify(body)
+    });
+
+    const data = await response.json();
+
+    return localStorage.setItem('token', JSON.stringify(data.token));
+    
   } catch(err) {
     console.log(err);
   }

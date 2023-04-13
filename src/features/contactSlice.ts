@@ -5,6 +5,7 @@ import { fetchApi } from "../export/functions.js";
 interface ReviewsState {
     reviews: Reviews[] | [],
     review: Reviews | null | undefined,
+    statusData: string;
 }
 
 interface Action {
@@ -25,7 +26,7 @@ export const addReview = createAsyncThunk('review/addReview',
 );
 
 export const deleteReview = createAsyncThunk('review/deleteReview', 
-    (id: string) => { return fetchApi(`contact/${id}`, "DELETE"); }
+    (id: string) => { return (fetchApi(`contact/${id}`, "DELETE"), id); }
 );
 
 export const editReview = createAsyncThunk('review/editReview', 
@@ -34,7 +35,8 @@ export const editReview = createAsyncThunk('review/editReview',
 
 const initialState: ReviewsState = {
     reviews: [],
-    review: null
+    review: null,
+    statusData: "idle",
 }
 
 export const contactSlice = createSlice({
@@ -45,10 +47,16 @@ export const contactSlice = createSlice({
         builder
         .addCase(getReviews.fulfilled, (state: ReviewsState, action: Action) => {
             console.log('Success!');
+            state.statusData = "fulfilled"
             state.reviews = action.payload;
         })
-        .addCase(getReviews.rejected, () => {
+        .addCase(getReviews.pending, (state: ReviewsState, action: Action) => {
+            console.log('Pending');
+            state.statusData = "pending"
+        })
+        .addCase(getReviews.rejected, (state: ReviewsState, action: Action) => {
             console.log('Failed');
+            state.statusData = "rejected"
         });
 
         builder

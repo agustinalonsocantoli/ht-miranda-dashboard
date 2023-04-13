@@ -13,39 +13,37 @@ import { ContactContent, Review, Date, Customer, Comment, Button, Options, Filte
 import { FormDate } from "../../export/functions";
 
 export const Contact = () => {
-    const { reviews } = useAppSelector(state => state.reviewsReducer);
+    const { reviews, statusData } = useAppSelector(state => state.reviewsReducer);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const [ reviewsList , setReviewsList ] = useState([]);
-    const [ archived , setArchived ] = useState(true);
+    const archived: boolean = true;
 
     useEffect(() => {
-        if(reviews && reviews.length === 0){
-            dispatch(getReviews());
+        if(statusData === "idle"){
+            dispatch(getReviews())
+
         }
 
-    }, [dispatch, reviews])
+
+    }, [dispatch, statusData, reviews])
 
     useEffect(() => {
-        if(reviews) {
-            const reviewOrderBy = [...reviews];
+        const reviewOrderBy = [...reviews];
 
-            reviewOrderBy.sort((a, b) => {
-                if(a['date'] > b['date']) {
-                    return 1
-                } else if (a['date'] < b['date']) {
-                    return -1
-                }
-                return 0
-            });
+        reviewOrderBy.sort((a, b) => {
+            if(a['date'] > b['date']) {
+                return 1
+            } else if (a['date'] < b['date']) {
+                return -1
+            }
+            return 0
+        });
 
-            const reviewFilter = reviewOrderBy.filter(review => review.archived !== archived)
+        setReviewsList(reviewOrderBy)
 
-            setReviewsList(reviewFilter)
-        }
-    }, [reviews, archived])
-
+    }, [reviews])
 
     const cols = [
         { property: ['date', 'id'], label: 'Date', display: (row: any) => (
@@ -82,8 +80,8 @@ export const Contact = () => {
 
             <Options>
                 <Filters>
-                    <p onClick={() => setArchived(true)}>All Contacts</p>
-                    <p onClick={() => setArchived(false)}>Archived</p>
+                    <p>All Contacts</p>
+                    <p>Archived</p>
                 </Filters>
 
                 <select defaultValue={'date'}>

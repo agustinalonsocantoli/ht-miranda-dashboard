@@ -25,7 +25,7 @@ export const addRoom = createAsyncThunk('room/addRoom',
 );
 
 export const deleteRoom = createAsyncThunk('room/deleteRoom', 
-    (id: string) => { return fetchApi(`rooms/${id}`, "DELETE"); }
+    (id: string) => { return(fetchApi(`rooms/${id}`, "DELETE"), id) }
 );
 
 export const editRoom = createAsyncThunk('room/editRoom', 
@@ -63,7 +63,7 @@ export const roomsSlice = createSlice({
 
         builder
         .addCase(deleteRoom.fulfilled, (state: RoomsState, action: Action) => {
-            state.rooms = state.rooms.filter(room => room['_id'] !== action.payload);
+            state.rooms = state.rooms.filter((room: Rooms) => room._id !== action.payload);
         });
 
         builder

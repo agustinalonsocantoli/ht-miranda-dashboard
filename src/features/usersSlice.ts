@@ -28,7 +28,7 @@ export const addUser = createAsyncThunk('user/addUser',
 );
 
 export const deleteUser = createAsyncThunk('user/deleteUser',
-    (id: string) => { return fetchApi(`users/${id}`, "DELETE"); }
+    (id: string) => { return (fetchApi(`users/${id}`, "DELETE"), id); }
 );
 
 export const editUser = createAsyncThunk('user/editUser',
@@ -65,7 +65,7 @@ export const usersSlice = createSlice({
 
         builder
         .addCase(getUser.fulfilled, (state: UsersState, action: Action) => {
-            state.user = state.users.find(user => user['_id'] === action.payload);
+            state.user = state.users.find((user: Users) => user._id === action.payload);
         });
 
         builder
@@ -75,7 +75,7 @@ export const usersSlice = createSlice({
 
         builder
         .addCase(deleteUser.fulfilled, (state: UsersState, action: Action) => {
-            state.users = state.users.filter(user => user['_id'] !== action.payload);
+            state.users = state.users.filter((user: Users) => user._id !== action.payload);
         });
 
         builder

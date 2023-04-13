@@ -31,7 +31,7 @@ export const Users = () => {
             dispatch(getUsers());
         }
         
-    }, [dispatch, statusData]);
+    }, [dispatch, statusData, usersList]);
 
     useEffect(() => {
         if(users){
@@ -56,8 +56,6 @@ export const Users = () => {
     const removeUser = (id: string) => {
         dispatch(deleteUser(id));
         
-        const updateUserList = usersList.filter(user => user._id !== id);
-        setUsersList(updateUserList);
     }
 
     const cols = [

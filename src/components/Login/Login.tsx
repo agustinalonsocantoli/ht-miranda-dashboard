@@ -10,6 +10,8 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { SlLogin } from "react-icons/sl";
 //  Styled
 import { LoginComponent, BoxContent, Input, Button, BoxLogo, Logo, H, M, Label, Form, IconConteiner, Icon, P } from "./LoginStyled";
+// Functions
+import { fetchLogin } from "../../export/functions.js";
 
 export const Login = () => {
     const navigate = useNavigate();
@@ -25,6 +27,11 @@ export const Login = () => {
             dispatch({
                 type: 'LOG_IN',
                 payload: true,
+            });
+
+            fetchLogin("login", {
+                email: usernameFrom,
+                password: passwordFrom,
             });
 
             navigate('/')

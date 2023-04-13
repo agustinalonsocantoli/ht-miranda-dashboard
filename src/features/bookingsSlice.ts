@@ -25,7 +25,7 @@ export const addBook = createAsyncThunk('book/addBook',
 );
 
 export const deleteBook = createAsyncThunk('book/deleteBook',
-    (id: string) => { return fetchApi(`bookings/${id}`, "DELETE"); }
+    (id: string) => { return (fetchApi(`bookings/${id}`, "DELETE"), id); }
 );
 
 export const editBook = createAsyncThunk('book/editBook',
