@@ -14,8 +14,6 @@ import { Key, List, BoxLogo, Logo, H, M, P, LateralNav, UserBox, Img, ImgBox, H4
 // Img
 import userImg from '../../assets/img/user.png'
 
-
-
 export const SideBar = ({ title, viewBar }) => {
     const navigate = useNavigate();
 
