@@ -74,7 +74,6 @@ export const roomsSlice = createSlice({
         builder
         .addCase(deleteRoom.fulfilled, (state: RoomsState, action: Action) => {
             state.rooms = state.rooms.filter((room: Rooms) => room._id !== action.payload);
-            state.statusData = "idle";
             toast.success("Room deleted successfully");
         });
 

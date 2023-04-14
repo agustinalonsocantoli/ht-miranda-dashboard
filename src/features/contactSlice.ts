@@ -74,7 +74,6 @@ export const contactSlice = createSlice({
         builder
         .addCase(deleteReview.fulfilled, (state: ReviewsState, action: Action) => {
             state.reviews = state.reviews.filter((review: Reviews) => review._id !== action.payload);
-            state.statusData = "idle";
             toast.success("Review deleted successfully");
         });
 

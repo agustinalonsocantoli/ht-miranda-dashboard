@@ -74,7 +74,6 @@ export const bookingsSlice = createSlice({
         builder
         .addCase(deleteBook.fulfilled, (state: BookingsState, action: Action) => {
             state.bookings = state.bookings.filter((book: BookingsInt) => book._id !== action.payload);
-            state.statusData = "idle";
             toast.success("Book deleted successfully");
         });
 
