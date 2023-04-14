@@ -12,7 +12,7 @@ import { RiComputerFill } from "react-icons/ri";
 import { IoImagesOutline } from "react-icons/io5";
 import { TbHotelService } from "react-icons/tb";
 // Styled
-import { FormBox, Label, Input, FileBox, Text, StateBox, Select, BtnBox, Check, Room, Loading } from './FormStyled'
+import { FormBox, Label, Input, LabelImg, Text, StateBox, Select, BtnBox, Check, Room, Loading } from './FormStyled'
 // Mui
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -151,10 +151,8 @@ export const FormRoom = ({ typeForm, edit, handleSubmit, handleInput, currentRoo
                     </div>
                 </StateBox>
 
-                <FileBox>
-                    <label>Upload Image <IoImagesOutline /></label>
-                    <input type="file" name='src' />
-                </FileBox>
+                <LabelImg>URL Image <IoImagesOutline /></LabelImg>
+                <textarea name='src' value={currentRoom.src} onChange={handleInput}></textarea>
 
                 <BtnBox>
                     <button type='submit'>Save</button>

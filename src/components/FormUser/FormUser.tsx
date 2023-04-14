@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 // Icons
 import { IoImagesOutline } from "react-icons/io5";
 // Styled
-import { FormBox, Label, Input, FileBox, Text, StateBox, Select, Date, BtnBox, User, Loading } from './FormStyled'
+import { FormBox, Label, Input, LabelImg, Text, StateBox, Select, Date, BtnBox, User, Loading } from './FormStyled'
 // Function
 import { FormDate } from "../../export/functions.js";
 // Mui
@@ -48,10 +48,8 @@ export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUse
                 <Label>Phone Number</Label>
                 <Input type="text" name='contact' value={currentUser.contact} onChange={handleInput}/>
 
-                <FileBox>
-                    <label>Upload Image<IoImagesOutline /></label>
-                    <input type="file" name='src' />
-                </FileBox>
+                <LabelImg>URL Image <IoImagesOutline /></LabelImg>
+                <textarea name='src' value={currentUser.src} onChange={handleInput}></textarea>
 
                 <Label>Start Date</Label>
                 <Date type="date" name='start' value={currentUser && FormDate(currentUser.start)} onChange={handleInput}/>

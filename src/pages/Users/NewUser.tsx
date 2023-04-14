@@ -14,7 +14,7 @@ export const NewUser = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [ currentUser, setCurrentUser ] = useState({
-        src: 'none',
+        src: '',
         name: '',
         email: '',
         start: '',

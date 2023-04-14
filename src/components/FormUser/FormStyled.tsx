@@ -23,7 +23,7 @@ export const FormBox = styled.div`
         font-family: 'Poppins', sans-serif;
         font-weight: 400;
         width: 50%;
-        min-height: 100px;
+        min-height: 75px;
         color: #262626;
         outline: none;
         padding: 5px;
@@ -86,43 +86,22 @@ export const Date = styled.input`
     font-size: 13px;
 `;
 
-export const FileBox = styled.div`
-    background: #EBF1EF;
-    border-radius: 8px;
-    padding: 10px;
-    position: relative;
-    text-align: center;
-    width: 25%;
+export const LabelImg = styled.label`
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    color: #135846;
+    width: 20%;
     margin: auto;
-    margin-top: 20px;
-    margin-bottom: 15px;
-
-    &:active {
-        transform: scale(0.9);
-        transition: all 100ms ease-in-out;
-    }
-
-    label {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 400;
-        color: #135846;
-        font-size: 15px;
-    }
-
-    input {
-        position:absolute;
-        top:0px;
-        left:0px;
-        right:0px;
-        bottom:0px;
-        width:100%;
-        height:100%;
-        opacity: 0;
-    }
+    margin-bottom: 5px;
+    text-align: center;
+    background-color: #EBF1EF;
+    padding: 5px 0;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 `;
 
 export const StateBox = styled.div`

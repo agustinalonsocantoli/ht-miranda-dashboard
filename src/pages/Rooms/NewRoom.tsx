@@ -15,7 +15,7 @@ export const NewRoom = () => {
     const dispatch = useAppDispatch();
 
     const [ currentRoom, setCurrentRoom ] = useState({
-        src: 'none',
+        src: '',
         name: '',
         type: '',
         amenities: [],
