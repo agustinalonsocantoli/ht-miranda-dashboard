@@ -4,7 +4,11 @@ import { useNavigate } from 'react-router-dom';
 // Icons
 import { IoImagesOutline } from "react-icons/io5";
 // Styled
-import { FormBox, Label, Input, FileBox, Text, StateBox, Select, Date, BtnBox, User } from './FormStyled'
+import { FormBox, Label, Input, LabelImg, Text, StateBox, Select, Date, BtnBox, User, Loading } from './FormStyled'
+// Function
+import { FormDate } from "../../export/functions.js";
+// Mui
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUser }) => {
     const navigate = useNavigate();
@@ -14,35 +18,41 @@ export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUse
         navigate('/users')
     }
 
+    if(currentUser === null || currentUser === undefined){
+        return(
+            <Loading>
+                <CircularProgress color="error" size={200} />
+            </Loading>
+        );
+    }
+
     return(
         <FormBox>
             <h1>{typeForm}</h1>
 
             {edit && 
             <User>
-                <img src={currentUser?.src} alt={`img/${currentUser && currentUser.id}`} />
-                <h3>ID {currentUser?.id}</h3>
+                <img src={currentUser.src} alt={`img/${currentUser && currentUser._id}`} />
+                <h3>ID {currentUser._id}</h3>
             </User>
             }
 
             <form onSubmit={handleSubmit}>
 
                 <Label>Name</Label>
-                <Input type="text" name='name' value={currentUser?.name} onChange={handleInput}/>
+                <Input type="text" name='name' value={currentUser.name} onChange={handleInput}/>
 
                 <Label>Email</Label>
-                <Input type="email" name='email' value={currentUser?.email} onChange={handleInput}/>
+                <Input type="email" name='email' value={currentUser.email} onChange={handleInput}/>
 
                 <Label>Phone Number</Label>
-                <Input type="text" name='contact' value={currentUser?.contact} onChange={handleInput}/>
+                <Input type="text" name='contact' value={currentUser.contact} onChange={handleInput}/>
 
-                <FileBox>
-                    <label>Upload Image<IoImagesOutline /></label>
-                    <input type="file" name='src' />
-                </FileBox>
+                <LabelImg>URL Image <IoImagesOutline /></LabelImg>
+                <textarea name='src' value={currentUser.src} onChange={handleInput}></textarea>
 
                 <Label>Start Date</Label>
-                <Date type="date" name='start' value={currentUser?.start} onChange={handleInput}/>
+                <Date type="date" name='start' value={currentUser && FormDate(currentUser.start)} onChange={handleInput}/>
 
                 <Label>Job</Label>
                 <Select defaultValue={'task'} name='task'>
@@ -53,7 +63,7 @@ export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUse
                 </Select>
 
                 <Label>Functions Description</Label>
-                <textarea name='job' value={currentUser?.job} onChange={handleInput}></textarea>
+                <textarea name='job' value={currentUser.job} onChange={handleInput}></textarea>
                 
                 <Text>Status</Text>
                 <StateBox>
@@ -61,7 +71,7 @@ export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUse
                     name='status' 
                     type="radio" 
                     value={'active'} 
-                    checked={currentUser?.status === "active"} 
+                    checked={currentUser.status === "active"} 
                     onChange={handleInput}/>
                     <label>Active</label>
 
@@ -69,13 +79,13 @@ export const FormUser = ({ typeForm, edit, handleSubmit, handleInput, currentUse
                     name='status' 
                     type="radio" 
                     value={'inactive'}
-                    checked={currentUser?.status === "inactive"} 
+                    checked={currentUser.status === "inactive"} 
                     onChange={handleInput}/>
                     <label>Inactive</label>
                 </StateBox>
                 
                 <Label>Password</Label>
-                <Input type="password" name='password' value={currentUser?.password} onChange={handleInput}/>
+                <Input type="password" name='password' value={currentUser.password} onChange={handleInput}/>
 
                 <BtnBox>
                     <button type='submit'>Save</button>

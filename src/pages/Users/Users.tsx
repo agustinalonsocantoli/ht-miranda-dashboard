@@ -11,13 +11,13 @@ import { Table } from '../../components/Table/Table'
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { TiEdit } from "react-icons/ti";
 import { MdOutlinePhone } from "react-icons/md";
-import { formatDate } from "../../export/functions";
 // Styled
 import { UsersContent, NameBox, Text, TextDate, TextEmail, TextCont, Active, Inactive, Options, Filters } from './UsersStyled';
-
+// Functions
+import { FormDate } from '../../export/functions.js';
 
 export const Users = () => {
-    const { users } = useAppSelector(state => state.usersReducer);
+    const { users, statusData } = useAppSelector(state => state.usersReducer);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -27,46 +27,50 @@ export const Users = () => {
     const [ status, setStatus] = useState('');
 
     useEffect(() => {
-        if(users.length === 0){
+        if(statusData === "idle"){
             dispatch(getUsers());
         }
-
-    }, [dispatch, users]);
+        
+    }, [dispatch, statusData, usersList]);
 
     useEffect(() => {
-        const usersOrderBy = users.filter(user => user['name'].toLowerCase().includes(search.toLowerCase()));
+        if(users){
+            const usersOrderBy = users.filter((user: any) => user['name'].toLowerCase().includes(search.toLowerCase()));
 
-        usersOrderBy.sort((a, b) => {
-            if(a[order] > b[order]) {
-                return 1
-            } else if (a[order] < b[order]) {
-                return -1
-            }
-            return 0
-        });
+            usersOrderBy.sort((a, b) => {
+                if(a[order] > b[order]) {
+                    return 1
+                } else if (a[order] < b[order]) {
+                    return -1
+                }
+                return 0
+            });
 
-        const usersFilter = usersOrderBy.filter(user => user.status !== status)
+            const usersFilter = usersOrderBy.filter(user => user.status !== status)
 
-        setUsersList(usersFilter)
+            setUsersList(usersFilter)
+        }
+
     }, [order, search, users, status])
 
     const removeUser = (id: string) => {
-        dispatch(deleteUser(id))
+        dispatch(deleteUser(id));
+        
     }
 
     const cols = [
         { property: ['src' ,'id', 'name'], label: 'Name', display: (row: any) => (
-            <NameBox as={Link} to={`/users/${row.id}`}>
-                <img src={row.src} alt={`img/${row.id}`} />
+            <NameBox as={Link} to={`/users/${row._id}`}>
+                <img src={row.src} alt={`img/${row._id}`} />
 
                 <div>
                     <p>{row.name}</p>
-                    <p>{row.id}</p>
+                    <p>{row._id}</p>
                 </div>
             </NameBox>) 
         },
         { property: 'email', label: 'Email', display: (row: any) => (<TextEmail>{row.email}</TextEmail>) },
-        { property: 'start', label: 'Start Date', display: (row: any) => (<TextDate>{formatDate(row.start)}</TextDate>) },
+        { property: 'start', label: 'Start Date', display: (row: any) => (<TextDate>{FormDate(row.start)}</TextDate>) },
         { property: 'job', label: 'Description', display: (row: any) => (<Text>{row.job}</Text>) },
         { property: 'contact', label: 'Contact', display: (row: any) => (<TextCont><MdOutlinePhone />{row.contact}</TextCont>) },
         { property: 'status', label: 'Status', display: (row: any) => (

@@ -11,11 +11,11 @@ import { StyledTable, OptionsMenu, BtnOptions, Icon } from './TableStyled';
 export const Table = ({ data, cols, actions }) => {
     const [ viewActions, setViewActions ] = useState(false);
     const [ page, setPage ] = useState(1);
-    const [ perPage ] = useState(5);
+    const [ perPage ] = useState(10);
     const max = Math.ceil(data.length / perPage)
 
     const getRow = (row: any) => (
-        <tr key={row.id}>
+        <tr key={row._id}>
             {cols.map((item: any, index: number)=> (
                 <td key={index}>
                     {item.display ? item.display(row) : row[item.property]}
@@ -25,10 +25,10 @@ export const Table = ({ data, cols, actions }) => {
             { actions &&
             <td>
                 <BtnOptions>
-                <Icon><BsThreeDotsVertical onClick={() => setViewActions(prev => prev === row.id ? null : row.id)}/></Icon>
+                <Icon><BsThreeDotsVertical onClick={() => setViewActions(prev => prev === row._id ? null : row._id)}/></Icon>
                 
-                <OptionsMenu visible={viewActions === row.id}>
-                    {actions.map((item: any, index: number) => <li key={index} onClick={() => item.action(row.id)}>{item.icon}{item.name}</li>)}
+                <OptionsMenu visible={viewActions === row._id}>
+                    {actions.map((item: any, index: number) => <li key={index} onClick={() => item.action(row._id)}>{item.icon}{item.name}</li>)}
                 </OptionsMenu>
                 </BtnOptions>
             </td>}

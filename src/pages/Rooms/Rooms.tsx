@@ -27,26 +27,27 @@ export const Rooms = () => {
     
 
     useEffect(() => {
-        if(rooms.length === 0){
+        if(rooms && rooms.length === 0){
             dispatch(getRooms());
         }
     }, [dispatch, rooms])
 
     useEffect(() => {
-        const roomsFilter = rooms.filter(room => room['status'] !== status)
+        if(rooms) {
+            const roomsFilter = rooms.filter(room => room['status'] !== status)
 
-        roomsFilter.sort((a, b) => {
-            if(a[order] > b[order]) {
-                return 1
-            } else if (a[order] < b[order]) {
-                return -1
-            }
-            return 0
-        });
+            roomsFilter.sort((a, b) => {
+                if(a[order] > b[order]) {
+                    return 1
+                } else if (a[order] < b[order]) {
+                    return -1
+                }
+                return 0
+            });
 
 
-        setRoomsList(roomsFilter)
-        
+            setRoomsList(roomsFilter)
+        }
     }, [order, rooms, status])
 
     const removeRoom = (id: string) => {
@@ -55,12 +56,12 @@ export const Rooms = () => {
 
     const cols = [
         { property: ['src' ,'name', 'id'], label: 'Room', display: (row: any) => (
-            <NameBox as={Link} to={`/rooms/${row.id}`}>
-                <img src={row.src} alt={`img/${row.id}`} />
+            <NameBox as={Link} to={`/rooms/${row._id}`}>
+                <img src={row.src} alt={`img/${row._id}`} />
                 
                 <div>
                     <Text>{row.name}</Text>
-                    <p>{row.id}</p>
+                    <p>{row._id}</p>
                 </div>
             </NameBox>) 
         },
@@ -87,7 +88,7 @@ export const Rooms = () => {
 
     const actions = [
         { icon: <MdOutlineDeleteForever />, name: 'Delete', action: removeRoom },
-        { icon: <TiEdit />, name: 'Edit', action: (id: string) => navigate(`/rooms/${id}`) },
+        { icon: <TiEdit />, name: 'Edit', action: (_id: string) => navigate(`/rooms/${_id}`) },
     ];
     
     return(

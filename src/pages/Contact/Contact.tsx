@@ -10,22 +10,24 @@ import { Msg } from "../../components/Msg/Msg";
 import { Table } from "../../components/Table/Table";
 // Styled
 import { ContactContent, Review, Date, Customer, Comment, Button, Options, Filters } from './ContactStyled';
-import { formatDate } from "../../export/functions";
+import { FormDate } from "../../export/functions";
 
 export const Contact = () => {
-    const { reviews } = useAppSelector(state => state.reviewsReducer);
+    const { reviews, statusData } = useAppSelector(state => state.reviewsReducer);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const [ reviewsList , setReviewsList ] = useState([]);
-    const [ archived , setArchived ] = useState(true);
+    const archived: boolean = true;
 
     useEffect(() => {
-        if(reviews.length === 0){
-            dispatch(getReviews());
+        if(statusData === "idle"){
+            dispatch(getReviews())
+
         }
 
-    }, [dispatch, reviews])
+
+    }, [dispatch, statusData, reviews])
 
     useEffect(() => {
         const reviewOrderBy = [...reviews];
@@ -39,18 +41,15 @@ export const Contact = () => {
             return 0
         });
 
-        const reviewFilter = reviewOrderBy.filter(review => review.archived !== archived)
+        setReviewsList(reviewOrderBy)
 
-        setReviewsList(reviewFilter)
-        
-    }, [reviews, archived])
-
+    }, [reviews])
 
     const cols = [
         { property: ['date', 'id'], label: 'Date', display: (row: any) => (
             <Date>
-                <p>{formatDate(row.date)}</p>
-                <p>ID # {row.id}</p>
+                <p>{FormDate(row.date)}</p>
+                <p>ID # {row._id}</p>
             </Date>) 
         },
         { property: ['customer', 'email', 'phone'], label: 'Customer', display: (row: any) => (
@@ -67,7 +66,7 @@ export const Contact = () => {
             </Comment>) 
         },
         { label: 'Action', display: (row: any) => (
-            <Button archived={archived} onClick={() => navigate(`/contact/${row.id}`)}>
+            <Button archived={archived} onClick={() => navigate(`/contact/${row._id}`)}>
                 {archived ? 'Archive' : 'Unarchive'}
             </Button>) 
         }
@@ -81,8 +80,8 @@ export const Contact = () => {
 
             <Options>
                 <Filters>
-                    <p onClick={() => setArchived(true)}>All Contacts</p>
-                    <p onClick={() => setArchived(false)}>Archived</p>
+                    <p>All Contacts</p>
+                    <p>Archived</p>
                 </Filters>
 
                 <select defaultValue={'date'}>

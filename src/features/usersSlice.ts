@@ -1,43 +1,45 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getData } from "../export/functions";
-import { dataUsers } from "../data/DataUsers";
 import type { Users } from "../interfaces/UsersInt";
+import { fetchApi } from "../export/functions.js";
+import toast from "react-hot-toast";
 
 interface UsersState {
     users: Users[] | [];
-    user: Users | null | undefined; 
-}
+    user: Users | null | undefined;
+    statusData: string;
+};
 
 interface Action {
     type: string;
     payload: any;
-}
+};
 
 export const getUsers = createAsyncThunk('users/getUsers', 
-    async () => { return await getData(dataUsers)}
+    () => { return fetchApi("users", "GET"); }
 );
 
 export const getUser = createAsyncThunk('user/getUser',
-    async (id: string) => { return await id}
+    (id: string) => { return id}
 );
 
 export const addUser = createAsyncThunk('user/addUser',
-    async (newUser: Users) => { return await newUser}
+    (newUser: Users) => { return fetchApi("users", "POST", newUser); }
 );
 
 export const deleteUser = createAsyncThunk('user/deleteUser',
-    async (id: string) => { return await id}
+    (id: string) => { return (fetchApi(`users/${id}`, "DELETE"), id); }
 );
 
 export const editUser = createAsyncThunk('user/editUser',
-    async (user: Users) => { return await user}
+    (user: Users) => { return fetchApi(`users/${user._id}`, "PUT", user); }
 );
 
 
 const initialState: UsersState = {
     users: [],
     user: null,
-}
+    statusData: "idle",
+};
 
 export const usersSlice = createSlice({
     name: 'users',
@@ -46,31 +48,42 @@ export const usersSlice = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(getUsers.fulfilled, (state: UsersState, action: Action) => {
-            console.log('Success!');
+            state.statusData = "fulfilled";
             state.users = action.payload;
+            toast.success("Users upload successful");
         })
-        .addCase(getUsers.rejected, () => {
-            console.log('Failed');
+        .addCase(getUsers.pending, (state: UsersState, action: Action) => {
+            state.statusData = "pending";
+        })
+        .addCase(getUsers.rejected, (state: UsersState, action: Action) => {
+            state.statusData = "rejected";
+            toast.error("Users upload rejected");
         });
 
         builder
         .addCase(getUser.fulfilled, (state: UsersState, action: Action) => {
-            state.user = state.users.find(user => user['id'] === action.payload);
+            state.user = state.users.find((user: Users) => user._id === action.payload);
         });
 
         builder
         .addCase(addUser.fulfilled, (state: UsersState, action: Action) => {
             state.users = [...state.users, action.payload];
+            state.statusData = "idle";
+            toast.success("Added a new user successfully");
         });
 
         builder
         .addCase(deleteUser.fulfilled, (state: UsersState, action: Action) => {
-            state.users = state.users.filter(user => user['id'] !== action.payload);
+            state.users = state.users.filter((user: Users) => user._id !== action.payload);
+            state.statusData = "idle";
+            toast.success("User deleted successfully");
         });
 
         builder
         .addCase(editUser.fulfilled, (state: UsersState, action: Action) => {
-            state.users = state.users.map(user => user.id === action.payload.id ? action.payload : user);
+            state.users = state.users.map((user: Users) => user._id === action.payload._id ? action.payload : user);
+            state.statusData = "idle";
+            toast.success("User edited successfully");
         });
     }
 });

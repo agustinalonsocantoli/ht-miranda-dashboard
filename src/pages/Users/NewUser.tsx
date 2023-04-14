@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Redux
-import { useAppSelector, useAppDispatch } from '../../app/hook';
+import { useAppDispatch } from '../../app/hook';
 import { addUser } from '../../features/usersSlice';
 // Components
 import { FormUser } from '../../components/FormUser/FormUser';
@@ -12,12 +12,10 @@ import { ContentBox } from './GeneralStyled'
 
 export const NewUser = () => {
     const dispatch = useAppDispatch();
-    const { users } = useAppSelector(state => state.usersReducer);
     const navigate = useNavigate();
     const [ currentUser, setCurrentUser ] = useState({
-        src: users[0].src,
+        src: '',
         name: '',
-        id: `U000${users.length + 1}`,
         email: '',
         start: '',
         job: '',

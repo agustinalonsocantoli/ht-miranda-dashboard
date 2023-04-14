@@ -12,7 +12,6 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 // Styled
 import { DashboardContent, IconIn, Box, InfoBox, ReviewsBox, Review, Next, Prev } from './DashboardStyled';
 
-
 export const Dashboard = () => {
     const [ translate, setTraslate ] = useState(0)
 
@@ -62,9 +61,11 @@ export const Dashboard = () => {
 
                     <Msg translate={translate} popup={false} filter={10}/>
 
-                    <Next onClick={() => setTraslate(prev => prev + 300)}>
-                        <IoIosArrowRoundForward />
-                    </Next>
+                    {translate < 2400 &&
+                        <Next onClick={() => setTraslate(prev => prev + 300)}>
+                            <IoIosArrowRoundForward />
+                        </Next>
+                    }
 
                     {translate > 0 && 
                         <Prev onClick={() => setTraslate(prev => prev - 300)}>

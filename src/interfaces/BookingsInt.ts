@@ -1,6 +1,6 @@
 export interface BookingsInt {   
     src: any;
-    id: string; 
+    _id?: string; 
     name: string;
     date: string;
     checkinDate: string;

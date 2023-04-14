@@ -31,7 +31,8 @@ export const NavBar = ({ viewBar ,setViewBar, setTitle, title }) => {
             type: 'LOG_OUT',
             payload: false,
         })
-        localStorage.removeItem('login')
+        localStorage.removeItem('login');
+        localStorage.removeItem('token');
         navigate('/login');
     }
     

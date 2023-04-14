@@ -1,42 +1,44 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getData } from "../export/functions";
-import { dataReviews } from "../data/DataReviews";
 import type { Reviews } from "../interfaces/ContactInt";
+import { fetchApi } from "../export/functions.js";
+import toast from "react-hot-toast";
 
 interface ReviewsState {
     reviews: Reviews[] | [],
     review: Reviews | null | undefined,
-}
+    statusData: string;
+};
 
 interface Action {
     type: string;
     payload: any;
-}
+};
 
 export const getReviews = createAsyncThunk('reviews/getReviews', 
-    async () => { return await getData(dataReviews)}
+    () => { return fetchApi("contact", "GET"); }
 );
 
 export const getReview = createAsyncThunk('review/getReview', 
-    async (id: string) => { return await id }
+    (id: string) => { return id}
 );
 
 export const addReview = createAsyncThunk('review/addReview', 
-    async (newReview: Reviews) => { return await newReview }
+    (newReview: Reviews) => { return fetchApi("contact", "POST", newReview); } 
 );
 
 export const deleteReview = createAsyncThunk('review/deleteReview', 
-    async (id: string) => { return await id }
+    (id: string) => { return (fetchApi(`contact/${id}`, "DELETE"), id); }
 );
 
 export const editReview = createAsyncThunk('review/editReview', 
-    async (review: Reviews) => { return await review }
+    (review: Reviews) => { return fetchApi(`contact/${review._id}`, "PUT", review); }
 );
 
 const initialState: ReviewsState = {
     reviews: [],
-    review: null
-}
+    review: null,
+    statusData: "idle",
+};
 
 export const contactSlice = createSlice({
     name: 'reviews',
@@ -45,31 +47,42 @@ export const contactSlice = createSlice({
     extraReducers: (builder) => {
         builder
         .addCase(getReviews.fulfilled, (state: ReviewsState, action: Action) => {
-            console.log('Success!');
+            state.statusData = "fulfilled";
             state.reviews = action.payload;
+            toast.success("Reviews upload successful");
         })
-        .addCase(getReviews.rejected, () => {
-            console.log('Failed');
+        .addCase(getReviews.pending, (state: ReviewsState, action: Action) => {
+            state.statusData = "pending";
+        })
+        .addCase(getReviews.rejected, (state: ReviewsState, action: Action) => {
+            state.statusData = "rejected";
+            toast.error("Reviews upload rejected");
         });
 
         builder
         .addCase(getReview.fulfilled, (state: ReviewsState, action: Action) => {
-            state.review = state.reviews.find(review => review['id'] === action.payload);
+            state.review = state.reviews.find((review: Reviews) => review._id === action.payload);
         });
 
         builder
         .addCase(addReview.fulfilled, (state: ReviewsState, action: Action) => {
             state.reviews = [...state.reviews, action.payload];
+            state.statusData = "idle";
+            toast.success("Added a new review successfully");
         });
 
         builder
         .addCase(deleteReview.fulfilled, (state: ReviewsState, action: Action) => {
-            state.reviews = state.reviews.filter(review => review['id'] !== action.payload);
+            state.reviews = state.reviews.filter((review: Reviews) => review._id !== action.payload);
+            state.statusData = "idle";
+            toast.success("Review deleted successfully");
         });
 
         builder
         .addCase(editReview.fulfilled, (state: ReviewsState, action: Action) => {
-            state.reviews = state.reviews.map(review => review.id === action.payload.id ? action.payload : review);
+            state.reviews = state.reviews.map((review: Reviews) => review._id === action.payload._id ? action.payload : review);
+            state.statusData = "idle";
+            toast.success("Review edited successfully");
         });
     }
 });
